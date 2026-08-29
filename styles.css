@@ -96,6 +96,15 @@ a:hover {
     font-size: 14px;
     letter-spacing: -0.02em;
     cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 15px; /* Space between logo and name */
+}
+
+.logo-img {
+    width: 20px;   /* Adjust size as needed */
+    height: 20px;  /* Keeps icon proportional */
+    object-fit: contain;
 }
 
 .nav-links {

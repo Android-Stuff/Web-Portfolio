@@ -98,12 +98,12 @@ a:hover {
     cursor: pointer;
     display: inline-flex;
     align-items: center;
-    gap: 15px; /* Space between logo and name */
+    gap: 15px;
 }
 
 .logo-img {
-    width: 20px;   /* Adjust size as needed */
-    height: 20px;  /* Keeps icon proportional */
+    width: 20px;
+    height: 20px;
     object-fit: contain;
 }
 
@@ -127,12 +127,12 @@ a:hover {
     width: 100%;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    scrollbar-width: none; /* Hide scrollbar Firefox */
+    scrollbar-width: none;
     padding: 0 16px;
 }
 
 .sub-nav-wrapper::-webkit-scrollbar {
-    display: none; /* Hide scrollbar Chrome/Safari */
+    display: none;
 }
 
 .sub-nav {
@@ -229,7 +229,7 @@ a:hover {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: 420px;
+    min-height: 280px;
     position: relative;
     overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.02);
@@ -242,7 +242,7 @@ a:hover {
 
 .card-large {
     grid-column: span 2;
-    min-height: 500px;
+    min-height: 320px;
 }
 
 .card-header h3 {
@@ -256,39 +256,7 @@ a:hover {
     font-size: 17px;
     color: var(--text-secondary);
     line-height: 1.4;
-    max-width: 480px;
-}
-
-.mock-ui-frame {
-    background: rgba(255, 255, 255, 0.03);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    border-left: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 14px 14px 0 0;
-    height: 220px;
-    margin-top: 30px;
-    padding: 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.mock-dot-container {
-    display: flex;
-    gap: 6px;
-}
-
-.mock-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.2);
-}
-
-.mock-code-line {
-    height: 12px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 4px;
-    width: 80%;
+    max-width: 600px;
 }
 
 /* Contact Form Styles */
@@ -349,74 +317,7 @@ footer {
     margin-top: 20px;
 }
 
-/* Mobile Adjustments */
-@media (max-width: 768px) {
-    .container {
-        padding: 0 16px;
-    }
-
-    .main-nav .container {
-        justify-content: center;
-    }
-
-    .nav-links {
-        display: none;
-    }
-
-    .sub-nav-wrapper {
-        justify-content: flex-start;
-        margin-top: 16px;
-        padding: 0 16px;
-    }
-
-    .hero {
-        padding: 36px 0 28px 0;
-    }
-
-    .hero-tagline {
-        font-size: 16px;
-    }
-
-    .hero-title {
-        font-size: 34px;
-        line-height: 1.12;
-        margin-bottom: 16px;
-    }
-
-    .hero-description {
-        font-size: 17px;
-        line-height: 1.45;
-    }
-
-    .showcase-grid {
-        grid-template-columns: 1fr;
-        gap: 16px;
-        margin-bottom: 40px;
-    }
-
-    .card-large {
-        grid-column: span 1;
-        min-height: auto;
-    }
-
-    .card {
-        padding: 24px;
-        min-height: auto;
-        border-radius: 22px;
-    }
-
-    .card-header h3 {
-        font-size: 22px;
-    }
-
-    .card-header p {
-        font-size: 15px;
-    }
-
-
-
-}
-
+/* ID Card Styles */
 .id-card {
     background: linear-gradient(135deg, rgba(52, 50, 104, 0.282) 0%, rgba(47, 62, 84, 0.95) 100%);
     border: 1px solid rgba(255, 255, 255, 0.12);
@@ -426,21 +327,9 @@ footer {
 
 .id-card-top {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     margin-bottom: 24px;
-}
-
-
-.id-status {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    color: #34c759;
-    background: rgba(52, 199, 89, 0.15);
-    padding: 4px 10px;
-    border-radius: 12px;
-    border: 1px solid rgba(52, 199, 89, 0.3);
 }
 
 .id-card-body {
@@ -508,15 +397,6 @@ footer {
     color: var(--text-primary);
 }
 
-@media (max-width: 768px) {
-    .id-card-body {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 16px;
-    }
-}
-
-/* ID Card Social Links */
 .id-socials {
     display: flex;
     gap: 10px;
@@ -535,7 +415,7 @@ footer {
     color: var(--text-primary);
     font-size: 12px;
     font-weight: 500;
-    transition: all 0.25 ease;
+    transition: all 0.25s ease;
 }
 
 .id-social-btn:hover {
@@ -550,4 +430,75 @@ footer {
     width: 14px;
     height: 14px;
     fill: currentColor;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 16px;
+    }
+
+    .main-nav .container {
+        justify-content: center;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .sub-nav-wrapper {
+        justify-content: flex-start;
+        margin-top: 16px;
+        padding: 0 16px;
+    }
+
+    .hero {
+        padding: 36px 0 28px 0;
+    }
+
+    .hero-tagline {
+        font-size: 16px;
+    }
+
+    .hero-title {
+        font-size: 34px;
+        line-height: 1.12;
+        margin-bottom: 16px;
+    }
+
+    .hero-description {
+        font-size: 17px;
+        line-height: 1.45;
+    }
+
+    .showcase-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        margin-bottom: 40px;
+    }
+
+    .card-large {
+        grid-column: span 1;
+        min-height: auto;
+    }
+
+    .card {
+        padding: 24px;
+        min-height: auto;
+        border-radius: 22px;
+    }
+
+    .card-header h3 {
+        font-size: 22px;
+    }
+
+    .card-header p {
+        font-size: 15px;
+    }
+
+    .id-card-body {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
 }

@@ -355,10 +355,9 @@ footer {
 }
 
 .id-institution {
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    color: var(--accent-blue);
+    font-size: 14px;
+    font-weight: 650;
+    color: rgb(169, 206, 255);
     display: block;
     margin-bottom: 4px;
     text-transform: uppercase;
@@ -387,7 +386,7 @@ footer {
     font-size: 9px;
     font-weight: 600;
     color: var(--text-secondary);
-    letter-spacing: 0.06em;
+    letter-spacing: 0.02em;
     margin-bottom: 2px;
 }
 

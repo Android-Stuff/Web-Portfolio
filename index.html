@@ -116,11 +116,20 @@
             cursor: pointer;
         }
 
+        /* Sub-navigation pill bar setup */
         .sub-nav-wrapper {
-            margin-top: 32px; /* Balanced spacing below navbar */
+            margin-top: 32px;
             display: flex;
             justify-content: center;
             width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none; /* Hide scrollbar Firefox */
+            padding: 0 16px;
+        }
+
+        .sub-nav-wrapper::-webkit-scrollbar {
+            display: none; /* Hide scrollbar Chrome/Safari */
         }
 
         .sub-nav {
@@ -130,6 +139,7 @@
             padding: 6px;
             border-radius: 30px;
             list-style: none;
+            flex-shrink: 0;
         }
 
         .sub-nav-btn {
@@ -139,6 +149,8 @@
             color: var(--text-primary);
             cursor: pointer;
             transition: all 0.2s ease;
+            white-space: nowrap; /* Prevents text breaking into multiple lines */
+            flex-shrink: 0;
         }
 
         .sub-nav-btn.active {
@@ -154,7 +166,7 @@
         .hero {
             text-align: center;
             padding: 60px 0;
-            scroll-margin-top: 48px; /* Ensures smooth scroll stops below fixed navbar */
+            scroll-margin-top: 48px;
         }
 
         .hero-tagline {
@@ -334,18 +346,68 @@
             margin-top: 20px;
         }
 
+        /* Mobile Adjustments */
         @media (max-width: 768px) {
-            .showcase-grid {
-                grid-template-columns: 1fr;
+            .container {
+                padding: 0 16px;
             }
-            .card-large {
-                grid-column: span 1;
+
+            .main-nav .container {
+                justify-content: center;
             }
-            .hero-title {
-                font-size: 40px;
-            }
+
             .nav-links {
                 display: none;
+            }
+
+            .sub-nav-wrapper {
+                justify-content: flex-start; /* Start horizontal scroll smoothly from left */
+                margin-top: 16px;
+                padding: 0 16px;
+            }
+
+            .hero {
+                padding: 36px 0 28px 0;
+            }
+
+            .hero-tagline {
+                font-size: 16px;
+            }
+
+            .hero-title {
+                font-size: 34px;
+                line-height: 1.12;
+                margin-bottom: 16px;
+            }
+
+            .hero-description {
+                font-size: 17px;
+                line-height: 1.45;
+            }
+
+            .showcase-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+                margin-bottom: 40px;
+            }
+
+            .card-large {
+                grid-column: span 1;
+                min-height: auto;
+            }
+
+            .card {
+                padding: 24px; /* Scaled down padding for mobile screens */
+                min-height: auto;
+                border-radius: 22px;
+            }
+
+            .card-header h3 {
+                font-size: 22px;
+            }
+
+            .card-header p {
+                font-size: 15px;
             }
         }
     </style>
@@ -385,6 +447,7 @@
 
     <main class="container">
 
+        <!-- TAB 1: OVERVIEW -->
         <section id="view-overview" class="tab-view showcase-grid active-view">
             <div class="card card-large">
                 <div class="card-header">
@@ -429,6 +492,7 @@
             </div>
         </section>
 
+        <!-- TAB 2: C++ ENGINEERING -->
         <section id="view-engineering" class="tab-view showcase-grid">
             <div class="card card-large">
                 <div class="card-header">
@@ -453,6 +517,7 @@
             </div>
         </section>
 
+        <!-- TAB 3: UI/UX DESIGN -->
         <section id="view-ui-design" class="tab-view showcase-grid">
             <div class="card card-large">
                 <div class="card-header">
@@ -474,6 +539,7 @@
             </div>
         </section>
 
+        <!-- TAB 4: CYBERSECURITY -->
         <section id="view-security" class="tab-view showcase-grid">
             <div class="card card-large">
                 <div class="card-header">
@@ -498,6 +564,7 @@
             </div>
         </section>
 
+        <!-- TAB 5: GAME ARTIST -->
         <section id="view-game-art" class="tab-view showcase-grid">
             <div class="card card-large">
                 <div class="card-header">
@@ -519,6 +586,7 @@
             </div>
         </section>
 
+        <!-- TAB 6: CONTACT -->
         <section id="view-contact" class="tab-view showcase-grid">
             <div class="card card-large">
                 <div class="card-header">

@@ -1,10 +1,11 @@
 :root {
     --bg-color: #000000;
-    --card-bg: #1d1d1f;
+    --card-bg: rgba(29, 29, 31, 0.7);
     --text-primary: #f5f5f7;
     --text-secondary: #86868b;
-    --accent-blue: #0071e3;
-    --nav-bg: rgba(0, 0, 0, 0.8);
+    --accent-blue: #2997ff;
+    --nav-bg: rgba(0, 0, 0, 0.72);
+    --apple-curve: cubic-bezier(0.16, 1, 0.3, 1);
     --font-stack: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
@@ -18,27 +19,22 @@ body {
     background-color: var(--bg-color);
     color: var(--text-primary);
     font-family: var(--font-stack);
-    letter-spacing: -0.01em;
+    letter-spacing: -0.015em;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
     padding-top: 48px;
+    position: relative;
 }
 
-/* Firefox Support */
+/* Firefox & WebKit Scrollbar */
 html {
     scrollbar-width: thin;
     scrollbar-color: #3a3a3c #000000;
 }
 
-/* WebKit / Chromium */
 html::-webkit-scrollbar,
 body::-webkit-scrollbar {
-    width: 10px;
-    background-color: #000000;
-}
-
-html::-webkit-scrollbar-track,
-body::-webkit-scrollbar-track {
+    width: 8px;
     background-color: #000000;
 }
 
@@ -47,30 +43,27 @@ body::-webkit-scrollbar-thumb {
     background-color: #2c2c2e;
     border-radius: 20px;
     border: 2px solid #000000;
-    transition: background-color 0.2s ease;
-}
-
-html::-webkit-scrollbar-thumb:hover,
-body::-webkit-scrollbar-thumb:hover {
-    background-color: #48484a;
 }
 
 a {
     color: inherit;
     text-decoration: none;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.3s var(--apple-curve);
 }
 
 a:hover {
-    opacity: 0.7;
+    opacity: 0.75;
 }
 
 .container {
     max-width: 1080px;
     margin: 0 auto;
     padding: 0 22px;
+    position: relative;
+    z-index: 1;
 }
 
+/* Navigation Bar */
 .main-nav {
     position: fixed;
     top: 0;
@@ -78,10 +71,10 @@ a:hover {
     width: 100%;
     height: 48px;
     background: var(--nav-bg);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
     z-index: 9999;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .main-nav .container {
@@ -98,7 +91,7 @@ a:hover {
     cursor: pointer;
     display: inline-flex;
     align-items: center;
-    gap: 15px;
+    gap: 12px;
 }
 
 .logo-img {
@@ -109,7 +102,7 @@ a:hover {
 
 .nav-links {
     display: flex;
-    gap: 24px;
+    gap: 28px;
     list-style: none;
     font-size: 12px;
     color: var(--text-secondary);
@@ -117,9 +110,15 @@ a:hover {
 
 .nav-links a {
     cursor: pointer;
+    transition: color 0.2s ease;
 }
 
-/* Sub-navigation pill bar setup */
+.nav-links a:hover {
+    color: var(--text-primary);
+    opacity: 1;
+}
+
+/* Sub-Navigation Bar */
 .sub-nav-wrapper {
     margin-top: 32px;
     display: flex;
@@ -137,21 +136,24 @@ a:hover {
 
 .sub-nav {
     display: flex;
-    gap: 8px;
-    background: rgba(255, 255, 255, 0.05);
-    padding: 6px;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.06);
+    padding: 5px;
     border-radius: 30px;
     list-style: none;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     flex-shrink: 0;
 }
 
 .sub-nav-btn {
     font-size: 13px;
-    padding: 8px 16px;
+    padding: 7px 18px;
     border-radius: 20px;
     color: var(--text-primary);
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.4s var(--apple-curve);
     white-space: nowrap;
     flex-shrink: 0;
 }
@@ -160,60 +162,62 @@ a:hover {
     background: #ffffff;
     color: #000000;
     font-weight: 500;
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
 }
 
 .sub-nav-btn:not(.active):hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.12);
 }
 
+/* Hero Section */
 .hero {
     text-align: center;
-    padding: 60px 0;
+    padding: 64px 0 48px 0;
     scroll-margin-top: 48px;
+    transition: opacity 0.25s var(--apple-curve), transform 0.25s var(--apple-curve);
+}
+
+.hero-transition {
+    opacity: 0;
+    transform: translateY(6px);
 }
 
 .hero-tagline {
     font-size: 21px;
     font-weight: 500;
-    color: var(--text-secondary);
+    color: var(--accent-blue);
     margin-bottom: 12px;
 }
 
 .hero-title {
     font-size: 56px;
     font-weight: 700;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.035em;
     line-height: 1.07;
     max-width: 800px;
-    margin: 0 auto 24px auto;
-    background: linear-gradient(180deg, #fff 60%, #a1a1a6);
+    margin: 0 auto 20px auto;
+    background: linear-gradient(180deg, #ffffff 30%, rgba(255, 255, 255, 0.65) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
 .hero-description {
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 400;
     color: var(--text-secondary);
-    max-width: 600px;
+    max-width: 620px;
     margin: 0 auto;
-    line-height: 1.4;
+    line-height: 1.42;
 }
 
-/* Page View Switching */
+/* Grid & Tab View */
 .tab-view {
     display: none;
-    animation: fadeIn 0.3s ease-in-out forwards;
 }
 
 .tab-view.active-view {
     display: grid;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(8px); }
-    to { opacity: 1; transform: translateY(0); }
 }
 
 .showcase-grid {
@@ -222,6 +226,7 @@ a:hover {
     margin-bottom: 80px;
 }
 
+/* Card Initial State & Cascading Smooth Reveal */
 .card {
     background: var(--card-bg);
     border-radius: 28px;
@@ -232,12 +237,31 @@ a:hover {
     min-height: 280px;
     position: relative;
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.02);
-    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    
+    /* Scroll Reveal Initial Hide State */
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.75s var(--apple-curve),
+                transform 0.75s var(--apple-curve),
+                border-color 0.4s var(--apple-curve),
+                box-shadow 0.4s var(--apple-curve);
+    will-change: opacity, transform;
+}
+
+/* Cascading In-View State */
+.card.reveal {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .card:hover {
-    transform: scale(1.015);
+    transform: scale(1.015) translateY(-2px);
+    border-color: rgba(255, 255, 255, 0.18);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.2);
 }
 
 .card-large {
@@ -248,80 +272,22 @@ a:hover {
 .card-header h3 {
     font-size: 28px;
     font-weight: 600;
-    margin-bottom: 8px;
-    letter-spacing: -0.02em;
+    margin-bottom: 10px;
+    letter-spacing: -0.025em;
+    color: #ffffff;
 }
 
 .card-header p {
     font-size: 17px;
     color: var(--text-secondary);
-    line-height: 1.4;
+    line-height: 1.45;
     max-width: 600px;
 }
 
-/* Contact Form Styles */
-.contact-form {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    margin-top: 24px;
-    max-width: 500px;
-}
-
-.contact-input, .contact-textarea {
-    width: 100%;
-    padding: 14px 18px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    color: #fff;
-    font-family: inherit;
-    font-size: 14px;
-    outline: none;
-}
-
-.contact-input:focus, .contact-textarea:focus {
-    border-color: var(--accent-blue);
-}
-
-.contact-btn {
-    padding: 12px 24px;
-    background: var(--accent-blue);
-    color: #fff;
-    border: none;
-    border-radius: 20px;
-    font-weight: 500;
-    cursor: pointer;
-    align-self: flex-start;
-    transition: opacity 0.2s;
-}
-
-.contact-btn:hover {
-    opacity: 0.85;
-}
-
-footer {
-    background: #1d1d1f;
-    color: var(--text-secondary);
-    font-size: 12px;
-    padding: 40px 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.footer-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    padding-top: 20px;
-    margin-top: 20px;
-}
-
-/* ID Card Styles */
+/* ID Card Visuals */
 .id-card {
-    background: linear-gradient(135deg, rgba(52, 50, 104, 0.282) 0%, rgba(47, 62, 84, 0.95) 100%);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    background: linear-gradient(135deg, rgba(30, 32, 48, 0.8) 0%, rgba(18, 22, 32, 0.95) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.14);
     min-height: auto;
 }
 
@@ -334,7 +300,7 @@ footer {
 
 .id-card-body {
     display: flex;
-    gap: 24px;
+    gap: 28px;
     align-items: center;
 }
 
@@ -343,7 +309,7 @@ footer {
     height: 96px;
     border-radius: 20px;
     overflow: hidden;
-    border: 2px solid rgba(255, 255, 255, 0.15);
+    border: 2px solid rgba(255, 255, 255, 0.18);
     flex-shrink: 0;
     background: #2c2c2e;
 }
@@ -355,16 +321,17 @@ footer {
 }
 
 .id-institution {
-    font-size: 14px;
-    font-weight: 650;
-    color: rgb(169, 206, 255);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: #a9ceff;
     display: block;
     margin-bottom: 4px;
     text-transform: uppercase;
 }
 
 .id-name {
-    font-size: 22px;
+    font-size: 24px;
     font-weight: 600;
     color: var(--text-primary);
     margin-bottom: 2px;
@@ -386,7 +353,7 @@ footer {
     font-size: 9px;
     font-weight: 600;
     color: var(--text-secondary);
-    letter-spacing: 0.02em;
+    letter-spacing: 0.06em;
     margin-bottom: 2px;
 }
 
@@ -407,18 +374,18 @@ footer {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 6px 14px;
+    padding: 7px 16px;
     background: rgba(255, 255, 255, 0.08);
     border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 20px;
     color: var(--text-primary);
     font-size: 12px;
     font-weight: 500;
-    transition: all 0.25s ease;
+    transition: all 0.3s var(--apple-curve);
 }
 
 .id-social-btn:hover {
-    background: rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.2);
     border-color: var(--accent-blue);
     color: #ffffff;
     opacity: 1;
@@ -431,7 +398,68 @@ footer {
     fill: currentColor;
 }
 
-/* Mobile Adjustments */
+/* Contact Form */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 24px;
+    max-width: 500px;
+}
+
+.contact-input, .contact-textarea {
+    width: 100%;
+    padding: 14px 18px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: #fff;
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.3s var(--apple-curve);
+}
+
+.contact-input:focus, .contact-textarea:focus {
+    border-color: var(--accent-blue);
+}
+
+.contact-btn {
+    padding: 12px 24px;
+    background: var(--accent-blue);
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    font-weight: 500;
+    cursor: pointer;
+    align-self: flex-start;
+    transition: opacity 0.2s var(--apple-curve), transform 0.2s var(--apple-curve);
+}
+
+.contact-btn:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+/* Footer */
+footer {
+    background: #000000;
+    color: var(--text-secondary);
+    font-size: 12px;
+    padding: 40px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 20px;
+    margin-top: 20px;
+}
+
+/* Responsive Mobile Layout */
 @media (max-width: 768px) {
     .container {
         padding: 0 16px;

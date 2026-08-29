@@ -88,7 +88,6 @@
                                 <span>LinkedIn</span>
                             </a>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -267,9 +266,43 @@
             }
         };
 
+        // Cascading Scroll Reveal Observer
+        const cardObserverOptions = {
+            root: null,
+            rootMargin: '0px 0px -40px 0px',
+            threshold: 0.1
+        };
+
+        const cardObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    const card = entry.target;
+                    const parent = card.parentElement;
+                    const siblings = Array.from(parent.querySelectorAll('.card'));
+                    const index = siblings.indexOf(card);
+                    
+                    // Stagger delay based on position inside grid
+                    card.style.transitionDelay = `${index * 0.08}s`;
+                    card.classList.add('reveal');
+                    observer.unobserve(card);
+                }
+            });
+        }, cardObserverOptions);
+
+        function observeCards() {
+            document.querySelectorAll('.active-view .card').forEach(card => {
+                card.classList.remove('reveal');
+                card.style.transitionDelay = '0s';
+                cardObserver.observe(card);
+            });
+        }
+
         function switchTab(tabKey) {
             const views = document.querySelectorAll('.tab-view');
-            views.forEach(v => v.classList.remove('active-view'));
+            views.forEach(v => {
+                v.classList.remove('active-view');
+                v.querySelectorAll('.card').forEach(c => c.classList.remove('reveal'));
+            });
 
             const targetView = document.getElementById(`view-${tabKey}`);
             if (targetView) {
@@ -285,14 +318,24 @@
                 }
             });
 
-            if (heroData[tabKey]) {
-                document.getElementById('hero-tagline').innerText = heroData[tabKey].tagline;
-                document.getElementById('hero-title').innerHTML = heroData[tabKey].title;
-                document.getElementById('hero-desc').innerText = heroData[tabKey].desc;
-            }
+            const heroContainer = document.querySelector('.hero');
+            heroContainer.classList.add('hero-transition');
 
-            document.querySelector('.hero').scrollIntoView({ behavior: 'smooth' });
+            setTimeout(() => {
+                if (heroData[tabKey]) {
+                    document.getElementById('hero-tagline').innerText = heroData[tabKey].tagline;
+                    document.getElementById('hero-title').innerHTML = heroData[tabKey].title;
+                    document.getElementById('hero-desc').innerText = heroData[tabKey].desc;
+                }
+                heroContainer.classList.remove('hero-transition');
+                observeCards();
+            }, 150);
+
+            heroContainer.scrollIntoView({ behavior: 'smooth' });
         }
+
+        // Initialize Observer on DOM Load
+        document.addEventListener('DOMContentLoaded', observeCards);
     </script>
 </body>
 </html>

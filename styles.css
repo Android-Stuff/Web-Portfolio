@@ -19,9 +19,33 @@
     padding: 0;
 }
 
+.local-nav-title {
+    display: inline-flex;
+    align-items: center;
+    gap: 15px; /* Space between logo and name */
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.logo-img {
+    width: 20px;   /* Adjust size as needed */
+    height: 20px;  /* Keeps logo proportional */
+    object-fit: contain;
+}
+
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: 70px; /* Offsets anchor scroll below sticky navbar */
+    scroll-padding-top: 60px; /* Offsets anchor scroll below sticky navbar */
+}
+/* Ensure all sections with an ID offset cleanly under the sticky navbar */
+section[id] {
+    scroll-margin-top: 60px; /* Sticky nav height (52px) + 8px padding */
+}
+
+/* Instantly reveal the section if it is the direct URL target on reload */
+:target.reveal {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
 }
 
 body {

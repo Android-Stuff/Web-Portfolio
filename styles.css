@@ -298,7 +298,6 @@ a:hover {
 .gallery-pill:hover {
     color: #fff;
     border-color: #666;
-    transform: translateY(-1px);
 }
 
 .gallery-pill.active {
@@ -353,7 +352,7 @@ a:hover {
 @keyframes cardPopIn {
     from {
         opacity: 0;
-        transform: scale(0.93) translateY(15px);
+        transform: translateY(15px);
     }
     to {
         opacity: 1;
@@ -439,7 +438,7 @@ a:hover {
     max-width: 820px;
     background: #0d0d0e;
     border: 1px solid #2a2a2d;
-    border-radius: 20px;
+    border-radius: 30px;
     padding: 24px;
     text-align: left;
     box-shadow: 0 20px 50px rgba(0,0,0,0.8);
@@ -499,12 +498,6 @@ a:hover {
     font-size: 12px;
     font-family: monospace;
     color: #e5e5e7;
-    transition: background 0.3s var(--apple-ease), transform 0.2s var(--apple-ease);
-}
-
-.tech-tag:hover {
-    background: rgba(255, 255, 255, 0.16);
-    transform: translateY(-1px);
 }
 
 .controls {
@@ -529,7 +522,6 @@ a:hover {
 .tab-btn:hover {
     color: #fff;
     border-color: #666;
-    transform: translateY(-2px);
 }
 
 .tab-btn.active {

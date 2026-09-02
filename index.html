@@ -56,7 +56,7 @@
         </div>
 
         <div class="gallery-cards">
-            <!-- Card 1: Cybersecurity & CTF -->
+            <!--Card 1-->
             <div class="card" data-category="security">
                 <div>
                     <div class="card-tag">Digital Forensics & CTF</div>
@@ -68,7 +68,7 @@
                 </div>
             </div>
 
-            <!-- Card 2: Jetpack Compose -->
+            <!--Card 2-->
             <div class="card" data-category="mobile">
                 <div>
                     <div class="card-tag">Web Development</div>
@@ -80,7 +80,7 @@
                 </div>
             </div>
 
-            <!-- Card 3: AppCenter Desktop Interface -->
+            <!--Card 3-->
             <div class="card" data-category="graphics">
                 <div>
                     <div class="card-tag">Desktop Architecture & UI</div>
@@ -92,7 +92,7 @@
                 </div>
             </div>
 
-            <!-- Card 4: Systems & Databases -->
+            <!--Card 4-->
             <div class="card" data-category="security">
                 <div>
                     <div class="card-tag">Systems & Data Engineering</div>
@@ -106,7 +106,7 @@
         </div>
     </section>
 
-    <!-- Interactive Project Showcase Viewer -->
+    <!--Project Showcase-->
     <section class="section-viewer reveal" id="showcase">
         <h2 class="section-title">Take a closer look.</h2>
         <p style="color: var(--text-secondary); margin-top: 8px;">Select a discipline to inspect core deliverables and technical stack.</p>
@@ -139,7 +139,6 @@
         </div>
     </section>
 
-    <!-- Performance & Tech Specs Grid -->
     <section class="section-specs reveal" id="specs">
         <h2 class="section-title">Capabilities at a glance.</h2>
         
@@ -186,7 +185,6 @@
 
         document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-        // Smooth Gallery Filter Logic
         function filterGallery(category, btn) {
             const cards = document.querySelectorAll('.card');
             const pills = document.querySelectorAll('.gallery-pill');
@@ -207,7 +205,7 @@
             });
         }
 
-        // Project Showcase Switcher (Uses images for all tabs)
+        // Project Showcase Switcher
         const projectsData = {
             sim: {
                 title: "AppCenter Desktop Interface — Concept UI",

@@ -3,336 +3,289 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vincent Alexander — Portfolio</title>
-
-    <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
-
+    <title>Vincent Alexander — Informatics & Software Engineering</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <nav class="main-nav">
-        <div class="container">
-            <a onclick="switchTab('overview')" class="logo">
-                <img src="logo.png" alt="Logo" class="logo-img">
-                <span>Vincent Alexander</span>
-            </a>
-            <ul class="nav-links">
-                <li><a onclick="switchTab('overview')">Overview</a></li>
-                <li><a onclick="switchTab('engineering')">Engineering</a></li>
-                <li><a onclick="switchTab('ui-design')">UI Design</a></li>
-                <li><a onclick="switchTab('security')">Security</a></li>
-                <li><a onclick="switchTab('contact')">Contact</a></li>
+    <!-- Top Status Ribbon -->
+    <div class="ribbon">
+        <strong>Open for Collaboration</strong> — Informatics Student at Universitas Jember. Specialized in CTF Forensics, Android Jetpack Compose, & Systems.
+    </div>
+
+    <!-- Apple Sticky Local Navigation Bar -->
+    <nav class="local-nav">
+        <div class="local-nav-content">
+            <div class="local-nav-title">Vincent Alexander</div>
+            <ul class="local-nav-links">
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#highlights">Highlights</a></li>
+                <li><a href="#showcase">Projects</a></li>
+                <li><a href="#specs">Capabilities</a></li>
+                <li><a href="mailto:contact@domain.com" class="btn-cta">Get in Touch</a></li>
             </ul>
         </div>
     </nav>
 
-    <div class="sub-nav-wrapper">
-        <ul class="sub-nav">
-            <li class="sub-nav-btn active" data-tab="overview" onclick="switchTab('overview')">Overview</li>
-            <li class="sub-nav-btn" data-tab="engineering" onclick="switchTab('engineering')">C++ Engineering</li>
-            <li class="sub-nav-btn" data-tab="ui-design" onclick="switchTab('ui-design')">UI/UX Design</li>
-            <li class="sub-nav-btn" data-tab="security" onclick="switchTab('security')">Cybersecurity</li>
-            <li class="sub-nav-btn" data-tab="game-art" onclick="switchTab('game-art')">Game Artist</li>
-        </ul>
-    </div>
+    <!-- Main Hero Section -->
+    <section class="hero" id="overview">
+        <div class="hero-eyebrow">Software & Systems Developer</div>
+        <h1 class="hero-headline">Fast logic.<br>Sharp visual execution.</h1>
+        <p class="hero-tagline">Architecting robust C++ systems, digital forensics solutions, native Jetpack Compose applications, and realistic game graphics.</p>
 
-    <header class="hero container">
-        <p class="hero-tagline" id="hero-tagline">Informatics Engineering</p>
-        <h1 class="hero-title" id="hero-title">Great performance. <br>Beautiful and Responsive.</h1>
-        <p class="hero-description" id="hero-desc">
-            Building rigorous backend architectures, deterministic software, and native high-fidelity interfaces.
-        </p>
-    </header>
+        <div class="hero-ctas">
+            <a href="#showcase" class="btn-primary">Explore Work</a>
+            <a href="#highlights" class="btn-secondary-link">View Highlights &gt;</a>
+        </div>
 
-    <main class="container">
-
-        <section id="view-overview" class="tab-view showcase-grid active-view">
-            <div class="card card-large id-card">
-                <div class="id-card-top">
-                    <div class="id-chip"></div>
+        <div class="hero-visual">
+            <div class="terminal-container">
+                <div class="terminal-header">
+                    <div class="dot dot-red"></div>
+                    <div class="dot dot-yellow"></div>
+                    <div class="dot dot-green"></div>
+                    <span class="terminal-title">vincent@unej-arch: ~/portfolio</span>
                 </div>
-                <div class="id-card-body">
-                    <div class="id-photo-container">
-                        <img src="profile.jpg" alt="Vincent Alexander" class="id-photo">
-                    </div>
-                    <div class="id-details">
-                        <span class="id-institution">FACULTY OF COMPUTER SCIENCE</span>
-                        <h4 class="id-name">Vincent Alexander</h4>
-                        <p class="id-role">Informatics Engineering</p>
-                        
-                        <div class="id-meta">
-                            <div>
-                                <span class="id-label">INSTITUTION</span>
-                                <span class="id-value">Universitas Jember</span>
-                            </div>
-                            <div>
-                                <span class="id-label">STATUS</span>
-                                <span class="id-value">Undergraduate</span>
-                            </div>
-                        </div>
-
-                        <div class="id-socials">
-                            <a href="https://github.com/Android-Stuff" target="_blank" rel="noopener noreferrer" class="id-social-btn" title="GitHub Profile">
-                                <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-                                </svg>
-                                <span>GitHub</span>
-                            </a>
-                            
-                            <a href="https://www.linkedin.com/in/vincent-alexander-jember/" target="_blank" rel="noopener noreferrer" class="id-social-btn" title="LinkedIn Profile">
-                                <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.78a1.62 1.62 0 1 0 0 3.24 1.62 1.62 0 0 0 0-3.24z"/>
-                                </svg>
-                                <span>LinkedIn</span>
-                            </a>
-                        </div>
-                    </div>
+                <div class="terminal-body">
+                    <p><span class="code-comment">// Vincent Alexander — Class A Informatics student</span></p>
+                    <p><span class="code-keyword">struct</span> <span class="code-type">Developer</span> {</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-type">std::string</span> name = <span class="code-string">"Vincent Alexander"</span>;</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-type">std::string</span> institution = <span class="code-string">"Universitas Jember"</span>;</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-type">std::vector&lt;std::string&gt;</span> coreFocus = {</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"C++ & Systems Architecture"</span>,</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Cybersecurity & Digital Forensics (CTF)"</span>,</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Jetpack Compose Android UI"</span>,</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Relational Database Modeling (3NF)"</span></p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;};</p>
+                    <p>};</p>
+                    <br>
+                    <p><span class="code-keyword">auto</span> status = <span class="code-func">analyzeVulnerabilities</span>(<span class="code-string">"XXE, SQLi, JWT, Binary Payload"</span>);</p>
+                    <p><span class="code-comment">&gt; [OK] Security audit complete. 0 vulnerabilities remaining.</span><span class="terminal-cursor"></span></p>
                 </div>
-            </div>
-
-            <div class="card card-large">
-                <div class="card-header">
-                    <h3>C++ Systems & Complexity</h3>
-                    <p>Architecting memory-efficient, deterministic programs. Specializing in low-level data structures, algorithmic tracking systems, and formal language automation principles.</p>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-header">
-                    <h3>Jetpack Compose</h3>
-                    <p>Designing fluid state-driven user interfaces for Android applications. Utilizing declarative UI patterns to tie custom assets into production-grade pipelines.</p>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-header">
-                    <h3>Game Development</h3>
-                    <p>Designing engaging gameplay mechanics, creating immersive worlds, and designing compelling characters.</p>
-                </div>
-            </div>
-
-            <div class="card card-large">
-                <div class="card-header">
-                    <h3>Defensive Engineering & Capture The Flag</h3>
-                    <p>Proactively identifying edge-case application vulnerabilities and payload vectors. Deep domain familiarity across web security mechanics (JWT verification flaws, programmatic SQLi prevention) and digital binary forensics.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="view-engineering" class="tab-view showcase-grid">
-            <div class="card card-large">
-                <div class="card-header">
-                    <h3>Library Management Core</h3>
-                    <p>High-speed memory indexer built in modern C++. Handles custom binary trees, memory management, and persistent disk-file operations.</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-header">
-                    <h3>Automata & Grammars</h3>
-                    <p>Deterministic Finite Automata (DFA) minimization, Chomsky hierarchy parsing, and formal state reductions.</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-header">
-                    <h3>Algorithmic Complexity</h3>
-                    <p>Benchmarking worst-case time and space complexities using cache-conscious data structures.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="view-ui-design" class="tab-view showcase-grid">
-            <div class="card card-large">
-                <div class="card-header">
-                    <h3>Automotive Android Dashboard UI</h3>
-                    <p>Built with Jetpack Compose. Dynamic telemetry displays, custom state hoisting, and smooth 60fps view rendering.</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-header">
-                    <h3>Apple Human Interface Specs</h3>
-                    <p>Clean typography hierarchies, precise spatial layouts, dark mode palettes, and subtle glassmorphism visual depth.</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-header">
-                    <h3>Functional Web Design</h3>
-                    <p>Interactive user experiences, accessible interfaces, and responsive layouts that adapt to various devices and screen sizes.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="view-security" class="tab-view showcase-grid">
-            <div class="card card-large">
-                <div class="card-header">
-                    <h3>CTF Forensic & Exploitation Writeups</h3>
-                    <p>In-depth analysis of XML External Entity (XXE), Prototype Pollution, SQL Injection payloads, and signature JWT flaws.</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-header">
-                    <h3>Sample Smuggling & Binary Forensics</h3>
-                    <p>Inspecting raw hex dumps, identifying hidden headers, and reverse engineering executable behavior.</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-header">
-                    <h3>Database Access Protection</h3>
-                    <p>Parameterized queries, structural schema isolation, and access token validation routines.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="view-game-art" class="tab-view showcase-grid">
-            <div class="card card-large">
-                <div class="card-header">
-                    <h3>Vehicle and Assets Renderings</h3>
-                    <p>2D texture manipulation, Vehicle concepts, and Asset design.</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-header">
-                    <h3>Character Art & Design</h3>
-                    <p>Concept character designs, 2D sprite creation, and high fidelity splash art.</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-header">
-                    <h3>Game Asset Pipelines</h3>
-                    <p>Normal map generation, specular layer alignment, and real-time shader compatibility checks.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="view-contact" class="tab-view showcase-grid">
-            <div class="card card-large">
-                <div class="card-header">
-                    <h3>Get in Touch</h3>
-                    <p>Currently available for engineering collaborations, research initiatives, and software consulting.</p>
-                    <form class="contact-form" onsubmit="event.preventDefault(); alert('Dummy Form Submitted!');">
-                        <input type="text" class="contact-input" placeholder="Your Name" required>
-                        <input type="email" class="contact-input" placeholder="Your Email" required>
-                        <textarea class="contact-textarea" rows="4" placeholder="Your Message" required></textarea>
-                        <button type="submit" class="contact-btn">Send Message</button>
-                    </form>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <footer>
-        <div class="container">
-            <p>Universitas Jember — Faculty of Computer Science. Developed with pure semantics.</p>
-            <div class="footer-content">
-                <p>Copyright © 2026 Vincent Alexander. All rights reserved.</p>
-                <p>Indonesia</p>
             </div>
         </div>
+    </section>
+
+    <!-- Highlights Section -->
+    <section class="section-highlights reveal" id="highlights">
+        <div class="section-header">
+            <h2 class="section-title">Get the highlights.</h2>
+            <div class="gallery-nav">
+                <button class="gallery-pill active" onclick="filterGallery('all', this)">All Focus Areas</button>
+                <button class="gallery-pill" onclick="filterGallery('security', this)">Cybersecurity</button>
+                <button class="gallery-pill" onclick="filterGallery('mobile', this)">Android UI</button>
+                <button class="gallery-pill" onclick="filterGallery('graphics', this)">Graphics & 3D</button>
+            </div>
+        </div>
+
+        <div class="gallery-cards">
+            <!-- Card 1: Cybersecurity & CTF -->
+            <div class="card" data-category="security">
+                <div>
+                    <div class="card-tag">Digital Forensics & CTF</div>
+                    <div class="card-headline">Binary smuggling, vulnerability analysis & web exploits.</div>
+                    <div class="card-desc">Deep-dive experience analyzing suspicious hex dumps, dissecting Sample Smuggling binaries, and auditing OWASP Top 10 vectors like XXE, Prototype Pollution, and JWT flaws.</div>
+                </div>
+                <div class="card-graphic">
+                    <div class="ctf-badge">
+                        <div class="badge-item">&gt; XXE_AUDIT [PASS]</div>
+                        <div class="badge-item">&gt; JWT_VERIFY [OK]</div>
+                        <div class="badge-item">&gt; SQLi_BLIND [FIXED]</div>
+                        <div class="badge-item">&gt; HEX_DUMP [ANALYZED]</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2: Jetpack Compose -->
+            <div class="card" data-category="mobile">
+                <div>
+                    <div class="card-tag">Android Development</div>
+                    <div class="card-headline">Declarative UI with Jetpack Compose. Modern to the pixel.</div>
+                    <div class="card-desc">Designing smooth, high-performance automotive and custom utility apps using Kotlin, state management, reactive layouts, and polished visual components.</div>
+                </div>
+                <div class="card-graphic">
+                    <div class="compose-wireframe">
+                        <div class="wireframe-bar" style="width: 40%;"></div>
+                        <div class="wireframe-bar" style="width: 85%; height: 24px; background: rgba(255,255,255,0.15);"></div>
+                        <div class="wireframe-bar" style="width: 60%;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3: Graphics & Textures -->
+            <div class="card" data-category="graphics">
+                <div>
+                    <div class="card-tag">Computer Graphics & Simulation</div>
+                    <div class="card-headline">High-fidelity 2D texture upscaling & rendering.</div>
+                    <div class="card-desc">Manipulating textures, perspective correction, and linear geometric transformations to generate realistic automotive wheels and asset mods for Assetto Corsa and Roblox.</div>
+                </div>
+                <div class="card-graphic">
+                    <div class="texture-sphere"></div>
+                </div>
+            </div>
+
+            <!-- Card 4: Systems & Databases -->
+            <div class="card" data-category="security">
+                <div>
+                    <div class="card-tag">Systems & Data Engineering</div>
+                    <div class="card-headline">Structured C++ algorithms & Oracle 3NF Data Modeling.</div>
+                    <div class="card-desc">Building optimal data structures in C++ alongside normalized (1NF, 2NF, 3NF) logical and relational database architecture models in Oracle SQL Developer.</div>
+                </div>
+                <div class="card-graphic">
+                    <div class="ctf-badge" style="grid-template-columns: 1fr;">
+                        <div class="badge-item" style="color: #79c0ff;">FOREIGN KEY (dept_id) REFERENCES dept(id)</div>
+                        <div class="badge-item" style="color: #a5d6ff;">NORMALIZATION: 3NF CERTIFIED</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Project Showcase Viewer -->
+    <section class="section-viewer reveal" id="showcase">
+        <h2 class="section-title">Take a closer look.</h2>
+        <p style="color: var(--text-secondary); margin-top: 8px;">Select a discipline to inspect core deliverables and technical stack.</p>
+
+        <div class="viewer-container">
+            <div class="viewer-display">
+                <div class="screen-content" id="projectDisplay">
+                    <h3 id="projectTitle">Automotive UI App — Jetpack Compose</h3>
+                    <p id="projectDesc">A native Android application designed with declarative Kotlin UI components, real-time telemetry display, and custom themed car configurations.</p>
+                    <div class="tags-row" id="projectTags">
+                        <span class="tech-tag">Kotlin</span>
+                        <span class="tech-tag">Jetpack Compose</span>
+                        <span class="tech-tag">Android Studio</span>
+                        <span class="tech-tag">Material 3</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="controls">
+                <button class="tab-btn active" onclick="switchProject('mobile', this)">Mobile Development</button>
+                <button class="tab-btn" onclick="switchProject('ctf', this)">CTF & Digital Forensics</button>
+                <button class="tab-btn" onclick="switchProject('sim', this)">Assetto Corsa Asset Modding</button>
+                <button class="tab-btn" onclick="switchProject('cpp', this)">C++ & Automation</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Performance & Tech Specs Grid -->
+    <section class="section-specs reveal" id="specs">
+        <h2 class="section-title">Capabilities at a glance.</h2>
+        
+        <div class="specs-grid">
+            <div class="spec-item">
+                <div class="spec-value">C++ / Kotlin</div>
+                <div class="spec-label">Core Languages for Systems & Mobile Native Development</div>
+            </div>
+            <div class="spec-item">
+                <div class="spec-value">3NF</div>
+                <div class="spec-label">Database Normalization & Logical Oracle SQL Modeling</div>
+            </div>
+            <div class="spec-item">
+                <div class="spec-value">CTF</div>
+                <div class="spec-label">Vulnerability Analysis, Hex Dump Audit & Payload Investigation</div>
+            </div>
+            <div class="spec-item">
+                <div class="spec-value">Linear Alg.</div>
+                <div class="spec-label">Geometric Transformations & Matrix Operations in Computer Graphics</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>Copyright &copy; 2026 Vincent Alexander. Designed in Apple Aesthetic Style.</p>
+        <p>Universitas Jember — Faculty of Computer Science (Informatics)</p>
     </footer>
 
     <script>
-        const heroData = {
-            'overview': {
-                tagline: 'Informatics Engineering',
-                title: 'Great performance. <br>Beautiful and Responsive.',
-                desc: 'Building rigorous backend architectures, deterministic software, and native high-fidelity interfaces.'
-            },
-            'engineering': {
-                tagline: 'Low-Level & Backend',
-                title: 'Deterministic C++ <br>& Memory Efficiency.',
-                desc: 'Designing custom data structures, system parsers, and optimized relational data models.'
-            },
-            'ui-design': {
-                tagline: 'Design Systems',
-                title: 'Native Android UI <br>& Fluid State Hoisting.',
-                desc: 'Crafting user-centric mobile interfaces using Jetpack Compose and clean modern aesthetic standards.'
-            },
-            'security': {
-                tagline: 'Defensive Systems',
-                title: 'Digital Forensics <br>& Web Exploitation.',
-                desc: 'Analyzing payload mechanics, binary reverse engineering, and securing application vectors.'
-            },
-            'game-art': {
-                tagline: 'Interactive Visuals',
-                title: 'Precision Texturing <br>& Vehicle Renderings.',
-                desc: 'Creating high-fidelity 2D graphic assets and realistic material textures for simulation engines.'
-            },
-            'contact': {
-                tagline: 'Communication',
-                title: 'Let’s build something <br>extraordinary together.',
-                desc: 'Reach out for inquiries, software engineering roles, or technical collaborations.'
-            }
+        // Scroll Reveal Observer
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
         };
 
-        const cardObserverOptions = {
-            root: null,
-            rootMargin: '0px 0px -40px 0px',
-            threshold: 0.1
-        };
-
-        const cardObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach((entry) => {
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    const card = entry.target;
-                    const parent = card.parentElement;
-                    const siblings = Array.from(parent.querySelectorAll('.card'));
-                    const index = siblings.indexOf(card);
-                    
-                    card.style.transitionDelay = `${index * 0.08}s`;
-                    card.classList.add('reveal');
-                    observer.unobserve(card);
+                    entry.target.classList.add('active');
                 }
             });
-        }, cardObserverOptions);
+        }, observerOptions);
 
-        function observeCards() {
-            document.querySelectorAll('.active-view .card').forEach(card => {
-                card.classList.remove('reveal');
-                card.style.transitionDelay = '0s';
-                cardObserver.observe(card);
-            });
-        }
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-        function switchTab(tabKey) {
-            const views = document.querySelectorAll('.tab-view');
-            views.forEach(v => {
-                v.classList.remove('active-view');
-                v.querySelectorAll('.card').forEach(c => c.classList.remove('reveal'));
-            });
+        // Smooth Gallery Filter Logic
+        function filterGallery(category, btn) {
+            const cards = document.querySelectorAll('.card');
+            const pills = document.querySelectorAll('.gallery-pill');
 
-            const targetView = document.getElementById(`view-${tabKey}`);
-            if (targetView) {
-                targetView.classList.add('active-view');
-            }
+            pills.forEach(p => p.classList.remove('active'));
+            btn.classList.add('active');
 
-            const subNavBtns = document.querySelectorAll('.sub-nav-btn');
-            subNavBtns.forEach(btn => {
-                if (btn.getAttribute('data-tab') === tabKey) {
-                    btn.classList.add('active');
+            cards.forEach(card => {
+                const matches = category === 'all' || card.dataset.category === category;
+                
+                if (matches) {
+                    card.classList.remove('is-hidden');
+                    card.classList.add('is-fading-in');
+                    setTimeout(() => card.classList.remove('is-fading-in'), 450);
                 } else {
-                    btn.classList.remove('active');
+                    card.classList.add('is-hidden');
                 }
             });
-
-            const heroContainer = document.querySelector('.hero');
-            heroContainer.classList.add('hero-transition');
-
-            setTimeout(() => {
-                if (heroData[tabKey]) {
-                    document.getElementById('hero-tagline').innerText = heroData[tabKey].tagline;
-                    document.getElementById('hero-title').innerHTML = heroData[tabKey].title;
-                    document.getElementById('hero-desc').innerText = heroData[tabKey].desc;
-                }
-                heroContainer.classList.remove('hero-transition');
-                observeCards();
-            }, 150);
-
-            heroContainer.scrollIntoView({ behavior: 'smooth' });
         }
 
-        document.addEventListener('DOMContentLoaded', observeCards);
+        // Smooth Project Tab Transition Logic
+        const projectsData = {
+            mobile: {
+                title: "Automotive UI App — Jetpack Compose",
+                desc: "A native Android application designed with declarative Kotlin UI components, custom reactive state handling, and sleek dark mode automotive controls.",
+                tags: ["Kotlin", "Jetpack Compose", "Android SDK", "Material Design 3"]
+            },
+            ctf: {
+                title: "Cybersecurity & Sample Smuggling Analysis",
+                desc: "Dissected obfuscated binary payloads, performed forensic hex dump inspections, and documented mitigations against XXE, Prototype Pollution, and JWT forgery.",
+                tags: ["Digital Forensics", "Reverse Engineering", "Web Security", "CTF Writeups"]
+            },
+            sim: {
+                title: "High-Fidelity Vehicle Wheel Texture Renders",
+                desc: "Upscaled 2D textures, corrected lighting and perspective angles, and prepared custom 3D wheel modifications for Assetto Corsa and Roblox simulation environments.",
+                tags: ["2D Texture Upscaling", "Perspective Tuning", "Assetto Corsa", "Photoshop / GIMP"]
+            },
+            cpp: {
+                title: "System Architecture & Theory of Automata",
+                desc: "Built custom library management systems in C++, implemented Chomsky hierarchy grammar tools, and optimized Deterministic Finite Automata (DFA) minimization algorithms.",
+                tags: ["C++", "Automata Theory", "DFA Minimization", "Oracle SQL Developer"]
+            }
+        };
+
+        let isSwitching = false;
+
+        function switchProject(key, btn) {
+            if (isSwitching) return;
+
+            const data = projectsData[key];
+            const displayBox = document.getElementById('projectDisplay');
+            if (!data || !displayBox) return;
+
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            isSwitching = true;
+            displayBox.classList.add('tab-transitioning');
+
+            // Cross-fade animation timeout
+            setTimeout(() => {
+                document.getElementById('projectTitle').textContent = data.title;
+                document.getElementById('projectDesc').textContent = data.desc;
+                document.getElementById('projectTags').innerHTML = data.tags.map(t => `<span class="tech-tag">${t}</span>`).join('');
+                
+                displayBox.classList.remove('tab-transitioning');
+                isSwitching = false;
+            }, 250);
+        }
     </script>
 </body>
 </html>

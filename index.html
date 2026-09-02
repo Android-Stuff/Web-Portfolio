@@ -112,6 +112,13 @@
         <p style="color: var(--text-secondary); margin-top: 8px;">Select a discipline to inspect core deliverables and technical stack.</p>
 
         <div class="viewer-container">
+            <div class="controls">
+                <button class="tab-btn active" onclick="switchProject('sim', this)">Desktop UI Mockup</button>
+                <button class="tab-btn" onclick="switchProject('mobile', this)">Mobile Development</button>
+                <button class="tab-btn" onclick="switchProject('ctf', this)">CTF & Digital Forensics</button>
+                <button class="tab-btn" onclick="switchProject('cpp', this)">C++ & Automation</button>
+            </div>
+
             <div class="viewer-display">
                 <div class="screen-content" id="projectDisplay">
                     <div class="mockup-frame" id="mockupFrame">
@@ -128,13 +135,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="controls">
-                <button class="tab-btn active" onclick="switchProject('sim', this)">Desktop UI Mockup</button>
-                <button class="tab-btn" onclick="switchProject('mobile', this)">Mobile Development</button>
-                <button class="tab-btn" onclick="switchProject('ctf', this)">CTF & Digital Forensics</button>
-                <button class="tab-btn" onclick="switchProject('cpp', this)">C++ & Automation</button>
             </div>
         </div>
     </section>

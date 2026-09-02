@@ -416,7 +416,7 @@ a:hover {
     background-color: var(--card-bg);
     border-radius: 32px;
     padding: 50px 40px;
-    margin-top: 40px;
+    margin-top: 50px;
     position: relative;
     border: 1px solid rgba(255,255,255,0.08);
     transition: box-shadow 0.4s var(--apple-ease);
@@ -504,7 +504,7 @@ a:hover {
     display: flex;
     justify-content: center;
     gap: 16px;
-    margin-top: 36px;
+    margin-bottom: 36px;
     flex-wrap: wrap;
 }
 

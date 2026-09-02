@@ -155,7 +155,6 @@ a:hover {
 .btn-cta:hover {
     background-color: var(--accent-blue-hover);
     transform: scale(1.04);
-    box-shadow: 0 4px 15px rgba(0, 113, 227, 0.4);
 }
 
 .btn-cta:active {
@@ -228,7 +227,6 @@ a:hover {
 .btn-primary:hover {
     background-color: var(--accent-blue-hover);
     transform: scale(1.03);
-    box-shadow: 0 6px 20px rgba(0, 113, 227, 0.35);
     text-decoration: none;
 }
 
@@ -673,7 +671,6 @@ a:hover {
     color: #fff;
     border-color: var(--accent-blue);
     background: rgba(0, 113, 227, 0.2);
-    box-shadow: 0 0 20px rgba(0, 113, 227, 0.3);
 }
 
 .tab-btn:active {

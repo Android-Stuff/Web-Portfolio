@@ -21,6 +21,7 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 70px; /* Offsets anchor scroll below sticky navbar */
 }
 
 body {

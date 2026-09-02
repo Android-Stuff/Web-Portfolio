@@ -3,28 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vincent Alexander - Portfolio</title>
+    <title>Vincent Alexander — Portfolio</title>
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
     <nav class="local-nav">
-    <div class="local-nav-content">
-        <div class="local-nav-title">
-            <img src="logo.png" alt="Logo" class="logo-img">
-            <span>Vincent Alexander</span>
+        <div class="local-nav-content">
+            <div class="local-nav-title">
+                <img src="logo.png" alt="Logo" class="logo-img">
+                <span>Vincent Alexander</span>
+            </div>
+            <ul class="local-nav-links">
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#highlights">Highlights</a></li>
+                <li><a href="#showcase">Projects</a></li>
+                <li><a href="#specs">Capabilities</a></li>
+                <li><a href="mailto:contact@domain.com" class="btn-cta">Get in Touch</a></li>
+            </ul>
         </div>
-        <ul class="local-nav-links">
-            <li><a href="#overview">Overview</a></li>
-            <li><a href="#highlights">Highlights</a></li>
-            <li><a href="#showcase">Projects</a></li>
-            <li><a href="#specs">Capabilities</a></li>
-            <li><a href="mailto:contact@domain.com" class="btn-cta">Get in Touch</a></li>
-        </ul>
-    </div>
-</nav>
+    </nav>
 
+    <!-- Hero Section -->
     <section class="hero" id="overview">
         <div class="hero-eyebrow">Software & Systems Developer</div>
         <h1 class="hero-headline">Reimagining Software.<br>Endless Possibilities.</h1>
@@ -36,29 +37,8 @@
         </div>
 
         <div class="hero-visual">
-            <div class="terminal-container">
-                <div class="terminal-header">
-                    <div class="dot dot-red"></div>
-                    <div class="dot dot-yellow"></div>
-                    <div class="dot dot-green"></div>
-                    <span class="terminal-title">vincent@unej-arch: ~/portfolio</span>
-                </div>
-                <div class="terminal-body">
-                    <p><span class="code-comment">// Vincent Alexander — Class A Informatics student</span></p>
-                    <p><span class="code-keyword">struct</span> <span class="code-type">Developer</span> {</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-type">std::string</span> name = <span class="code-string">"Vincent Alexander"</span>;</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-type">std::string</span> institution = <span class="code-string">"Universitas Jember"</span>;</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-type">std::vector&lt;std::string&gt;</span> coreFocus = {</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"C++ & Systems Architecture"</span>,</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Cybersecurity & Digital Forensics (CTF)"</span>,</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Jetpack Compose Android UI"</span>,</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"2D Graphics & Texture Simulation"</span></p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;};</p>
-                    <p>};</p>
-                    <br>
-                    <p><span class="code-keyword">auto</span> status = <span class="code-func">analyzeVulnerabilities</span>(<span class="code-string">"XXE, SQLi, JWT, Binary Payload"</span>);</p>
-                    <p><span class="code-comment">&gt; [OK] Security audit complete. 0 vulnerabilities remaining.</span><span class="terminal-cursor"></span></p>
-                </div>
+            <div class="hero-img-frame">
+                <img src="hero-preview.png" alt="Vincent Alexander Portfolio Overview" class="hero-img">
             </div>
         </div>
     </section>
@@ -71,7 +51,7 @@
                 <button class="gallery-pill active" onclick="filterGallery('all', this)">All Focus Areas</button>
                 <button class="gallery-pill" onclick="filterGallery('security', this)">Cybersecurity</button>
                 <button class="gallery-pill" onclick="filterGallery('mobile', this)">Android UI</button>
-                <button class="gallery-pill" onclick="filterGallery('graphics', this)">2D Graphics</button>
+                <button class="gallery-pill" onclick="filterGallery('graphics', this)">UI Design</button>
             </div>
         </div>
 
@@ -84,12 +64,7 @@
                     <div class="card-desc">Deep-dive experience analyzing suspicious hex dumps, dissecting Sample Smuggling binaries, and auditing OWASP Top 10 vectors like XXE, Prototype Pollution, and JWT flaws.</div>
                 </div>
                 <div class="card-graphic">
-                    <div class="ctf-badge">
-                        <div class="badge-item">&gt; XXE_AUDIT [PASS]</div>
-                        <div class="badge-item">&gt; JWT_VERIFY [OK]</div>
-                        <div class="badge-item">&gt; SQLi_BLIND [FIXED]</div>
-                        <div class="badge-item">&gt; HEX_DUMP [ANALYZED]</div>
-                    </div>
+                    <img src="highlight-ctf.png" alt="Cybersecurity & CTF Showcase" class="card-img">
                 </div>
             </div>
 
@@ -101,23 +76,19 @@
                     <div class="card-desc">Designing smooth, high-performance automotive and custom utility apps using Kotlin, state management, reactive layouts, and polished visual components.</div>
                 </div>
                 <div class="card-graphic">
-                    <div class="compose-wireframe">
-                        <div class="wireframe-bar" style="width: 40%;"></div>
-                        <div class="wireframe-bar" style="width: 85%; height: 24px; background: rgba(255,255,255,0.15);"></div>
-                        <div class="wireframe-bar" style="width: 60%;"></div>
-                    </div>
+                    <img src="highlight-mobile.png" alt="Jetpack Compose Android UI" class="card-img">
                 </div>
             </div>
 
-            <!-- Card 3: Graphics & Textures -->
+            <!-- Card 3: AppCenter Desktop Interface -->
             <div class="card" data-category="graphics">
                 <div>
-                    <div class="card-tag">Computer Graphics & Simulation</div>
-                    <div class="card-headline">Beautiful UI Design & Visual Effects</div>
-                    <div class="card-desc">Creating stunning visual experiences through modern UI design principles and current UI standards while maintaning fluidity.</div>
+                    <div class="card-tag">Desktop Architecture & UI</div>
+                    <div class="card-headline">AppCenter & WCAG Contrast Design.</div>
+                    <div class="card-desc">Creating clean desktop environments, integrated app ecosystem utilities, and accessibility tools like Harvey for WCAG contrast compliance.</div>
                 </div>
                 <div class="card-graphic">
-                    <div class="texture-sphere"></div>
+                    <img src="highlight-ui.png" alt="Desktop UI Design Mockup" class="card-img">
                 </div>
             </div>
 
@@ -129,47 +100,44 @@
                     <div class="card-desc">Building optimal data structures in C++ alongside normalized (1NF, 2NF, 3NF) logical and relational database architecture models in Oracle SQL Developer.</div>
                 </div>
                 <div class="card-graphic">
-                    <div class="ctf-badge" style="grid-template-columns: 1fr;">
-                        <div class="badge-item" style="color: #79c0ff;">FOREIGN KEY (dept_id) REFERENCES dept(id)</div>
-                        <div class="badge-item" style="color: #a5d6ff;">NORMALIZATION: 3NF CERTIFIED</div>
-                    </div>
+                    <img src="highlight-systems.png" alt="Systems & Relational Database Design" class="card-img">
                 </div>
             </div>
         </div>
     </section>
 
-  <!-- Interactive Project Showcase Viewer -->
-<section class="section-viewer reveal" id="showcase">
-    <h2 class="section-title">Take a closer look.</h2>
-    <p style="color: var(--text-secondary); margin-top: 8px;">Select a discipline to inspect core deliverables and technical stack.</p>
+    <!-- Interactive Project Showcase Viewer -->
+    <section class="section-viewer reveal" id="showcase">
+        <h2 class="section-title">Take a closer look.</h2>
+        <p style="color: var(--text-secondary); margin-top: 8px;">Select a discipline to inspect core deliverables and technical stack.</p>
 
-    <div class="viewer-container">
-        <div class="viewer-display">
-            <div class="screen-content" id="projectDisplay">
-                <div class="mockup-frame" id="mockupFrame">
-                    <img src="Mockup.png" alt="AppCenter Desktop Interface Mockup" class="mockup-img" id="projectImage">
-                </div>
-                <div class="project-details">
-                    <h3 id="projectTitle">AppCenter Desktop Interface — Concept UI</h3>
-                    <p id="projectDesc">A clean, modern desktop ecosystem concept featuring custom app stores, utility tools like Harvey for WCAG color contrast compliance, integrated media players, and system task management.</p>
-                    <div class="tags-row" id="projectTags">
-                        <span class="tech-tag">UI/UX Design</span>
-                        <span class="tech-tag">Desktop Interface</span>
-                        <span class="tech-tag">WCAG Contrast</span>
-                        <span class="tech-tag">System AppCenter</span>
+        <div class="viewer-container">
+            <div class="viewer-display">
+                <div class="screen-content" id="projectDisplay">
+                    <div class="mockup-frame" id="mockupFrame">
+                        <img src="Mockup.png" alt="Project Mockup Preview" class="mockup-img" id="projectImage">
+                    </div>
+                    <div class="project-details">
+                        <h3 id="projectTitle">AppCenter Desktop Interface — Concept UI</h3>
+                        <p id="projectDesc">A clean, modern desktop ecosystem concept featuring custom app stores, utility tools like Harvey for WCAG color contrast compliance, integrated media players, and system task management.</p>
+                        <div class="tags-row" id="projectTags">
+                            <span class="tech-tag">UI/UX Design</span>
+                            <span class="tech-tag">Desktop Interface</span>
+                            <span class="tech-tag">WCAG Contrast</span>
+                            <span class="tech-tag">System AppCenter</span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="controls">
-            <button class="tab-btn active" onclick="switchProject('sim', this)">Desktop UI Mockup</button>
-            <button class="tab-btn" onclick="switchProject('mobile', this)">Mobile Development</button>
-            <button class="tab-btn" onclick="switchProject('ctf', this)">CTF & Digital Forensics</button>
-            <button class="tab-btn" onclick="switchProject('cpp', this)">C++ & Automation</button>
+            <div class="controls">
+                <button class="tab-btn active" onclick="switchProject('sim', this)">Desktop UI Mockup</button>
+                <button class="tab-btn" onclick="switchProject('mobile', this)">Mobile Development</button>
+                <button class="tab-btn" onclick="switchProject('ctf', this)">CTF & Digital Forensics</button>
+                <button class="tab-btn" onclick="switchProject('cpp', this)">C++ & Automation</button>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <!-- Performance & Tech Specs Grid -->
     <section class="section-specs reveal" id="specs">
@@ -239,33 +207,33 @@
             });
         }
 
-        // Smooth Project Tab Transition Logic
+        // Project Showcase Switcher (Uses images for all tabs)
         const projectsData = {
-        sim: {
-            title: "AppCenter Desktop Interface — Concept UI",
-            desc: "A clean, modern desktop ecosystem concept featuring custom app stores, utility tools like Harvey for WCAG color contrast compliance, integrated media players, and system task management.",
-            tags: ["UI/UX Design", "Desktop Interface", "WCAG Contrast", "System AppCenter"],
-            image: "Mockup.png"
-        },
-        mobile: {
-            title: "Automotive UI App — Jetpack Compose",
-            desc: "A native Android application designed with declarative Kotlin UI components, custom reactive state handling, and sleek dark mode automotive controls.",
-            tags: ["Kotlin", "Jetpack Compose", "Android SDK", "Material Design 3"],
-            image: null
-        },
-        ctf: {
-            title: "Cybersecurity & Sample Smuggling Analysis",
-            desc: "Dissected obfuscated binary payloads, performed forensic hex dump inspections, and documented mitigations against XXE, Prototype Pollution, and JWT forgery.",
-            tags: ["Digital Forensics", "Reverse Engineering", "Web Security", "CTF Writeups"],
-            image: null
-        },
-        cpp: {
-            title: "System Architecture & Theory of Automata",
-            desc: "Built custom library management systems in C++, implemented Chomsky hierarchy grammar tools, and optimized Deterministic Finite Automata (DFA) minimization algorithms.",
-            tags: ["C++", "Automata Theory", "DFA Minimization", "Oracle SQL Developer"],
-            image: null
-        }
-    };
+            sim: {
+                title: "AppCenter Desktop Interface — Concept UI",
+                desc: "A clean, modern desktop ecosystem concept featuring custom app stores, utility tools like Harvey for WCAG color contrast compliance, integrated media players, and system task management.",
+                tags: ["UI/UX Design", "Desktop Interface", "WCAG Contrast", "System AppCenter"],
+                image: "Mockup.png"
+            },
+            mobile: {
+                title: "Automotive UI App — Jetpack Compose",
+                desc: "A native Android application designed with declarative Kotlin UI components, custom reactive state handling, and sleek dark mode automotive controls.",
+                tags: ["Kotlin", "Jetpack Compose", "Android SDK", "Material Design 3"],
+                image: "showcase-mobile.png"
+            },
+            ctf: {
+                title: "Cybersecurity & Sample Smuggling Analysis",
+                desc: "Dissected obfuscated binary payloads, performed forensic hex dump inspections, and documented mitigations against XXE, Prototype Pollution, and JWT forgery.",
+                tags: ["Digital Forensics", "Reverse Engineering", "Web Security", "CTF Writeups"],
+                image: "showcase-ctf.png"
+            },
+            cpp: {
+                title: "System Architecture & Theory of Automata",
+                desc: "Built custom library management systems in C++, implemented Chomsky hierarchy grammar tools, and optimized Deterministic Finite Automata (DFA) minimization algorithms.",
+                tags: ["C++", "Automata Theory", "DFA Minimization", "Oracle SQL Developer"],
+                image: "showcase-cpp.png"
+            }
+        };
 
         let isSwitching = false;
 
@@ -274,6 +242,7 @@
 
             const data = projectsData[key];
             const displayBox = document.getElementById('projectDisplay');
+            const imgElement = document.getElementById('projectImage');
             if (!data || !displayBox) return;
 
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -282,12 +251,12 @@
             isSwitching = true;
             displayBox.classList.add('tab-transitioning');
 
-            // Cross-fade animation timeout
             setTimeout(() => {
                 document.getElementById('projectTitle').textContent = data.title;
                 document.getElementById('projectDesc').textContent = data.desc;
                 document.getElementById('projectTags').innerHTML = data.tags.map(t => `<span class="tech-tag">${t}</span>`).join('');
-                
+                imgElement.src = data.image;
+
                 displayBox.classList.remove('tab-transitioning');
                 isSwitching = false;
             }, 250);

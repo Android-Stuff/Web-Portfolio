@@ -11,7 +11,7 @@
     --accent-purple: #a855f7;
     --accent-green: #30d158;
     --nav-bg: rgba(22, 22, 23, 0.8);
-    --font-stack: 'Plus Jakarta Sans';
+    --font-stack: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
     --apple-ease: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -79,21 +79,6 @@ a:hover {
 .reveal.active {
     opacity: 1;
     transform: translateY(0);
-}
-
-/* Top Announcement Ribbon */
-.ribbon {
-    background-color: #1d1d1f;
-    color: var(--text-primary);
-    text-align: center;
-    padding: 12px 16px;
-    font-size: 14px;
-    border-bottom: 1px solid #2d2d2e;
-    transition: background-color 0.3s var(--apple-ease);
-}
-
-.ribbon strong {
-    color: #30d158;
 }
 
 /* Apple Glassmorphic Sticky Local Navigation */
@@ -777,4 +762,38 @@ footer p {
 
 @media (max-width: 550px) {
     .specs-grid { grid-template-columns: 1fr; }
+}
+
+.screen-content {
+    width: 100%;
+    max-width: 820px;
+    background: #0d0d0e;
+    border: 1px solid #2a2a2d;
+    border-radius: 20px;
+    padding: 24px;
+    text-align: left;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+    transition: opacity 0.3s var(--apple-ease), transform 0.3s var(--apple-ease), border-color 0.3s var(--apple-ease);
+}
+
+.mockup-frame {
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    background: #000;
+}
+
+.mockup-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.4s var(--apple-ease);
+}
+
+.mockup-frame:hover .mockup-img {
+    transform: scale(1.02);
 }

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Apple Sticky Local Navigation Bar -->
+
     <nav class="local-nav">
     <div class="local-nav-content">
         <div class="local-nav-title">
@@ -25,10 +25,9 @@
     </div>
 </nav>
 
-    <!-- Main Hero Section -->
     <section class="hero" id="overview">
         <div class="hero-eyebrow">Software & Systems Developer</div>
-        <h1 class="hero-headline">Fast logic.<br>Sharp visual execution.</h1>
+        <h1 class="hero-headline">Reimagining Software.<br>Endless Possibilities.</h1>
         <p class="hero-tagline">Architecting robust C++ systems, digital forensics solutions, native Jetpack Compose applications, and beautiful UI designs.</p>
 
         <div class="hero-ctas">
@@ -139,33 +138,38 @@
         </div>
     </section>
 
-    <!-- Interactive Project Showcase Viewer -->
-    <section class="section-viewer reveal" id="showcase">
-        <h2 class="section-title">Take a closer look.</h2>
-        <p style="color: var(--text-secondary); margin-top: 8px;">Select a discipline to inspect core deliverables and technical stack.</p>
+  <!-- Interactive Project Showcase Viewer -->
+<section class="section-viewer reveal" id="showcase">
+    <h2 class="section-title">Take a closer look.</h2>
+    <p style="color: var(--text-secondary); margin-top: 8px;">Select a discipline to inspect core deliverables and technical stack.</p>
 
-        <div class="viewer-container">
-            <div class="viewer-display">
-                <div class="screen-content" id="projectDisplay">
-                    <h3 id="projectTitle">Automotive UI App — Jetpack Compose</h3>
-                    <p id="projectDesc">A native Android application designed with declarative Kotlin UI components, real-time telemetry display, and custom themed car configurations.</p>
+    <div class="viewer-container">
+        <div class="viewer-display">
+            <div class="screen-content" id="projectDisplay">
+                <div class="mockup-frame" id="mockupFrame">
+                    <img src="Mockup.png" alt="AppCenter Desktop Interface Mockup" class="mockup-img" id="projectImage">
+                </div>
+                <div class="project-details">
+                    <h3 id="projectTitle">AppCenter Desktop Interface — Concept UI</h3>
+                    <p id="projectDesc">A clean, modern desktop ecosystem concept featuring custom app stores, utility tools like Harvey for WCAG color contrast compliance, integrated media players, and system task management.</p>
                     <div class="tags-row" id="projectTags">
-                        <span class="tech-tag">Kotlin</span>
-                        <span class="tech-tag">Jetpack Compose</span>
-                        <span class="tech-tag">Android Studio</span>
-                        <span class="tech-tag">Material 3</span>
+                        <span class="tech-tag">UI/UX Design</span>
+                        <span class="tech-tag">Desktop Interface</span>
+                        <span class="tech-tag">WCAG Contrast</span>
+                        <span class="tech-tag">System AppCenter</span>
                     </div>
                 </div>
             </div>
-
-            <div class="controls">
-                <button class="tab-btn active" onclick="switchProject('mobile', this)">Mobile Development</button>
-                <button class="tab-btn" onclick="switchProject('ctf', this)">CTF & Digital Forensics</button>
-                <button class="tab-btn" onclick="switchProject('sim', this)">Concept UI Mockups</button>
-                <button class="tab-btn" onclick="switchProject('cpp', this)">C++ & Automation</button>
-            </div>
         </div>
-    </section>
+
+        <div class="controls">
+            <button class="tab-btn active" onclick="switchProject('sim', this)">Desktop UI Mockup</button>
+            <button class="tab-btn" onclick="switchProject('mobile', this)">Mobile Development</button>
+            <button class="tab-btn" onclick="switchProject('ctf', this)">CTF & Digital Forensics</button>
+            <button class="tab-btn" onclick="switchProject('cpp', this)">C++ & Automation</button>
+        </div>
+    </div>
+</section>
 
     <!-- Performance & Tech Specs Grid -->
     <section class="section-specs reveal" id="specs">
@@ -237,27 +241,31 @@
 
         // Smooth Project Tab Transition Logic
         const projectsData = {
-            mobile: {
-                title: "Automotive UI App — Jetpack Compose",
-                desc: "A native Android application designed with declarative Kotlin UI components, custom reactive state handling, and sleek dark mode automotive controls.",
-                tags: ["Kotlin", "Jetpack Compose", "Android SDK", "Material Design 3"]
-            },
-            ctf: {
-                title: "Cybersecurity & Sample Smuggling Analysis",
-                desc: "Dissected obfuscated binary payloads, performed forensic hex dump inspections, and documented mitigations against XXE, Prototype Pollution, and JWT forgery.",
-                tags: ["Digital Forensics", "Reverse Engineering", "Web Security", "CTF Writeups"]
-            },
-            sim: {
-                title: "High-Fidelity Vehicle Wheel Texture Renders",
-                desc: "Upscaled 2D textures, corrected lighting and perspective angles, and prepared custom 3D wheel modifications for Assetto Corsa and Roblox simulation environments.",
-                tags: ["2D Texture Upscaling", "Perspective Tuning", "Assetto Corsa", "Photoshop / GIMP"]
-            },
-            cpp: {
-                title: "System Architecture & Theory of Automata",
-                desc: "Built custom library management systems in C++, implemented Chomsky hierarchy grammar tools, and optimized Deterministic Finite Automata (DFA) minimization algorithms.",
-                tags: ["C++", "Automata Theory", "DFA Minimization", "Oracle SQL Developer"]
-            }
-        };
+        sim: {
+            title: "AppCenter Desktop Interface — Concept UI",
+            desc: "A clean, modern desktop ecosystem concept featuring custom app stores, utility tools like Harvey for WCAG color contrast compliance, integrated media players, and system task management.",
+            tags: ["UI/UX Design", "Desktop Interface", "WCAG Contrast", "System AppCenter"],
+            image: "Mockup.png"
+        },
+        mobile: {
+            title: "Automotive UI App — Jetpack Compose",
+            desc: "A native Android application designed with declarative Kotlin UI components, custom reactive state handling, and sleek dark mode automotive controls.",
+            tags: ["Kotlin", "Jetpack Compose", "Android SDK", "Material Design 3"],
+            image: null
+        },
+        ctf: {
+            title: "Cybersecurity & Sample Smuggling Analysis",
+            desc: "Dissected obfuscated binary payloads, performed forensic hex dump inspections, and documented mitigations against XXE, Prototype Pollution, and JWT forgery.",
+            tags: ["Digital Forensics", "Reverse Engineering", "Web Security", "CTF Writeups"],
+            image: null
+        },
+        cpp: {
+            title: "System Architecture & Theory of Automata",
+            desc: "Built custom library management systems in C++, implemented Chomsky hierarchy grammar tools, and optimized Deterministic Finite Automata (DFA) minimization algorithms.",
+            tags: ["C++", "Automata Theory", "DFA Minimization", "Oracle SQL Developer"],
+            image: null
+        }
+    };
 
         let isSwitching = false;
 

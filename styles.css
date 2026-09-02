@@ -54,7 +54,7 @@ a:hover {
     text-decoration: underline;
 }
 
-/* Scroll Reveal Base Classes */
+/*Scroll Reveal Base Classes*/
 .reveal {
     opacity: 0;
     transform: translateY(30px);
@@ -66,7 +66,7 @@ a:hover {
     transform: translateY(0);
 }
 
-/* Glassmorphic Sticky Navigation */
+/*Sticky Navigation*/
 .local-nav {
     position: sticky;
     top: 0;
@@ -142,7 +142,7 @@ a:hover {
     transform: scale(0.97);
 }
 
-/* Hero Section */
+/*Hero Section*/
 .hero {
     padding-top: 80px;
     padding-bottom: 60px;
@@ -226,7 +226,7 @@ a:hover {
     transform: translateX(4px);
 }
 
-/* Hero Image Container */
+/*Hero Image Container*/
 .hero-visual {
     max-width: 960px;
     margin: 0 auto;
@@ -256,7 +256,7 @@ a:hover {
     object-fit: cover;
 }
 
-/* Highlights Section */
+/*Highlights Section*/
 .section-highlights {
     max-width: 1200px;
     margin: 120px auto;
@@ -382,7 +382,7 @@ a:hover {
     margin-top: 12px;
 }
 
-/* Card Image Graphic Wrapper */
+/*Card Image Graphic Wrapper*/
 .card-graphic {
     height: 220px;
     margin-top: 24px;
@@ -406,7 +406,6 @@ a:hover {
     transform: scale(1.04);
 }
 
-/* Interactive Showcase Section */
 .section-viewer {
     max-width: 1200px;
     margin: 120px auto;
@@ -543,7 +542,7 @@ a:hover {
     transform: scale(0.95);
 }
 
-/* Capabilities Grid Section */
+/*Capabilities Section*/
 .section-specs {
     max-width: 1200px;
     margin: 120px auto;
@@ -585,7 +584,7 @@ a:hover {
     line-height: 1.4;
 }
 
-/* Footer */
+/*Footer*/
 footer {
     background-color: #111112;
     border-top: 1px solid #222;
@@ -599,7 +598,7 @@ footer p {
     margin-bottom: 8px;
 }
 
-/* Keyframe Animations */
+/*Keyframe Animations*/
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -622,7 +621,7 @@ footer p {
     }
 }
 
-/* Responsive Media Queries */
+/*Responsive Media Queries*/
 @media (max-width: 900px) {
     .specs-grid { grid-template-columns: repeat(2, 1fr); }
 }

@@ -266,7 +266,6 @@
             }
         };
 
-        // Cascading Scroll Reveal Observer
         const cardObserverOptions = {
             root: null,
             rootMargin: '0px 0px -40px 0px',
@@ -281,7 +280,6 @@
                     const siblings = Array.from(parent.querySelectorAll('.card'));
                     const index = siblings.indexOf(card);
                     
-                    // Stagger delay based on position inside grid
                     card.style.transitionDelay = `${index * 0.08}s`;
                     card.classList.add('reveal');
                     observer.unobserve(card);
@@ -334,7 +332,6 @@
             heroContainer.scrollIntoView({ behavior: 'smooth' });
         }
 
-        // Initialize Observer on DOM Load
         document.addEventListener('DOMContentLoaded', observeCards);
     </script>
 </body>

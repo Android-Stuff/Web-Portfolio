@@ -45,7 +45,9 @@ section[id] {
 }
 
 body {
-    background-color: var(--bg-color);
+    background-color: var(--bg-color); /* Fallback */
+    background-image: linear-gradient(to bottom, #000000 0%, #000000 60px, #1d1d1f 350px, #161617 100%);
+    
     color: var(--text-primary);
     font-family: var(--font-stack);
     -webkit-font-smoothing: antialiased;
@@ -466,9 +468,6 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     transition: box-shadow 0.4s var(--apple-ease);
 }
 
-.viewer-container:hover {
-    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
-}
 
 .viewer-display {
     min-height: 320px;

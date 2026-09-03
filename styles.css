@@ -13,6 +13,30 @@
     --nav-bg: rgba(22, 22, 23, 0.8);
     --font-stack: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
     --apple-ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+    /* REQUIRED: Expose section timelines to top-level navigation */
+    timeline-scope: --section-overview, --section-highlights, --section-showcase, --section-specs;
+}
+
+/* 2. Section Scroll View Timelines */
+#overview {
+    view-timeline-name: --section-overview;
+    view-timeline-axis: block;
+}
+
+#highlights {
+    view-timeline-name: --section-highlights;
+    view-timeline-axis: block;
+}
+
+#showcase {
+    view-timeline-name: --section-showcase;
+    view-timeline-axis: block;
+}
+
+#specs {
+    view-timeline-name: --section-specs;
+    view-timeline-axis: block;
 }
 
 * {
@@ -104,23 +128,82 @@ a:hover {
     object-fit: contain;
 }
 
+/* Navigation Link Base Styles */
 .local-nav-links {
     display: flex;
     gap: 24px;
     align-items: center;
     list-style: none;
     font-size: 12px;
+    height: 100%;
 }
 
-.local-nav-links a {
+.local-nav-links li {
+    display: flex;
+    align-items: center;
+    height: 52px;
+}
+
+.local-nav-links li a:not(.btn-cta) {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    height: 100%;
     color: var(--text-primary);
-    opacity: 0.8;
-    transition: opacity 0.25s var(--apple-ease);
+    opacity: 0.7;
+    transition: opacity 0.3s var(--apple-ease);
 }
 
-.local-nav-links a:hover {
+.local-nav-links li a:not(.btn-cta):hover {
     opacity: 1;
-    text-decoration: none;
+}
+
+/* Underline bar positioned along bottom edge of nav */
+.local-nav-links li a:not(.btn-cta)::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #ffffff;
+    border-radius: 2px 2px 0 0;
+    transform-origin: center;
+    opacity: 0;
+    transform: scaleX(0);
+}
+
+.local-nav-links a[href="#overview"]::after {
+    animation: scrollIndicatorTransition linear both;
+    animation-timeline: --section-overview;
+    animation-range: entry 10% exit 90%;
+}
+
+.local-nav-links a[href="#highlights"]::after {
+    animation: scrollIndicatorTransition linear both;
+    animation-timeline: --section-highlights;
+    animation-range: entry 10% exit 90%;
+}
+
+.local-nav-links a[href="#showcase"]::after {
+    animation: scrollIndicatorTransition linear both;
+    animation-timeline: --section-showcase;
+    animation-range: entry 10% exit 90%;
+}
+
+.local-nav-links a[href="#specs"]::after {
+    animation: scrollIndicatorTransition linear both;
+    animation-timeline: --section-specs;
+    animation-range: entry 10% exit 90%;
+}
+
+/* 5. Fallback for direct URL hashtag targeting (:target) */
+body:has(#overview:target) .local-nav-links a[href="#overview"]::after,
+body:has(#highlights:target) .local-nav-links a[href="#highlights"]::after,
+body:has(#showcase:target) .local-nav-links a[href="#showcase"]::after,
+body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
+    opacity: 1;
+    transform: scaleX(1);
 }
 
 .btn-cta {
@@ -167,6 +250,7 @@ a:hover {
     letter-spacing: -0.015em;
     background: linear-gradient(180deg, #ffffff 0%, #a1a1a6 100%);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: 16px;
     max-width: 900px;
@@ -567,6 +651,7 @@ a:hover {
     letter-spacing: -0.01em;
     background: linear-gradient(180deg, #fff, #86868b);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -591,6 +676,21 @@ footer p {
 }
 
 /*Keyframe Animations*/
+@keyframes scrollIndicatorTransition {
+    0% {
+        opacity: 0;
+        transform: scaleX(0);
+    }
+    20%, 80% {
+        opacity: 1;
+        transform: scaleX(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scaleX(0);
+    }
+}
+
 @keyframes fadeInUp {
     from {
         opacity: 0;

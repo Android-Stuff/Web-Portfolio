@@ -4,8 +4,8 @@
     --card-hover: #1c1c1e;
     --text-primary: #f5f5f7;
     --text-secondary: #86868b;
-    --accent-blue: #0071e3;
-    --accent-blue-hover: #0077ed;
+    --accent-blue: #4d62ff;
+    --accent-blue-hover: #4f75ff;
     --accent-purple: #a855f7;
     --accent-green: #30d158;
     --nav-bg: rgba(22, 22, 23, 0.8);
@@ -212,7 +212,7 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     line-height: 1.05;
     font-weight: 700;
     letter-spacing: -0.015em;
-    background: linear-gradient(180deg, #ffffff 0%, #a1a1a6 100%);
+    background: linear-gradient(180deg, #c3f6ff 0%, #fffa69 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -326,6 +326,10 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     font-size: 56px;
     font-weight: 700;
     letter-spacing: -0.005em;
+    background: linear-gradient(90deg, #c3f6ff 0%, #fffa69 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .gallery-nav {

@@ -3,8 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vincent Alexander - Portfolio</title>
+    <title>Vincent Alexander — Software Developer & Cybersecurity Specialist</title>
+    <meta name="description" content="Portfolio of Vincent Alexander: web development, digital forensics, Android applications, and UI design.">
+
     <link rel="icon" type="image/png" href="favicon.png">
+
+    <!-- Non-blocking Google Fonts load: preconnect + async swap avoids the render-blocking @import chain -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap">
+
+    <!-- Preload the hero image: it's the LCP element -->
+    <link rel="preload" as="image" href="Mockup.png" fetchpriority="high">
+
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -12,7 +23,7 @@
     <nav class="local-nav">
         <div class="local-nav-content">
             <div class="local-nav-title">
-                <img src="logo.png" alt="Logo" class="logo-img">
+                <img src="logo.png" alt="" class="logo-img" width="20" height="20">
                 <span>Vincent Alexander</span>
             </div>
             <ul class="local-nav-links">
@@ -27,9 +38,9 @@
 
     <!-- Hero Section -->
     <section class="hero" id="overview">
-        <div class="hero-eyebrow">Software Developer & Cybersecurity Specialist</div>
+        <div class="hero-eyebrow">Software Developer &amp; Cybersecurity Specialist</div>
         <h1 class="hero-headline">Reimagining Software.<br>Endless Possibilities.</h1>
-        <p class="hero-tagline">Developing Websites, digital forensics solution, Android applications, and UI designs.</p>
+        <p class="hero-tagline">Developing websites, digital forensics solutions, Android applications, and UI designs.</p>
 
         <div class="hero-ctas">
             <a href="#showcase" class="btn-primary">Explore Work</a>
@@ -38,7 +49,8 @@
 
         <div class="hero-visual">
             <div class="hero-img-frame">
-                <img src="Mockup.png" alt="Vincent Alexander Portfolio Overview" class="hero-img">
+                <img src="Mockup.png" alt="Vincent Alexander portfolio overview" class="hero-img"
+                     width="1600" height="1000" fetchpriority="high">
             </div>
         </div>
     </section>
@@ -47,28 +59,28 @@
     <section class="section-highlights reveal" id="highlights">
         <div class="section-header">
             <h2 class="section-title">Get the highlights.</h2>
-            <div class="gallery-nav">
-                <button class="gallery-pill active" onclick="filterGallery('all', this)">All Focus Areas</button>
-                <button class="gallery-pill" onclick="filterGallery('security', this)">Cybersecurity</button>
-                <button class="gallery-pill" onclick="filterGallery('mobile', this)">Web Development</button>
-                <button class="gallery-pill" onclick="filterGallery('graphics', this)">UI Design</button>
+            <div class="gallery-nav" role="group" aria-label="Filter highlights by focus area">
+                <button type="button" class="gallery-pill active" data-filter="all" aria-pressed="true">All Focus Areas</button>
+                <button type="button" class="gallery-pill" data-filter="security" aria-pressed="false">Cybersecurity</button>
+                <button type="button" class="gallery-pill" data-filter="mobile" aria-pressed="false">Web Development</button>
+                <button type="button" class="gallery-pill" data-filter="graphics" aria-pressed="false">UI Design</button>
             </div>
         </div>
 
         <div class="gallery-cards">
-            <!--Card 1-->
+            <!-- Card 1 -->
             <div class="card" data-category="security">
                 <div>
-                    <div class="card-tag">Digital Forensics & CTF</div>
-                    <div class="card-headline">Binary smuggling, vulnerability analysis & web exploits.</div>
-                    <div class="card-desc">Deep-dive experience analyzing suspicious hex dumps, dissecting Sample Smuggling binaries, and auditing OWASP Top 10 vectors like XXE, Prototype Pollution, and JWT flaws.</div>
+                    <div class="card-tag">Digital Forensics &amp; CTF</div>
+                    <div class="card-headline">Binary smuggling, vulnerability analysis &amp; web exploits.</div>
+                    <div class="card-desc">Deep-dive experience analyzing suspicious hex dumps, dissecting sample-smuggling binaries, and auditing OWASP Top 10 vectors like XXE, Prototype Pollution, and JWT flaws.</div>
                 </div>
                 <div class="card-graphic">
-                    <img src="highlight-ctf.png" alt="Cybersecurity & CTF Showcase" class="card-img">
+                    <img src="highlight-ctf.png" alt="Cybersecurity and CTF showcase" class="card-img" loading="lazy" decoding="async" width="480" height="220">
                 </div>
             </div>
 
-            <!--Card 2-->
+            <!-- Card 2 -->
             <div class="card" data-category="mobile">
                 <div>
                     <div class="card-tag">Web Development</div>
@@ -76,53 +88,53 @@
                     <div class="card-desc">Building responsive, high-performance web applications using modern JavaScript frameworks and backend technologies.</div>
                 </div>
                 <div class="card-graphic">
-                    <img src="unejmaps.png" alt="Web Development Showcase" class="card-img">
+                    <img src="unejmaps.png" alt="Web development showcase" class="card-img" loading="lazy" decoding="async" width="480" height="220">
                 </div>
             </div>
 
-            <!--Card 3-->
+            <!-- Card 3 -->
             <div class="card" data-category="graphics">
                 <div>
-                    <div class="card-tag">Desktop Architecture & UI</div>
-                    <div class="card-headline">AppCenter & WCAG Contrast Design.</div>
+                    <div class="card-tag">Desktop Architecture &amp; UI</div>
+                    <div class="card-headline">AppCenter &amp; WCAG Contrast Design.</div>
                     <div class="card-desc">Creating clean desktop environments, integrated app ecosystem utilities, and accessibility tools like Harvey for WCAG contrast compliance.</div>
                 </div>
                 <div class="card-graphic">
-                    <img src="Mockup.png" alt="Desktop UI Design Mockup" class="card-img">
+                    <img src="Mockup.png" alt="Desktop UI design mockup" class="card-img" loading="lazy" decoding="async" width="480" height="220">
                 </div>
             </div>
 
-            <!--Card 4-->
+            <!-- Card 4 -->
             <div class="card" data-category="security">
                 <div>
-                    <div class="card-tag">Systems & Data Engineering</div>
-                    <div class="card-headline">Structured C++ algorithms & Oracle 3NF Data Modeling.</div>
+                    <div class="card-tag">Systems &amp; Data Engineering</div>
+                    <div class="card-headline">Structured C++ algorithms &amp; Oracle 3NF Data Modeling.</div>
                     <div class="card-desc">Building optimal data structures in C++ alongside normalized (1NF, 2NF, 3NF) logical and relational database architecture models in Oracle SQL Developer.</div>
                 </div>
                 <div class="card-graphic">
-                    <img src="highlight-systems.png" alt="Systems & Relational Database Design" class="card-img">
+                    <img src="highlight-systems.png" alt="Systems and relational database design" class="card-img" loading="lazy" decoding="async" width="480" height="220">
                 </div>
             </div>
         </div>
     </section>
 
-    <!--Project Showcase-->
+    <!-- Project Showcase -->
     <section class="section-viewer reveal" id="showcase">
         <h2 class="section-title">Take a closer look.</h2>
         <p style="color: var(--text-secondary); margin-top: 8px;">Select a discipline to inspect core deliverables and technical stack.</p>
 
         <div class="viewer-container">
-            <div class="controls">
-                <button class="tab-btn active" onclick="switchProject('sim', this)">Desktop UI Mockup</button>
-                <button class="tab-btn" onclick="switchProject('mobile', this)">Mobile Development</button>
-                <button class="tab-btn" onclick="switchProject('ctf', this)">CTF & Digital Forensics</button>
-                <button class="tab-btn" onclick="switchProject('cpp', this)">C++ & Automation</button>
+            <div class="controls" role="tablist" aria-label="Project categories">
+                <button type="button" class="tab-btn active" data-project="sim" role="tab" aria-selected="true">Desktop UI Mockup</button>
+                <button type="button" class="tab-btn" data-project="mobile" role="tab" aria-selected="false">Mobile Development</button>
+                <button type="button" class="tab-btn" data-project="ctf" role="tab" aria-selected="false">CTF &amp; Digital Forensics</button>
+                <button type="button" class="tab-btn" data-project="cpp" role="tab" aria-selected="false">C++ &amp; Automation</button>
             </div>
 
             <div class="viewer-display">
                 <div class="screen-content" id="projectDisplay">
                     <div class="mockup-frame" id="mockupFrame">
-                        <img src="Mockup.png" alt="Project Mockup Preview" class="mockup-img" id="projectImage">
+                        <img src="Mockup.png" alt="Project mockup preview" class="mockup-img" id="projectImage" loading="lazy" decoding="async" width="820" height="460">
                     </div>
                     <div class="project-details">
                         <h3 id="projectTitle">AppCenter Desktop Interface — Concept UI</h3>
@@ -141,19 +153,19 @@
 
     <section class="section-specs reveal" id="specs">
         <h2 class="section-title">Capabilities at a glance.</h2>
-        
+
         <div class="specs-grid">
             <div class="spec-item">
                 <div class="spec-value">C++ / Kotlin</div>
-                <div class="spec-label">Core Languages for Systems & Mobile Native Development</div>
+                <div class="spec-label">Core Languages for Systems &amp; Mobile Native Development</div>
             </div>
             <div class="spec-item">
-                <div class="spec-value">HTML & CSS</div>
-                <div class="spec-label">Responsive Web Design & User Interface Development</div>
+                <div class="spec-value">HTML &amp; CSS</div>
+                <div class="spec-label">Responsive Web Design &amp; User Interface Development</div>
             </div>
             <div class="spec-item">
                 <div class="spec-value">CTF</div>
-                <div class="spec-label">Vulnerability Analysis, Hex Dump Audit & Payload Investigation</div>
+                <div class="spec-label">Vulnerability Analysis, Hex Dump Audit &amp; Payload Investigation</div>
             </div>
             <div class="spec-item">
                 <div class="spec-value">UI Design</div>
@@ -169,96 +181,121 @@
     </footer>
 
     <script>
-        // Scroll Reveal Observer
-        const observerOptions = {
-            threshold: 0.15,
-            rootMargin: '0px 0px -50px 0px'
-        };
+        (function () {
+            'use strict';
 
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, observerOptions);
+            // Scroll reveal: unobserve once revealed so the observer has less to track over time
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
 
-        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+            document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
 
-        function filterGallery(category, btn) {
+            // Gallery filter — event delegation instead of per-button inline handlers
+            const galleryNav = document.querySelector('.gallery-nav');
             const cards = document.querySelectorAll('.card');
-            const pills = document.querySelectorAll('.gallery-pill');
 
-            pills.forEach(p => p.classList.remove('active'));
-            btn.classList.add('active');
+            galleryNav.addEventListener('click', (e) => {
+                const btn = e.target.closest('.gallery-pill');
+                if (!btn) return;
 
-            cards.forEach(card => {
-                const matches = category === 'all' || card.dataset.category === category;
-                
-                if (matches) {
-                    card.classList.remove('is-hidden');
-                    card.classList.add('is-fading-in');
-                    setTimeout(() => card.classList.remove('is-fading-in'), 450);
-                } else {
-                    card.classList.add('is-hidden');
-                }
+                const category = btn.dataset.filter;
+
+                galleryNav.querySelectorAll('.gallery-pill').forEach((p) => {
+                    p.classList.remove('active');
+                    p.setAttribute('aria-pressed', 'false');
+                });
+                btn.classList.add('active');
+                btn.setAttribute('aria-pressed', 'true');
+
+                cards.forEach((card) => {
+                    const matches = category === 'all' || card.dataset.category === category;
+                    if (matches) {
+                        card.classList.remove('is-hidden');
+                        card.classList.add('is-fading-in');
+                        card.addEventListener('animationend', () => card.classList.remove('is-fading-in'), { once: true });
+                    } else {
+                        card.classList.add('is-hidden');
+                    }
+                });
             });
-        }
 
-        // Project Showcase Switcher
-        const projectsData = {
-            sim: {
-                title: "AppCenter Desktop Interface — Concept UI",
-                desc: "A clean, modern desktop ecosystem concept featuring custom app stores, utility tools like Harvey for WCAG color contrast compliance, integrated media players, and system task management.",
-                tags: ["UI/UX Design", "Desktop Interface", "WCAG Contrast", "System AppCenter"],
-                image: "Mockup.png"
-            },
-            mobile: {
-                title: "Automotive UI App — Jetpack Compose",
-                desc: "A native Android application designed with declarative Kotlin UI components, custom reactive state handling, and sleek dark mode automotive controls.",
-                tags: ["Kotlin", "Jetpack Compose", "Android SDK", "Material Design 3"],
-                image: "showcase-mobile.png"
-            },
-            ctf: {
-                title: "Cybersecurity & Sample Smuggling Analysis",
-                desc: "Dissected obfuscated binary payloads, performed forensic hex dump inspections, and documented mitigations against XXE, Prototype Pollution, and JWT forgery.",
-                tags: ["Digital Forensics", "Reverse Engineering", "Web Security", "CTF Writeups"],
-                image: "showcase-ctf.png"
-            },
-            cpp: {
-                title: "System Architecture & Theory of Automata",
-                desc: "Built custom library management systems in C++, implemented Chomsky hierarchy grammar tools, and optimized Deterministic Finite Automata (DFA) minimization algorithms.",
-                tags: ["C++", "Automata Theory", "DFA Minimization", "Oracle SQL Developer"],
-                image: "showcase-cpp.png"
-            }
-        };
+            // Project showcase switcher
+            const projectsData = {
+                sim: {
+                    title: 'AppCenter Desktop Interface — Concept UI',
+                    desc: 'A clean, modern desktop ecosystem concept featuring custom app stores, utility tools like Harvey for WCAG color contrast compliance, integrated media players, and system task management.',
+                    tags: ['UI/UX Design', 'Desktop Interface', 'WCAG Contrast', 'System AppCenter'],
+                    image: 'Mockup.png'
+                },
+                mobile: {
+                    title: 'Automotive UI App — Jetpack Compose',
+                    desc: 'A native Android application designed with declarative Kotlin UI components, custom reactive state handling, and sleek dark mode automotive controls.',
+                    tags: ['Kotlin', 'Jetpack Compose', 'Android SDK', 'Material Design 3'],
+                    image: 'showcase-mobile.png'
+                },
+                ctf: {
+                    title: 'Cybersecurity & Sample Smuggling Analysis',
+                    desc: 'Dissected obfuscated binary payloads, performed forensic hex dump inspections, and documented mitigations against XXE, Prototype Pollution, and JWT forgery.',
+                    tags: ['Digital Forensics', 'Reverse Engineering', 'Web Security', 'CTF Writeups'],
+                    image: 'showcase-ctf.png'
+                },
+                cpp: {
+                    title: 'System Architecture & Theory of Automata',
+                    desc: 'Built custom library management systems in C++, implemented Chomsky hierarchy grammar tools, and optimized Deterministic Finite Automata (DFA) minimization algorithms.',
+                    tags: ['C++', 'Automata Theory', 'DFA Minimization', 'Oracle SQL Developer'],
+                    image: 'showcase-cpp.png'
+                }
+            };
 
-        let isSwitching = false;
-
-        function switchProject(key, btn) {
-            if (isSwitching) return;
-
-            const data = projectsData[key];
+            const controls = document.querySelector('.controls');
             const displayBox = document.getElementById('projectDisplay');
             const imgElement = document.getElementById('projectImage');
-            if (!data || !displayBox) return;
+            const titleEl = document.getElementById('projectTitle');
+            const descEl = document.getElementById('projectDesc');
+            const tagsEl = document.getElementById('projectTags');
 
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
+            let isSwitching = false;
 
-            isSwitching = true;
-            displayBox.classList.add('tab-transitioning');
+            controls.addEventListener('click', (e) => {
+                const btn = e.target.closest('.tab-btn');
+                if (!btn || isSwitching) return;
 
-            setTimeout(() => {
-                document.getElementById('projectTitle').textContent = data.title;
-                document.getElementById('projectDesc').textContent = data.desc;
-                document.getElementById('projectTags').innerHTML = data.tags.map(t => `<span class="tech-tag">${t}</span>`).join('');
-                imgElement.src = data.image;
+                const data = projectsData[btn.dataset.project];
+                if (!data) return;
 
-                displayBox.classList.remove('tab-transitioning');
-                isSwitching = false;
-            }, 250);
-        }
+                controls.querySelectorAll('.tab-btn').forEach((b) => {
+                    b.classList.remove('active');
+                    b.setAttribute('aria-selected', 'false');
+                });
+                btn.classList.add('active');
+                btn.setAttribute('aria-selected', 'true');
+
+                isSwitching = true;
+                displayBox.classList.add('tab-transitioning');
+
+                window.setTimeout(() => {
+                    titleEl.textContent = data.title;
+                    descEl.textContent = data.desc;
+                    tagsEl.innerHTML = '';
+                    data.tags.forEach((tag) => {
+                        const span = document.createElement('span');
+                        span.className = 'tech-tag';
+                        span.textContent = tag;
+                        tagsEl.appendChild(span);
+                    });
+                    imgElement.src = data.image;
+
+                    displayBox.classList.remove('tab-transitioning');
+                    isSwitching = false;
+                }, 250);
+            });
+        })();
     </script>
 </body>
 </html>

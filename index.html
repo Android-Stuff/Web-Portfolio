@@ -4,22 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vincent Alexander - Portfolio</title>
-    <meta name="description" content="Portfolio of Vincent Alexander: web development, digital forensics, Android applications, and UI design.">
-
+     <meta name="description" content="Portfolio of Vincent Alexander: web development, digital forensics, Android applications, and UI design.">
+ 
     <link rel="icon" type="image/png" href="favicon.png">
-
+ 
     <!-- Non-blocking Google Fonts load: preconnect + async swap avoids the render-blocking @import chain -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap">
-
+ 
     <!-- Preload the hero image: it's the LCP element -->
     <link rel="preload" as="image" href="Mockup.png" fetchpriority="high">
-
+ 
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
+ 
     <nav class="local-nav">
         <div class="local-nav-content">
             <div class="local-nav-title">
@@ -35,26 +35,26 @@
             </ul>
         </div>
     </nav>
-
+ 
     <!-- Hero Section -->
     <section class="hero" id="overview">
         <div class="hero-eyebrow">Software Developer &amp; Cybersecurity Specialist</div>
         <h1 class="hero-headline">Reimagining Software.<br>Endless Possibilities.</h1>
         <p class="hero-tagline">Developing websites, digital forensics solutions, Android applications, and UI designs.</p>
-
+ 
         <div class="hero-ctas">
             <a href="#showcase" class="btn-primary">Explore Work</a>
             <a href="#highlights" class="btn-secondary-link">View Highlights &gt;</a>
         </div>
-
+ 
         <div class="hero-visual">
             <div class="hero-img-frame">
                 <img src="Mockup.png" alt="Vincent Alexander portfolio overview" class="hero-img"
-                     width="1600" height="1000" fetchpriority="high">
+                     fetchpriority="high">
             </div>
         </div>
     </section>
-
+ 
     <!-- Highlights Section -->
     <section class="section-highlights reveal" id="highlights">
         <div class="section-header">
@@ -66,7 +66,7 @@
                 <button type="button" class="gallery-pill" data-filter="graphics" aria-pressed="false">UI Design</button>
             </div>
         </div>
-
+ 
         <div class="gallery-cards">
             <!-- Card 1 -->
             <div class="card" data-category="security">
@@ -79,7 +79,7 @@
                     <img src="highlight-ctf.png" alt="Cybersecurity and CTF showcase" class="card-img" loading="lazy" decoding="async" width="480" height="220">
                 </div>
             </div>
-
+ 
             <!-- Card 2 -->
             <div class="card" data-category="mobile">
                 <div>
@@ -91,7 +91,7 @@
                     <img src="unejmaps.png" alt="Web development showcase" class="card-img" loading="lazy" decoding="async" width="480" height="220">
                 </div>
             </div>
-
+ 
             <!-- Card 3 -->
             <div class="card" data-category="graphics">
                 <div>
@@ -103,7 +103,7 @@
                     <img src="Mockup.png" alt="Desktop UI design mockup" class="card-img" loading="lazy" decoding="async" width="480" height="220">
                 </div>
             </div>
-
+ 
             <!-- Card 4 -->
             <div class="card" data-category="security">
                 <div>
@@ -117,12 +117,12 @@
             </div>
         </div>
     </section>
-
+ 
     <!-- Project Showcase -->
     <section class="section-viewer reveal" id="showcase">
         <h2 class="section-title">Take a closer look.</h2>
         <p style="color: var(--text-secondary); margin-top: 8px;">Select a discipline to inspect core deliverables and technical stack.</p>
-
+ 
         <div class="viewer-container">
             <div class="controls" role="tablist" aria-label="Project categories">
                 <button type="button" class="tab-btn active" data-project="sim" role="tab" aria-selected="true">Desktop UI Mockup</button>
@@ -130,11 +130,11 @@
                 <button type="button" class="tab-btn" data-project="ctf" role="tab" aria-selected="false">CTF &amp; Digital Forensics</button>
                 <button type="button" class="tab-btn" data-project="cpp" role="tab" aria-selected="false">C++ &amp; Automation</button>
             </div>
-
+ 
             <div class="viewer-display">
                 <div class="screen-content" id="projectDisplay">
                     <div class="mockup-frame" id="mockupFrame">
-                        <img src="Mockup.png" alt="Project mockup preview" class="mockup-img" id="projectImage" loading="lazy" decoding="async" width="820" height="460">
+                        <img src="Mockup.png" alt="Project mockup preview" class="mockup-img" id="projectImage" loading="lazy" decoding="async">
                     </div>
                     <div class="project-details">
                         <h3 id="projectTitle">AppCenter Desktop Interface — Concept UI</h3>
@@ -150,10 +150,10 @@
             </div>
         </div>
     </section>
-
+ 
     <section class="section-specs reveal" id="specs">
         <h2 class="section-title">Capabilities at a glance.</h2>
-
+ 
         <div class="specs-grid">
             <div class="spec-item">
                 <div class="spec-value">C++ / Kotlin</div>
@@ -173,17 +173,17 @@
             </div>
         </div>
     </section>
-
+ 
     <!-- Footer -->
     <footer>
         <p>Copyright &copy; 2026 Vincent Alexander. Apple-inspired Design.</p>
         <p>Universitas Jember — Faculty of Computer Science (Informatics)</p>
     </footer>
-
+ 
     <script>
         (function () {
             'use strict';
-
+ 
             // Scroll reveal: unobserve once revealed so the observer has less to track over time
             const revealObserver = new IntersectionObserver((entries) => {
                 entries.forEach((entry) => {
@@ -193,26 +193,26 @@
                     }
                 });
             }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
-
+ 
             document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
-
+ 
             // Gallery filter — event delegation instead of per-button inline handlers
             const galleryNav = document.querySelector('.gallery-nav');
             const cards = document.querySelectorAll('.card');
-
+ 
             galleryNav.addEventListener('click', (e) => {
                 const btn = e.target.closest('.gallery-pill');
                 if (!btn) return;
-
+ 
                 const category = btn.dataset.filter;
-
+ 
                 galleryNav.querySelectorAll('.gallery-pill').forEach((p) => {
                     p.classList.remove('active');
                     p.setAttribute('aria-pressed', 'false');
                 });
                 btn.classList.add('active');
                 btn.setAttribute('aria-pressed', 'true');
-
+ 
                 cards.forEach((card) => {
                     const matches = category === 'all' || card.dataset.category === category;
                     if (matches) {
@@ -224,7 +224,7 @@
                     }
                 });
             });
-
+ 
             // Project showcase switcher
             const projectsData = {
                 sim: {
@@ -252,33 +252,33 @@
                     image: 'showcase-cpp.png'
                 }
             };
-
+ 
             const controls = document.querySelector('.controls');
             const displayBox = document.getElementById('projectDisplay');
             const imgElement = document.getElementById('projectImage');
             const titleEl = document.getElementById('projectTitle');
             const descEl = document.getElementById('projectDesc');
             const tagsEl = document.getElementById('projectTags');
-
+ 
             let isSwitching = false;
-
+ 
             controls.addEventListener('click', (e) => {
                 const btn = e.target.closest('.tab-btn');
                 if (!btn || isSwitching) return;
-
+ 
                 const data = projectsData[btn.dataset.project];
                 if (!data) return;
-
+ 
                 controls.querySelectorAll('.tab-btn').forEach((b) => {
                     b.classList.remove('active');
                     b.setAttribute('aria-selected', 'false');
                 });
                 btn.classList.add('active');
                 btn.setAttribute('aria-selected', 'true');
-
+ 
                 isSwitching = true;
                 displayBox.classList.add('tab-transitioning');
-
+ 
                 window.setTimeout(() => {
                     titleEl.textContent = data.title;
                     descEl.textContent = data.desc;
@@ -290,7 +290,7 @@
                         tagsEl.appendChild(span);
                     });
                     imgElement.src = data.image;
-
+ 
                     displayBox.classList.remove('tab-transitioning');
                     isSwitching = false;
                 }, 250);
@@ -299,3 +299,4 @@
     </script>
 </body>
 </html>
+ 

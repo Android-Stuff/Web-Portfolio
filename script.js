@@ -130,29 +130,68 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================
-// 4. Interactive 3D Laptop Mouse-Tilt Effect (Desktop Only)
-// ==========================================
-const laptop = document.getElementById('laptop3D');
-const hero = document.querySelector('.hero');
+    // 4. Interactive 3D Laptop Mouse-Tilt Effect (Desktop Only)
+    // ==========================================
+    const laptop = document.getElementById('laptop3D');
+    const hero = document.querySelector('.hero');
 
-const isDesktopPointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isDesktopPointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-if (laptop && hero && isDesktopPointer && !prefersReducedMotion) {
-    hero.addEventListener('mousemove', (e) => {
-        const rect = hero.getBoundingClientRect();
-        const x = (e.clientX - rect.left) / rect.width - 0.5;
-        const y = (e.clientY - rect.top) / rect.height - 0.5;
+    if (laptop && hero && isDesktopPointer && !prefersReducedMotion) {
+        hero.addEventListener('mousemove', (e) => {
+            const rect = hero.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width - 0.5;
+            const y = (e.clientY - rect.top) / rect.height - 0.5;
 
-        const rotateX = 22 - y * 8;
-        const rotateY = x * 8;
+            const rotateX = 22 - y * 8;
+            const rotateY = x * 8;
 
-        laptop.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-    });
+            laptop.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
 
-    hero.addEventListener('mouseleave', () => {
-        laptop.style.transform = 'rotateX(22deg) rotateY(0deg)';
-    });
-}
+        hero.addEventListener('mouseleave', () => {
+            laptop.style.transform = 'rotateX(22deg) rotateY(0deg)';
+        });
+    }
+
+    // ==========================================
+    // 5. Scroll-Triggered Laptop Opening
+    // ==========================================
+    const laptopStage = document.querySelector('.laptop-stage');
+
+    if (laptopStage) {
+        let hasOpened = false;
+
+        const openLaptop = () => {
+            if (!hasOpened) {
+                hasOpened = true;
+                laptopStage.classList.add('is-open');
+            }
+        };
+
+        const handleScroll = () => {
+            const rect = laptopStage.getBoundingClientRect();
+            if (window.scrollY > 20 && rect.top < window.innerHeight * 0.85) {
+                openLaptop();
+                window.removeEventListener('scroll', handleScroll);
+            }
+        };
+
+        const laptopObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting && window.scrollY > 20) {
+                    openLaptop();
+                    laptopObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        laptopObserver.observe(laptopStage);
+
+        if (window.scrollY > 20) {
+            handleScroll();
+        }
+    }
 });
-

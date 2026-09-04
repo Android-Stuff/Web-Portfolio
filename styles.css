@@ -329,6 +329,7 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     transition: transform 0.25s cubic-bezier(0.25, 1, 0.3, 1);
 }
 
+/* Initially closed: folded flat forward onto keyboard deck (-105deg) */
 .laptop-lid {
     position: absolute;
     top: 0%;
@@ -341,7 +342,6 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     border-radius: 18px 18px 2px 2px;
     background: linear-gradient(150deg, var(--mba-silver-rim) 0%, var(--mba-silver-hi) 20%, var(--mba-silver-mid) 60%, var(--mba-silver-dark) 100%);
     box-shadow: 0 0 0 1px rgba(0,0,0,0.25);
-    animation: openLaptopLid 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
     z-index: 10;
 }
 
@@ -383,7 +383,9 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     height: 96%;
     object-fit: fill;
     display: block;
-    border-radius: 0;             /* Removed from image so parent controls clipping */
+    border-radius: 0;
+    opacity: 0;
+    filter: brightness(0) contrast(1.5);
 }
 
 .laptop-lid-outer {
@@ -448,19 +450,8 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     background: #000000;
     z-index: 5;
     pointer-events: none;
-    animation: fadeOutBoot 0.2s ease-out 0.5s forwards;
-}
-
-
-.screen-img {
-    width: 100%;
-    height: 96%;
-    object-fit: fill;
-    display: block;
-    border-radius: 0;
-    opacity: 0;
-    filter: brightness(0.2) contrast(1.2);
-    animation: turnOnScreen 0.5s cubic-bezier(0.16, 1, 0.3, 1) 1.2s forwards;
+    opacity: 1;
+    visibility: visible;
 }
 
 .keyboard-area {
@@ -483,8 +474,7 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     flex-direction: column;
     justify-content: space-between;
     gap: 2px;
-    box-shadow: inset 0 2px 6px rgba(0,0,0,0.85), inset 0 0 0 1px rgba(0,0,0,0.6);
-    animation: turnOnGridGlow 0.2s cubic-bezier(0.16, 1, 0.3, 1) 1.0s forwards;
+    box-shadow: inset 0 2px 6px rgba(0,0,0,0.95), inset 0 0 0 1px rgba(0,0,0,0.8);
 }
 
 .kb-row {
@@ -498,7 +488,7 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     flex: 1;
     background: linear-gradient(180deg, #28282b 0%, #161618 100%);
     border-radius: 2px;
-    color: #97979b;
+    color: #3e3e44;
     font-size: 6px;
     font-weight: 500;
     display: flex;
@@ -508,9 +498,37 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     letter-spacing: -0.1px;
     text-transform: none;
     box-shadow: inset 0 0.5px 0.5px rgba(255, 255, 255, 0.05), 0 0.5px 1px rgba(0, 0, 0, 0.6);
+}
+
+/* Scroll Triggered Opening Sequence: Animates lid from closed (-105deg) to open (-22deg) */
+.laptop-stage.is-open .laptop-lid {
+    animation: openLaptopLid 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+}
+
+.laptop-stage.is-open .laptop-shadow {
+    animation: shadowExpand 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+}
+
+.laptop-stage.is-open .boot-screen {
+    animation: fadeOutBoot 0.2s ease-out 0.6s forwards;
+}
+
+.laptop-stage.is-open .screen-img {
+    animation: turnOnScreen 0.5s cubic-bezier(0.16, 1, 0.3, 1) 1.2s forwards;
+}
+
+.laptop-stage.is-open .keyboard-grid {
+    animation: turnOnGridGlow 0.2s cubic-bezier(0.16, 1, 0.3, 1) 1.0s forwards;
+}
+
+.laptop-stage.is-open .key {
     animation: turnOnBacklight 0.2s cubic-bezier(0.16, 1, 0.3, 1) var(--kb-delay, 1.4s) forwards;
 }
 
+@keyframes openLaptopLid {
+    0%   { transform: rotateX(-105deg); }
+    100% { transform: rotateX(-22deg); }
+}
 
 @keyframes fadeOutBoot {
     0% { opacity: 1; }
@@ -679,9 +697,9 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     height: 28%;
     background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.2) 40%, transparent 70%);
     filter: blur(20px);
-    transform: rotateX(80deg) translateZ(-20px);
+    transform: rotateX(80deg) scale(0.7) translateZ(-20px);
+    opacity: 0.2;
     pointer-events: none;
-    animation: shadowExpand 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
 }
 
 /* Hide iPhone stage on desktop */
@@ -739,12 +757,6 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     inset: 0;
     background: linear-gradient(125deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.02) 40%, transparent 60%);
     pointer-events: none;
-}
-
-/* Keyframe animations */
-@keyframes openLaptopLid {
-    0% { transform: rotateX(-105deg); }
-    100% { transform: rotateX(-22deg); }
 }
 
 @keyframes shadowExpand {
@@ -1116,6 +1128,10 @@ footer p {
 
     .local-nav-links li a:not(.btn-cta)::after {
         animation: none !important;
+    }
+
+    .laptop-lid {
+        transform: rotateX(-22deg) !important;
     }
 
     * {

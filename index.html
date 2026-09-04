@@ -4,18 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio - Vincent</title>
-     <meta name="description" content="Portfolio of Vincent Alexander: web development, digital forensics, Android applications, and UI design.">
+    <meta name="description" content="Portfolio of Vincent Alexander: web development, digital forensics, Android applications, and UI design.">
  
     <link rel="icon" type="image/png" href="favicon.png">
  
-    <!-- Non-blocking Google Fonts load: preconnect + async swap avoids the render-blocking @import chain -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap">
  
-    <!-- Preload the hero image: it's the LCP element -->
     <link rel="preload" as="image" href="Mockup Screen.png" fetchpriority="high">
- 
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -48,91 +45,90 @@
         </div>
  
         <div class="hero-visual">
-    <div class="laptop-stage">
-        <div class="laptop-body" id="laptop3D">
-            <!-- Screen / Lid -->
-            <div class="laptop-lid">
-                <div class="laptop-lid-inner">
-                    <div class="display-screen">
-                        <div class="notch"></div>
-                        <img src="Mockup Screen.png" alt="Vincent Alexander portfolio desktop concept" class="screen-img" fetchpriority="high">
-                        <div class="screen-glare"></div>
+            <!-- Desktop 3D Laptop -->
+            <div class="laptop-stage">
+                <div class="laptop-body" id="laptop3D">
+                    <!-- Screen / Lid -->
+                    <div class="laptop-lid">
+                        <div class="laptop-lid-inner">
+                            <div class="display-screen">
+                                <div class="notch"></div>
+                                <img src="Mockup Screen.png" alt="Vincent Alexander portfolio desktop concept" class="screen-img" fetchpriority="high">
+                                <div class="screen-glare"></div>
+                            </div>
+                        </div>
+                        <div class="laptop-lid-outer">
+                            <div class="logo-glyph"></div>
+                        </div>
+                    </div>
+
+                    <!-- Hinge & Base Deck -->
+                    <div class="laptop-base">
+                        <div class="laptop-base-wall"></div>
+                        <div class="keyboard-area">
+                            <div class="keyboard-grid">
+                                <div class="kb-row">
+                                    <span class="key key-esc">esc</span>
+                                    <span class="key">f1</span><span class="key">f2</span><span class="key">f3</span><span class="key">f4</span>
+                                    <span class="key">f5</span><span class="key">f6</span><span class="key">f7</span><span class="key">f8</span>
+                                    <span class="key">f9</span><span class="key">f10</span><span class="key">f11</span><span class="key">f12</span>
+                                    <span class="key key-power"></span>
+                                </div>
+                                <div class="kb-row">
+                                    <span class="key">~</span><span class="key">1</span><span class="key">2</span><span class="key">3</span><span class="key">4</span>
+                                    <span class="key">5</span><span class="key">6</span><span class="key">7</span><span class="key">8</span><span class="key">9</span><span class="key">0</span><span class="key">-</span><span class="key">=</span>
+                                    <span class="key key-delete">delete</span>
+                                </div>
+                                <div class="kb-row">
+                                    <span class="key key-tab">tab</span>
+                                    <span class="key">Q</span><span class="key">W</span><span class="key">E</span><span class="key">R</span><span class="key">T</span>
+                                    <span class="key">Y</span><span class="key">U</span><span class="key">I</span><span class="key">O</span><span class="key">P</span>
+                                    <span class="key">[</span><span class="key">]</span><span class="key key-slash">\</span>
+                                </div>
+                                <div class="kb-row">
+                                    <span class="key key-caps">caps lock</span>
+                                    <span class="key">A</span><span class="key">S</span><span class="key">D</span><span class="key">F</span><span class="key">G</span>
+                                    <span class="key">H</span><span class="key">J</span><span class="key">K</span><span class="key">L</span><span class="key">;</span><span class="key">'</span>
+                                    <span class="key key-return">return</span>
+                                </div>
+                                <div class="kb-row">
+                                    <span class="key key-shift-l">shift</span>
+                                    <span class="key">Z</span><span class="key">X</span><span class="key">C</span><span class="key">V</span><span class="key">B</span>
+                                    <span class="key">N</span><span class="key">M</span><span class="key">,</span><span class="key">.</span><span class="key">/</span>
+                                    <span class="key key-shift-r">shift</span>
+                                </div>
+                                <div class="kb-row">
+                                    <span class="key key-fn">fn</span>
+                                    <span class="key key-mod">control</span>
+                                    <span class="key key-mod">option</span>
+                                    <span class="key key-cmd">⌘</span>
+                                    <span class="key key-space"></span>
+                                    <span class="key key-cmd">⌘</span>
+                                    <span class="key key-mod">option</span>
+                                    <span class="key key-arrows">▲</span>
+                                </div>
+                            </div>
+                            <div class="trackpad"></div>
+                        </div>
+                        <div class="base-front-lip"></div>
+                    </div>
+                    <div class="laptop-shadow"></div>
+                </div>
+            </div>
+
+            <!-- Mobile iPhone 17 Pro Max Mockup -->
+            <div class="phone-stage">
+                <div class="phone-body">
+                    <div class="phone-screen">
+                        <div class="dynamic-island"></div>
+                        <img src="Mockup Screen.png" alt="Vincent Alexander portfolio mobile concept" class="phone-screen-img" fetchpriority="high">
+                        <div class="phone-glare"></div>
                     </div>
                 </div>
-                <div class="laptop-lid-outer">
-                    <div class="logo-glyph"></div>
-                </div>
             </div>
-
-            <!-- Hinge & Base Deck -->
-            <div class="laptop-base">
-                <div class="laptop-base-wall"></div>
-                <div class="keyboard-area">
-            <div class="keyboard-grid">
-                <!-- Function Row -->
-                <div class="kb-row">
-                    <span class="key key-esc">esc</span>
-                    <span class="key">f1</span><span class="key">f2</span><span class="key">f3</span><span class="key">f4</span>
-                    <span class="key">f5</span><span class="key">f6</span><span class="key">f7</span><span class="key">f8</span>
-                    <span class="key">f9</span><span class="key">f10</span><span class="key">f11</span><span class="key">f12</span>
-                    <span class="key key-power"></span>
-                </div>
-
-                <!-- Number Row -->
-                <div class="kb-row">
-                    <span class="key">~</span><span class="key">1</span><span class="key">2</span><span class="key">3</span><span class="key">4</span>
-                    <span class="key">5</span><span class="key">6</span><span class="key">7</span><span class="key">8</span><span class="key">9</span><span class="key">0</span><span class="key">-</span><span class="key">=</span>
-                    <span class="key key-delete">delete</span>
-                </div>
-
-                <!-- QWERTY Row -->
-                <div class="kb-row">
-                    <span class="key key-tab">tab</span>
-                    <span class="key">Q</span><span class="key">W</span><span class="key">E</span><span class="key">R</span><span class="key">T</span>
-                    <span class="key">Y</span><span class="key">U</span><span class="key">I</span><span class="key">O</span><span class="key">P</span>
-                    <span class="key">[</span><span class="key">]</span><span class="key key-slash">\</span>
-                </div>
-
-                <!-- ASDF Row -->
-                <div class="kb-row">
-                    <span class="key key-caps">caps lock</span>
-                    <span class="key">A</span><span class="key">S</span><span class="key">D</span><span class="key">F</span><span class="key">G</span>
-                    <span class="key">H</span><span class="key">J</span><span class="key">K</span><span class="key">L</span><span class="key">;</span><span class="key">'</span>
-                    <span class="key key-return">return</span>
-                </div>
-
-                <!-- ZXCV Row -->
-                <div class="kb-row">
-                    <span class="key key-shift-l">shift</span>
-                    <span class="key">Z</span><span class="key">X</span><span class="key">C</span><span class="key">V</span><span class="key">B</span>
-                    <span class="key">N</span><span class="key">M</span><span class="key">,</span><span class="key">.</span><span class="key">/</span>
-                    <span class="key key-shift-r">shift</span>
-                </div>
-
-                <!-- Spacebar & Modifiers Row -->
-                <div class="kb-row">
-                    <span class="key key-fn">fn</span>
-                    <span class="key key-mod">control</span>
-                    <span class="key key-mod">option</span>
-                    <span class="key key-cmd">⌘</span>
-                    <span class="key key-space"></span>
-                    <span class="key key-cmd">⌘</span>
-                    <span class="key key-mod">option</span>
-                    <span class="key key-arrows">▲</span>
-                </div>
-            </div>
-    <div class="trackpad"></div>
-</div>
-                <div class="base-front-lip"></div>
-            </div>
-
-            <!-- Dynamic Ground Shadow -->
-            <div class="laptop-shadow"></div>
         </div>
-    </div>
-</div>
     </section>
- 
+
     <!-- Highlights Section -->
     <section class="section-highlights reveal" id="highlights">
         <div class="section-header">

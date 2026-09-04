@@ -20,11 +20,14 @@
     --mba-silver-edge: #9a9ba0;
     --mba-silver-rim: #ffffff;
 
-    /* Expose section timelines to top-level navigation (scroll-driven nav indicator) */
+    /* iPhone 17 Pro Max Titanium Palette */
+    --iphone-titanium-rim: #d2a178;
+    --iphone-titanium-dark: #2a2521;
+    --iphone-bezel: #0b0b0d;
+
     timeline-scope: --section-overview, --section-highlights, --section-showcase, --section-specs;
 }
 
-/* Section scroll-view timelines */
 #overview     { view-timeline-name: --section-overview;   view-timeline-axis: block; }
 #highlights   { view-timeline-name: --section-highlights; view-timeline-axis: block; }
 #showcase     { view-timeline-name: --section-showcase;   view-timeline-axis: block; }
@@ -53,9 +56,8 @@ section[id] {
 }
 
 body {
-    background-color: var(--bg-color); /* Fallback */
+    background-color: var(--bg-color);
     background-image: linear-gradient(to bottom, #000000 0%, #000000 60px, #1d1d1f 350px, #161617 100%);
-    
     color: var(--text-primary);
     font-family: var(--font-stack);
     -webkit-font-smoothing: antialiased;
@@ -73,7 +75,6 @@ a:hover {
     text-decoration: underline;
 }
 
-/* Scroll reveal base classes */
 .reveal {
     opacity: 0;
     transform: translateY(30px);
@@ -152,7 +153,6 @@ a:hover {
     opacity: 1;
 }
 
-/* Underline bar tied to per-section scroll timelines */
 .local-nav-links li a:not(.btn-cta)::after {
     content: '';
     position: absolute;
@@ -172,7 +172,6 @@ a:hover {
 .local-nav-links a[href="#showcase"]::after   { animation: scrollIndicatorTransition linear both; animation-timeline: --section-showcase;   animation-range: entry 10% exit 90%; }
 .local-nav-links a[href="#specs"]::after      { animation: scrollIndicatorTransition linear both; animation-timeline: --section-specs;      animation-range: entry 10% exit 90%; }
 
-/* Fallback for direct URL hash targeting (:target) on browsers without scroll-timeline support */
 body:has(#overview:target) .local-nav-links a[href="#overview"]::after,
 body:has(#highlights:target) .local-nav-links a[href="#highlights"]::after,
 body:has(#showcase:target) .local-nav-links a[href="#showcase"]::after,
@@ -285,15 +284,8 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
 }
 
 /* ==========================================================================
-   3D Laptop Visual & Opening Animation — Apple MacBook Air Style
+   Hero Visuals — Desktop 3D Laptop & Mobile iPhone 17 Pro Max
    ========================================================================== */
-
-/* GPU Acceleration Hints for smoother mobile compositing */
-.laptop-body,
-.laptop-lid,
-.laptop-base {
-    will-change: transform;
-}
 
 .hero-visual {
     max-width: 900px;
@@ -302,10 +294,11 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     animation: fadeInUp 1.2s var(--apple-ease) forwards;
 }
 
+/* --- Desktop 3D Laptop Stage --- */
 .laptop-stage {
     position: relative;
-    perspective: 2000px; /* High perspective eliminates fisheye distortion */
-    perspective-origin: 50% 50%; /* Centered origin maintains straight parallel lines */
+    perspective: 2000px;
+    perspective-origin: 50% 50%;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -336,7 +329,6 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     transition: transform 0.25s cubic-bezier(0.25, 1, 0.3, 1);
 }
 
-/* --- Laptop Lid / Screen --- */
 .laptop-lid {
     position: absolute;
     top: 2%;
@@ -345,7 +337,7 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     height: 74%;
     transform-origin: bottom center;
     transform-style: preserve-3d;
-    transform: rotateX(-105deg); /* Closed state */
+    transform: rotateX(-105deg);
     border-radius: 18px 18px 2px 2px;
     background: linear-gradient(150deg, var(--mba-silver-rim) 0%, var(--mba-silver-hi) 20%, var(--mba-silver-mid) 60%, var(--mba-silver-dark) 100%);
     box-shadow: 0 0 0 1px rgba(0,0,0,0.25);
@@ -374,7 +366,6 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* Camera notch */
 .notch {
     position: absolute;
     top: 0;
@@ -423,7 +414,6 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     box-shadow: inset 0 1px 1px rgba(255,255,255,0.6), inset 0 -1px 1px rgba(0,0,0,0.08);
 }
 
-/* --- Base Deck & Keyboard Deck --- */
 .laptop-base {
     position: absolute;
     top: 74%;
@@ -440,17 +430,6 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     transform: rotateX(40deg) translateZ(-8px);
 }
 
-.laptop-base::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    background: linear-gradient(115deg, transparent 20%, rgba(255,255,255,0.5) 42%, rgba(255,255,255,0.15) 50%, transparent 65%);
-    mix-blend-mode: soft-light;
-    pointer-events: none;
-}
-
-/* Unibody front thickness wall */
 .laptop-base-wall {
     position: absolute;
     left: -1px;
@@ -476,7 +455,6 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     justify-content: space-between;
 }
 
-/* Recessed Black Keyboard Well */
 .keyboard-grid {
     width: 100%;
     height: 68%;
@@ -497,7 +475,6 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     gap: 2px;
 }
 
-/* Keycaps */
 .key {
     flex: 1;
     background: linear-gradient(180deg, #28282b 0%, #161618 100%);
@@ -514,7 +491,6 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     text-transform: lowercase;
 }
 
-/* Key proportions */
 .key-esc { flex: 1.4; }
 .key-power { flex: 1; background: #121214; border-radius: 2px; max-width: 10px; }
 .key-delete { flex: 1.6; }
@@ -530,7 +506,6 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
 .key-space { flex: 5.6; background: linear-gradient(180deg, #2a2a2d 0%, #18181b 100%); }
 .key-arrows { flex: 1.2; font-size: 4px; }
 
-/* Trackpad on Silver Palm Rest */
 .trackpad {
     width: 32%;
     height: 32%;
@@ -551,7 +526,6 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     opacity: 0.6;
 }
 
-/* --- Dynamic Ground Shadow --- */
 .laptop-shadow {
     position: absolute;
     bottom: -12%;
@@ -565,47 +539,74 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     animation: shadowExpand 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
 }
 
-/* --- Keyframe Animations --- */
+/* Hide iPhone stage on desktop */
+.phone-stage {
+    display: none;
+}
+
+/* --- iPhone 17 Pro Max Styles --- */
+.phone-body {
+    position: relative;
+    width: 290px;
+    height: 580px;
+    background: #000;
+    border-radius: 52px;
+    padding: 8px;
+    /* Titanium bezel and subtle highlights */
+    box-shadow: 
+        0 0 0 2.5px #6e5847, 
+        0 0 0 5px #1c1815, 
+        0 30px 70px rgba(0, 0, 0, 0.85);
+    margin: 0 auto;
+}
+
+.phone-screen {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    border-radius: 44px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Dynamic Island */
+.dynamic-island {
+    position: absolute;
+    top: 11px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 82px;
+    height: 22px;
+    background: #000;
+    border-radius: 20px;
+    z-index: 10;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.phone-screen-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.phone-glare {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(125deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.02) 40%, transparent 60%);
+    pointer-events: none;
+}
+
+/* Keyframe animations */
 @keyframes openLaptopLid {
-    0% {
-        transform: rotateX(-105deg);
-    }
-    100% {
-        transform: rotateX(-22deg); /* Reclined lid angle */
-    }
+    0% { transform: rotateX(-105deg); }
+    100% { transform: rotateX(-22deg); }
 }
 
 @keyframes shadowExpand {
-    0% {
-        opacity: 0.2;
-        transform: rotateX(80deg) scale(0.7) translateZ(-20px);
-    }
-    100% {
-        opacity: 0.95;
-        transform: rotateX(80deg) scale(1.02) translateZ(-20px);
-    }
-}
-
-.hero-img-frame {
-    width: 100%;
-    border-radius: 20px;
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    box-shadow: 0 30px 80px rgba(0,0,0,0.9), 0 0 40px rgba(0, 113, 227, 0.15);
-    background: var(--card-bg);
-    transition: border-color 0.4s var(--apple-ease), box-shadow 0.4s var(--apple-ease);
-}
-
-.hero-img-frame:hover {
-    border-color: rgba(0, 113, 227, 0.4);
-    box-shadow: 0 35px 90px rgba(0,0,0,0.95), 0 0 50px rgba(0, 113, 227, 0.25);
-}
-
-.hero-img {
-    width: 100%;
-    height: auto;
-    display: block;
-    object-fit: cover;
+    0% { opacity: 0.2; transform: rotateX(80deg) scale(0.7) translateZ(-20px); }
+    100% { opacity: 0.95; transform: rotateX(80deg) scale(1.02) translateZ(-20px); }
 }
 
 /* Highlights section */
@@ -955,7 +956,7 @@ footer p {
     to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Respect reduced-motion preference: kill entrance/scroll animations and smooth scrolling */
+/* Respect reduced-motion preference */
 @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
 
@@ -988,36 +989,26 @@ footer p {
     .gallery-cards { grid-template-columns: 1fr; }
 }
 
-/* Optimized mobile breakpoints: Full size width + smooth performance */
+/* Mobile Breakpoint: Remove 3D Laptop completely & activate smooth 2D iPhone 17 Pro Max */
 @media (max-width: 768px) {
-    .hero-headline { font-size: 44px; }
+    .hero-headline { font-size: 42px; }
     .hero-tagline { font-size: 18px; }
     .section-title { font-size: 38px; }
     .local-nav-links { display: none; }
 
     .hero-visual {
-        padding: 0;
+        padding: 0 10px;
         margin-top: 10px;
-        width: 100%;
-        overflow: visible;
     }
 
+    /* Fully unmount laptop on mobile */
     .laptop-stage {
-        perspective: 1000px;
+        display: none !important;
     }
 
-    .laptop-body {
-        max-width: 100%;
-        transform: rotateX(18deg) rotateY(0deg) scale(1);
-        transform-origin: center top;
-    }
-
-    .laptop-base {
-        box-shadow: 0 15px 35px rgba(0,0,0,0.5);
-    }
-
-    .laptop-shadow {
-        filter: blur(10px);
+    /* Display sleek iPhone 17 Pro Max */
+    .phone-stage {
+        display: block !important;
     }
 }
 
@@ -1028,8 +1019,19 @@ footer p {
 @media (max-width: 480px) {
     .hero-headline { font-size: 34px; }
 
-    .laptop-body {
-        transform: rotateX(16deg) rotateY(0deg) scale(1.08);
-        transform-origin: center top;
+    .phone-body {
+        width: 260px;
+        height: 520px;
+        border-radius: 46px;
+    }
+
+    .phone-screen {
+        border-radius: 38px;
+    }
+
+    .dynamic-island {
+        width: 74px;
+        height: 20px;
+        top: 10px;
     }
 }

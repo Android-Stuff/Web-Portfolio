@@ -48,11 +48,40 @@
         </div>
  
         <div class="hero-visual">
-            <div class="hero-img-frame">
-                <img src="Mockup.png" alt="Vincent Alexander portfolio overview" class="hero-img"
-                     fetchpriority="high">
+    <div class="laptop-stage">
+        <div class="laptop-body" id="laptop3D">
+            <!-- Screen / Lid -->
+            <div class="laptop-lid">
+                <div class="laptop-lid-inner">
+                    <div class="display-screen">
+                        <div class="notch"><span class="webcam"></span></div>
+                        <img src="Mockup.png" alt="Vincent Alexander portfolio desktop concept" class="screen-img" fetchpriority="high">
+                        <div class="screen-glare"></div>
+                    </div>
+                </div>
+                <div class="laptop-lid-outer">
+                    <div class="logo-glyph"></div>
+                </div>
             </div>
+
+            <!-- Hinge & Base Deck -->
+            <div class="laptop-hinge"></div>
+            <div class="laptop-base">
+                <div class="laptop-base-wall"></div>
+                <div class="keyboard-area">
+                    <div class="keyboard-keys"></div>
+                    <div class="trackpad"></div>
+                </div>
+                <div class="base-front-lip"></div>
+                <div class="side-port port-left"></div>
+                <div class="side-port port-right"></div>
+            </div>
+
+            <!-- Dynamic Ground Shadow -->
+            <div class="laptop-shadow"></div>
         </div>
+    </div>
+</div>
     </section>
  
     <!-- Highlights Section -->
@@ -180,123 +209,6 @@
         <p>Universitas Jember — Faculty of Computer Science (Informatics)</p>
     </footer>
  
-    <script>
-        (function () {
-            'use strict';
- 
-            // Scroll reveal: unobserve once revealed so the observer has less to track over time
-            const revealObserver = new IntersectionObserver((entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('active');
-                        revealObserver.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
- 
-            document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
- 
-            // Gallery filter — event delegation instead of per-button inline handlers
-            const galleryNav = document.querySelector('.gallery-nav');
-            const cards = document.querySelectorAll('.card');
- 
-            galleryNav.addEventListener('click', (e) => {
-                const btn = e.target.closest('.gallery-pill');
-                if (!btn) return;
- 
-                const category = btn.dataset.filter;
- 
-                galleryNav.querySelectorAll('.gallery-pill').forEach((p) => {
-                    p.classList.remove('active');
-                    p.setAttribute('aria-pressed', 'false');
-                });
-                btn.classList.add('active');
-                btn.setAttribute('aria-pressed', 'true');
- 
-                cards.forEach((card) => {
-                    const matches = category === 'all' || card.dataset.category === category;
-                    if (matches) {
-                        card.classList.remove('is-hidden');
-                        card.classList.add('is-fading-in');
-                        card.addEventListener('animationend', () => card.classList.remove('is-fading-in'), { once: true });
-                    } else {
-                        card.classList.add('is-hidden');
-                    }
-                });
-            });
- 
-            // Project showcase switcher
-            const projectsData = {
-                sim: {
-                    title: 'AppCenter Desktop Interface — Concept UI',
-                    desc: 'A clean, modern desktop ecosystem concept featuring custom app stores, utility tools like Harvey for WCAG color contrast compliance, integrated media players, and system task management.',
-                    tags: ['UI/UX Design', 'Desktop Interface', 'WCAG Contrast', 'System AppCenter'],
-                    image: 'Mockup.png'
-                },
-                mobile: {
-                    title: 'Automotive UI App — Jetpack Compose',
-                    desc: 'A native Android application designed with declarative Kotlin UI components, custom reactive state handling, and sleek dark mode automotive controls.',
-                    tags: ['Kotlin', 'Jetpack Compose', 'Android SDK', 'Material Design 3'],
-                    image: 'showcase-mobile.png'
-                },
-                ctf: {
-                    title: 'Cybersecurity & Sample Smuggling Analysis',
-                    desc: 'Dissected obfuscated binary payloads, performed forensic hex dump inspections, and documented mitigations against XXE, Prototype Pollution, and JWT forgery.',
-                    tags: ['Digital Forensics', 'Reverse Engineering', 'Web Security', 'CTF Writeups'],
-                    image: 'showcase-ctf.png'
-                },
-                cpp: {
-                    title: 'System Architecture & Theory of Automata',
-                    desc: 'Built custom library management systems in C++, implemented Chomsky hierarchy grammar tools, and optimized Deterministic Finite Automata (DFA) minimization algorithms.',
-                    tags: ['C++', 'Automata Theory', 'DFA Minimization', 'Oracle SQL Developer'],
-                    image: 'showcase-cpp.png'
-                }
-            };
- 
-            const controls = document.querySelector('.controls');
-            const displayBox = document.getElementById('projectDisplay');
-            const imgElement = document.getElementById('projectImage');
-            const titleEl = document.getElementById('projectTitle');
-            const descEl = document.getElementById('projectDesc');
-            const tagsEl = document.getElementById('projectTags');
- 
-            let isSwitching = false;
- 
-            controls.addEventListener('click', (e) => {
-                const btn = e.target.closest('.tab-btn');
-                if (!btn || isSwitching) return;
- 
-                const data = projectsData[btn.dataset.project];
-                if (!data) return;
- 
-                controls.querySelectorAll('.tab-btn').forEach((b) => {
-                    b.classList.remove('active');
-                    b.setAttribute('aria-selected', 'false');
-                });
-                btn.classList.add('active');
-                btn.setAttribute('aria-selected', 'true');
- 
-                isSwitching = true;
-                displayBox.classList.add('tab-transitioning');
- 
-                window.setTimeout(() => {
-                    titleEl.textContent = data.title;
-                    descEl.textContent = data.desc;
-                    tagsEl.innerHTML = '';
-                    data.tags.forEach((tag) => {
-                        const span = document.createElement('span');
-                        span.className = 'tech-tag';
-                        span.textContent = tag;
-                        tagsEl.appendChild(span);
-                    });
-                    imgElement.src = data.image;
- 
-                    displayBox.classList.remove('tab-transitioning');
-                    isSwitching = false;
-                }, 250);
-            });
-        })();
-    </script>
+<script src="script.js" defer></script>
 </body>
 </html>
- 

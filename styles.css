@@ -12,6 +12,13 @@
     --font-stack: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
     --apple-ease: cubic-bezier(0.16, 1, 0.3, 1);
 
+    /* MacBook Air unibody palette */
+    --mba-silver-hi: #f4f5f7;
+    --mba-silver-light: #e2e3e6;
+    --mba-silver-mid: #c7c8cc;
+    --mba-silver-dark: #a9aaae;
+    --mba-silver-edge: #9a9ba0;
+
     /* Expose section timelines to top-level navigation (scroll-driven nav indicator) */
     timeline-scope: --section-overview, --section-highlights, --section-showcase, --section-specs;
 }
@@ -276,12 +283,282 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     transform: translateX(4px);
 }
 
-/* Hero image — reserve space with aspect-ratio to avoid layout shift while loading */
+/* ==========================================================================
+   3D Laptop Visual & Opening Animation — MacBook Air style (silver unibody)
+   ========================================================================== */
+
 .hero-visual {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 0 20px;
+    max-width: 900px;
+    margin: 40px auto 0;
+    padding: 0 20px 40px;
     animation: fadeInUp 1.2s var(--apple-ease) forwards;
+}
+
+.laptop-stage {
+    perspective: 1400px;
+    perspective-origin: 50% 20%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.laptop-body {
+    position: relative;
+    width: 100%;
+    max-width: 720px;
+    aspect-ratio: 16 / 10.5;
+    transform-style: preserve-3d;
+    transform: rotateX(12deg) rotateY(-8deg);
+    transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* --- Laptop Lid / Screen --- */
+.laptop-lid {
+    position: absolute;
+    top: 4%;
+    left: 9%;
+    width: 82%;
+    height: 74%;
+    transform-origin: bottom center;
+    transform-style: preserve-3d;
+    transform: rotateX(-105deg); /* Closed state */
+    border-radius: 22px;
+    background: linear-gradient(155deg, var(--mba-silver-hi) 0%, var(--mba-silver-mid) 45%, var(--mba-silver-dark) 100%);
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.18);
+    animation: openLaptopLid 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+    z-index: 2;
+}
+
+.laptop-lid-inner {
+    position: absolute;
+    inset: 3px;
+    background: #060607;
+    border-radius: 19px;
+    padding: 7px 7px 9px;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+    backface-visibility: hidden;
+    overflow: hidden;
+}
+
+.display-screen {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 13px;
+    overflow: hidden;
+    background: #000;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Camera notch, top-center of the display */
+.notch {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 16%;
+    height: 4.5%;
+    min-height: 7px;
+    background: #000;
+    border-radius: 0 0 9px 9px;
+    z-index: 6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.webcam {
+    width: 4px;
+    height: 4px;
+    background-color: #101012;
+    border: 1px solid #2c2c2e;
+    border-radius: 50%;
+    box-shadow: 0 0 2px rgba(80, 130, 255, 0.35);
+}
+
+.screen-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.screen-glare {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.02) 45%, transparent 60%);
+    pointer-events: none;
+}
+
+.laptop-lid-outer {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(155deg, var(--mba-silver-hi) 0%, var(--mba-silver-light) 40%, var(--mba-silver-dark) 100%);
+    border-radius: 22px;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.4), inset 0 -20px 40px rgba(0,0,0,0.08);
+    transform: rotateY(180deg);
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-glyph {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.1);
+    box-shadow: inset 0 1px 1px rgba(255,255,255,0.6), inset 0 -1px 1px rgba(0,0,0,0.08);
+}
+
+/* --- Hinge & Base --- */
+.laptop-hinge {
+    position: absolute;
+    top: 77%;
+    left: 24%;
+    width: 52%;
+    height: 6px;
+    background: linear-gradient(180deg, var(--mba-silver-dark), var(--mba-silver-edge));
+    border-radius: 3px;
+    z-index: 3;
+}
+
+.laptop-base {
+    position: absolute;
+    top: 76.5%;
+    left: 8%;
+    width: 84%;
+    height: 32%;
+    background: linear-gradient(180deg, var(--mba-silver-hi) 0%, var(--mba-silver-light) 45%, var(--mba-silver-mid) 100%);
+    border-radius: 4px 4px 26px 26px;
+    border: 1px solid var(--mba-silver-edge);
+    border-top: 1px solid #fff;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.7);
+    transform-style: preserve-3d;
+    transform-origin: top center;
+    transform: rotateX(68deg) translateZ(-4px); /* Rotates keyboard flat into 3D space */
+}
+
+/* Folded front face beneath the deck — reads as the aluminum body's side thickness */
+.laptop-base-wall {
+    position: absolute;
+    left: -1px;
+    bottom: -15px;
+    width: calc(100% + 2px);
+    height: 15px;
+    transform-origin: top;
+    transform: rotateX(-68deg);
+    background: linear-gradient(180deg, var(--mba-silver-mid) 0%, var(--mba-silver-dark) 55%, var(--mba-silver-edge) 100%);
+    border: 1px solid var(--mba-silver-edge);
+    border-top: none;
+    border-radius: 0 0 26px 26px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), inset 0 -8px 12px rgba(0,0,0,0.25);
+}
+
+.keyboard-area {
+    width: 88%;
+    height: 58%;
+    margin: 9px auto 0;
+    background: #0a0a0c;
+    border-radius: 5px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding-bottom: 8px;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.55), inset 0 0 0 1px rgba(0,0,0,0.4);
+}
+
+.keyboard-keys {
+    width: 96%;
+    height: 68%;
+    background: repeating-linear-gradient(
+        90deg,
+        #29292b,
+        #29292b 13px,
+        #101012 13px,
+        #101012 16px
+    );
+    border-radius: 3px;
+    opacity: 0.9;
+}
+
+.trackpad {
+    width: 34%;
+    height: 26px;
+    background: linear-gradient(160deg, #1c1c1e, #0c0c0e);
+    border: 1px solid #303032;
+    border-radius: 7px;
+    margin-top: 12px;
+    box-shadow: inset 0 1px 1px rgba(255,255,255,0.08);
+}
+
+.base-front-lip {
+    position: absolute;
+    bottom: 0;
+    left: 44%;
+    width: 12%;
+    height: 3px;
+    background: var(--mba-silver-edge);
+    border-radius: 3px 3px 0 0;
+    opacity: 0.6;
+}
+
+.side-port {
+    position: absolute;
+    bottom: 6px;
+    width: 10px;
+    height: 3px;
+    background: #333;
+    border-radius: 1px;
+    opacity: 0.5;
+}
+
+.port-left { left: -1px; }
+.port-right { right: -1px; }
+
+/* --- Dynamic Shadow --- */
+.laptop-shadow {
+    position: absolute;
+    bottom: -10%;
+    left: 8%;
+    width: 84%;
+    height: 25%;
+    background: radial-gradient(ellipse at center, rgba(120, 130, 160, 0.28) 0%, rgba(0, 0, 0, 0.85) 55%, transparent 80%);
+    filter: blur(16px);
+    transform: rotateX(75deg) translateZ(-30px);
+    pointer-events: none;
+    animation: shadowExpand 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+}
+
+/* --- Keyframe Animations --- */
+@keyframes openLaptopLid {
+    0% {
+        transform: rotateX(-105deg);
+    }
+    100% {
+        transform: rotateX(-8deg); /* Perfect standing lid angle */
+    }
+}
+
+@keyframes shadowExpand {
+    0% {
+        opacity: 0.2;
+        transform: rotateX(75deg) scale(0.7) translateZ(-30px);
+    }
+    100% {
+        opacity: 0.9;
+        transform: rotateX(75deg) scale(1.05) translateZ(-30px);
+    }
+}
+
+/* Responsive Scaling */
+@media (max-width: 768px) {
+    .laptop-body {
+        transform: rotateX(8deg) rotateY(0deg);
+    }
 }
 
 .hero-img-frame {

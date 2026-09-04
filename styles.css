@@ -498,7 +498,7 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     flex: 1;
     background: linear-gradient(180deg, #28282b 0%, #161618 100%);
     border-radius: 2px;
-    color: #3e3e44;
+    color: #97979b;
     font-size: 6px;
     font-weight: 500;
     display: flex;

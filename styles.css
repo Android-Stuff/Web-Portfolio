@@ -335,7 +335,7 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     top: 1%;
     left: 9%;
     width: 82%;
-    height: 83%; /* Increased from 74% to match 3:2 (2000x1334) aspect ratio */
+    height: 84%; /* Increased from 74% to match 3:2 (2000x1334) aspect ratio */
     transform-origin: bottom center;
     transform-style: preserve-3d;
     transform: rotateX(-105deg);
@@ -419,32 +419,20 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     box-shadow: inset 0 1px 1px rgba(255,255,255,0.6), inset 0 -1px 1px rgba(0,0,0,0.08);
 }
 
-/* --- Hinge & Base --- */
-.laptop-hinge {
-    position: absolute;
-    top: 77%;
-    left: 24%;
-    width: 52%;
-    height: 6px;
-    background: linear-gradient(180deg, var(--mba-silver-mid), var(--mba-silver-dark) 60%, var(--mba-silver-edge));
-    border-radius: 3px;
-    z-index: 3;
-}
-
 .laptop-base {
     position: absolute;
     top: 83%;
-    left: 9%;
-    width: 82%;
+    left: 8.5%;
+    width: 82.5%;
     height: 32%;
     background: linear-gradient(165deg, var(--mba-silver-rim) 0%, var(--mba-silver-hi) 15%, var(--mba-silver-light) 40%, var(--mba-silver-mid) 70%, var(--mba-silver-hi) 100%);
-    border-radius: 4px 4px 2px 2px;
+    border-radius: 0 0 2px 2px;
     border: 1px solid var(--mba-silver-edge);
     border-top: 1px solid #fff;
-    box-shadow: 0 25px 60px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.7);
+    box-shadow: 0 30px 70px rgba(0,0,0,0.7), inset 0 1.5px 0 rgba(255,255,255,0.85);
     transform-style: preserve-3d;
     transform-origin: top center;
-    transform: rotateX(68deg) translateZ(-4px); /* Rotates keyboard flat into 3D space */
+    transform: rotateX(68deg) translateZ(-8px); /* Elevated Z depth to give base vertical presence */
 }
 
 .laptop-base::before {
@@ -457,20 +445,20 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     pointer-events: none;
 }
 
-/* Folded front face beneath the deck — reads as the aluminum body's side thickness */
+/* Thicker front lip and side profile wall */
 .laptop-base-wall {
     position: absolute;
     left: -1px;
-    bottom: -15px;
+    bottom: -22px; /* Aligns with the increased height */
     width: calc(100% + 2px);
-    height: 10px;
+    height: 22px; /* Increased from 10px to 22px for a substantial unibody profile */
     transform-origin: top;
     transform: rotateX(-68deg);
-    background: linear-gradient(180deg, var(--mba-silver-light) 0%, var(--mba-silver-mid) 30%, var(--mba-silver-dark) 70%, var(--mba-silver-edge) 100%);
+    background: linear-gradient(180deg, var(--mba-silver-light) 0%, var(--mba-silver-mid) 25%, var(--mba-silver-dark) 65%, var(--mba-silver-edge) 100%);
     border: 1px solid var(--mba-silver-edge);
     border-top: none;
-    border-radius: 0 0 26px 26px;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), inset 0 -8px 12px rgba(0,0,0,0.25);
+    border-radius: 0 0 22px 22px;
+    box-shadow: inset 0 1.5px 0 rgba(255,255,255,0.6), inset 0 -10px 16px rgba(0,0,0,0.4);
 }
 
 .keyboard-area {
@@ -523,18 +511,6 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     opacity: 0.6;
 }
 
-.side-port {
-    position: absolute;
-    bottom: 6px;
-    width: 10px;
-    height: 3px;
-    background: #333;
-    border-radius: 1px;
-    opacity: 0.5;
-}
-
-.port-left { left: -1px; }
-.port-right { right: -1px; }
 
 /* --- Dynamic Shadow --- */
 .laptop-shadow {

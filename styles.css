@@ -323,7 +323,7 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     position: relative;
     width: 100%;
     max-width: 700px;
-    aspect-ratio: 16 / 10.5;
+    aspect-ratio: 16 / 11;
     transform-style: preserve-3d;
     transform: rotateX(22deg) rotateY(0deg);
     transition: transform 0.25s cubic-bezier(0.25, 1, 0.3, 1);
@@ -331,10 +331,10 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
 
 .laptop-lid {
     position: absolute;
-    top: 2%;
+    top: 0%;
     left: 10%;
     width: 80%;
-    height: 74%;
+    height: 82%;
     transform-origin: bottom center;
     transform-style: preserve-3d;
     transform: rotateX(-105deg);
@@ -350,7 +350,7 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     inset: 3px;
     background: #060607;
     border-radius: 15px 15px 1px 1px;
-    padding: 6px 6px 8px;
+    padding: 6px 6px 20px;
     box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
     backface-visibility: hidden;
     overflow: hidden;
@@ -360,7 +360,7 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     position: relative;
     width: 100%;
     height: 100%;
-    border-radius: 10px 10px 0 0;
+    border-radius: 10px 10px 3px 3px;
     overflow: hidden;
     background: #000;
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -372,7 +372,7 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     left: 50%;
     transform: translateX(-50%);
     width: 16%;
-    height: 5%;
+    height: 5.5%;
     min-height: 7px;
     background: #000;
     border-radius: 0 0 8px 8px;
@@ -381,8 +381,9 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
 
 .screen-img {
     width: 100%;
-    height: 100%;
+    height: 96%;
     object-fit: fill;
+    object-position: top center;
     display: block;
 }
 
@@ -416,7 +417,7 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
 
 .laptop-base {
     position: absolute;
-    top: 74%;
+    top: 80%;
     left: 10%;
     width: 80%;
     height: 48%;
@@ -552,7 +553,6 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     background: #000;
     border-radius: 52px;
     padding: 8px;
-    /* Titanium bezel and subtle highlights */
     box-shadow: 
         0 0 0 2.5px #6e5847, 
         0 0 0 5px #1c1815, 
@@ -570,7 +570,6 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* Dynamic Island */
 .dynamic-island {
     position: absolute;
     top: 11px;
@@ -1001,12 +1000,10 @@ footer p {
         margin-top: 10px;
     }
 
-    /* Fully unmount laptop on mobile */
     .laptop-stage {
         display: none !important;
     }
 
-    /* Display sleek iPhone 17 Pro Max */
     .phone-stage {
         display: block !important;
     }

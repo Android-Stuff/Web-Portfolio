@@ -297,8 +297,8 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
 
 .laptop-stage {
     position: relative;
-    perspective: 2000px; /* Increased from 1200px to act like a telephoto lens and eliminate fisheye distortion */
-    perspective-origin: 50% 50%; /* Centered origin keeps parallel edges straight across both sides */
+    perspective: 2000px; /* High perspective eliminates fisheye distortion */
+    perspective-origin: 50% 50%; /* Centered origin maintains straight parallel lines */
     width: 100%;
     display: flex;
     justify-content: center;
@@ -325,7 +325,7 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     max-width: 700px;
     aspect-ratio: 16 / 10.5;
     transform-style: preserve-3d;
-    transform: rotateX(22deg) rotateY(0deg); /* Set rotateY to 0deg to remove horizontal skew */
+    transform: rotateX(22deg) rotateY(0deg);
     transition: transform 0.25s cubic-bezier(0.25, 1, 0.3, 1);
 }
 
@@ -420,8 +420,8 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
 .laptop-base {
     position: absolute;
     top: 74%;
-    left: 10%;   /* Changed from 8.5% to align with screen lid edge */
-    width: 80%;  /* Reduced from 82.5% to match screen lid width */
+    left: 10%;
+    width: 80%;
     height: 48%;
     background: linear-gradient(165deg, var(--mba-silver-rim) 0%, var(--mba-silver-hi) 15%, var(--mba-silver-light) 40%, var(--mba-silver-mid) 70%, var(--mba-silver-hi) 100%);
     border-radius: 0 0 2px 2px;
@@ -447,11 +447,11 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
 .laptop-base-wall {
     position: absolute;
     left: -1px;
-    bottom: -28px; /* Matched to new 28px height */
+    bottom: -28px;
     width: calc(100% + 2px);
-    height: 28px; /* Increased from 22px to make the chassis edge thicker */
+    height: 28px;
     transform-origin: top;
-    transform: rotateX(-40deg); /* Matched to -40deg angle */
+    transform: rotateX(-40deg);
     background: linear-gradient(180deg, var(--mba-silver-light) 0%, var(--mba-silver-mid) 25%, var(--mba-silver-dark) 65%, var(--mba-silver-edge) 100%);
     border: 1px solid var(--mba-silver-edge);
     border-top: none;
@@ -472,7 +472,7 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
 /* Recessed Black Keyboard Well */
 .keyboard-grid {
     width: 100%;
-    height: 68%; /* Increased from 62% for taller key proportions */
+    height: 68%;
     background: #09090b;
     border-radius: 6px;
     padding: 5px 6px;
@@ -576,13 +576,6 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     100% {
         opacity: 0.95;
         transform: rotateX(80deg) scale(1.02) translateZ(-20px);
-    }
-}
-
-/* Responsive Scaling */
-@media (max-width: 768px) {
-    .laptop-body {
-        transform: rotateX(8deg) rotateY(0deg);
     }
 }
 
@@ -769,7 +762,6 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     border: 1px solid rgba(255,255,255,0.08);
     transition: box-shadow 0.4s var(--apple-ease);
 }
-
 
 .viewer-display {
     min-height: 320px;
@@ -994,8 +986,30 @@ footer p {
     .hero-tagline { font-size: 20px; }
     .section-title { font-size: 38px; }
     .local-nav-links { display: none; }
+
+    /* Fix 3D Laptop proportional scaling on mobile screens */
+    .hero-visual {
+        padding: 0 10px 20px;
+        margin-top: 20px;
+    }
+
+    .laptop-stage {
+        perspective: 1400px;
+    }
+
+    .laptop-body {
+        transform: rotateX(22deg) rotateY(0deg) scale(0.85);
+        transform-origin: center top;
+    }
 }
 
 @media (max-width: 550px) {
     .specs-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+    .laptop-body {
+        transform: rotateX(22deg) rotateY(0deg) scale(0.72);
+        transform-origin: center top;
+    }
 }

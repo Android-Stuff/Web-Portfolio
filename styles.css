@@ -433,9 +433,9 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
 .laptop-base-wall {
     position: absolute;
     left: -1px;
-    bottom: -28px;
-    width: calc(100% + 2px);
-    height: 28px;
+    bottom: -8px;
+    width: calc(100% + 1.5px);
+    height: 8px;
     transform-origin: top;
     transform: rotateX(-40deg);
     background: linear-gradient(180deg, var(--mba-silver-light) 0%, var(--mba-silver-mid) 25%, var(--mba-silver-dark) 65%, var(--mba-silver-edge) 100%);

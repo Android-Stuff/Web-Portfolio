@@ -285,7 +285,7 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
 }
 
 /* ==========================================================================
-   3D Laptop Visual & Opening Animation — MacBook Air style (silver unibody)
+   3D Laptop Visual & Opening Animation — Apple MacBook Air Style
    ========================================================================== */
 
 .hero-visual {
@@ -297,8 +297,8 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
 
 .laptop-stage {
     position: relative;
-    perspective: 1400px;
-    perspective-origin: 50% 20%;
+    perspective: 2000px; /* Increased from 1200px to act like a telephoto lens and eliminate fisheye distortion */
+    perspective-origin: 50% 50%; /* Centered origin keeps parallel edges straight across both sides */
     width: 100%;
     display: flex;
     justify-content: center;
@@ -322,37 +322,37 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
 .laptop-body {
     position: relative;
     width: 100%;
-    max-width: 720px;
+    max-width: 700px;
     aspect-ratio: 16 / 10.5;
     transform-style: preserve-3d;
-    transform: rotateX(12deg) rotateY(-8deg);
-    transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1);
+    transform: rotateX(22deg) rotateY(0deg); /* Set rotateY to 0deg to remove horizontal skew */
+    transition: transform 0.25s cubic-bezier(0.25, 1, 0.3, 1);
 }
 
 /* --- Laptop Lid / Screen --- */
 .laptop-lid {
     position: absolute;
-    top: 1%;
-    left: 9%;
-    width: 82%;
-    height: 84%; /* Increased from 74% to match 3:2 (2000x1334) aspect ratio */
+    top: 2%;
+    left: 10%;
+    width: 80%;
+    height: 74%;
     transform-origin: bottom center;
     transform-style: preserve-3d;
-    transform: rotateX(-105deg);
-    border-radius: 22px 22px 0 0;
-    background: linear-gradient(150deg, var(--mba-silver-rim) 0%, var(--mba-silver-hi) 18%, var(--mba-silver-mid) 48%, var(--mba-silver-dark) 78%, var(--mba-silver-light) 100%);
-    box-shadow: 0 0 0 1px rgba(0,0,0,0.18);
+    transform: rotateX(-105deg); /* Closed state */
+    border-radius: 18px 18px 2px 2px;
+    background: linear-gradient(150deg, var(--mba-silver-rim) 0%, var(--mba-silver-hi) 20%, var(--mba-silver-mid) 60%, var(--mba-silver-dark) 100%);
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.25);
     animation: openLaptopLid 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
-    z-index: 2;
+    z-index: 10;
 }
 
 .laptop-lid-inner {
     position: absolute;
     inset: 3px;
     background: #060607;
-    border-radius: 19px 19px 0 0;
-    padding: 7px 7px 9px;
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+    border-radius: 15px 15px 1px 1px;
+    padding: 6px 6px 8px;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
     backface-visibility: hidden;
     overflow: hidden;
 }
@@ -361,13 +361,13 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     position: relative;
     width: 100%;
     height: 100%;
-    border-radius: 13px 13px 0 0;
+    border-radius: 10px 10px 0 0;
     overflow: hidden;
     background: #000;
     border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* Camera notch, top-center of the display */
+/* Camera notch */
 .notch {
     position: absolute;
     top: 0;
@@ -379,9 +379,6 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     background: #000;
     border-radius: 0 0 8px 8px;
     z-index: 6;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .screen-img {
@@ -402,7 +399,7 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     position: absolute;
     inset: 0;
     background: linear-gradient(150deg, var(--mba-silver-rim) 0%, var(--mba-silver-hi) 20%, var(--mba-silver-light) 50%, var(--mba-silver-dark) 85%, var(--mba-silver-mid) 100%);
-    border-radius: 22px;
+    border-radius: 18px;
     box-shadow: inset 0 0 0 1px rgba(255,255,255,0.4), inset 0 -20px 40px rgba(0,0,0,0.08);
     transform: rotateY(180deg);
     backface-visibility: hidden;
@@ -419,12 +416,13 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     box-shadow: inset 0 1px 1px rgba(255,255,255,0.6), inset 0 -1px 1px rgba(0,0,0,0.08);
 }
 
+/* --- Base Deck & Keyboard Deck --- */
 .laptop-base {
     position: absolute;
-    top: 83%;
-    left: 8.5%;
-    width: 82.5%;
-    height: 32%;
+    top: 74%;
+    left: 10%;   /* Changed from 8.5% to align with screen lid edge */
+    width: 80%;  /* Reduced from 82.5% to match screen lid width */
+    height: 48%;
     background: linear-gradient(165deg, var(--mba-silver-rim) 0%, var(--mba-silver-hi) 15%, var(--mba-silver-light) 40%, var(--mba-silver-mid) 70%, var(--mba-silver-hi) 100%);
     border-radius: 0 0 2px 2px;
     border: 1px solid var(--mba-silver-edge);
@@ -432,7 +430,7 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     box-shadow: 0 30px 70px rgba(0,0,0,0.7), inset 0 1.5px 0 rgba(255,255,255,0.85);
     transform-style: preserve-3d;
     transform-origin: top center;
-    transform: rotateX(68deg) translateZ(-8px); /* Elevated Z depth to give base vertical presence */
+    transform: rotateX(40deg) translateZ(-8px);
 }
 
 .laptop-base::before {
@@ -440,20 +438,20 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     position: absolute;
     inset: 0;
     border-radius: inherit;
-    background: linear-gradient(115deg, transparent 20%, rgba(255,255,255,0.55) 42%, rgba(255,255,255,0.15) 50%, transparent 65%);
+    background: linear-gradient(115deg, transparent 20%, rgba(255,255,255,0.5) 42%, rgba(255,255,255,0.15) 50%, transparent 65%);
     mix-blend-mode: soft-light;
     pointer-events: none;
 }
 
-/* Thicker front lip and side profile wall */
+/* Unibody front thickness wall */
 .laptop-base-wall {
     position: absolute;
     left: -1px;
-    bottom: -22px; /* Aligns with the increased height */
+    bottom: -28px; /* Matched to new 28px height */
     width: calc(100% + 2px);
-    height: 22px; /* Increased from 10px to 22px for a substantial unibody profile */
+    height: 28px; /* Increased from 22px to make the chassis edge thicker */
     transform-origin: top;
-    transform: rotateX(-68deg);
+    transform: rotateX(-40deg); /* Matched to -40deg angle */
     background: linear-gradient(180deg, var(--mba-silver-light) 0%, var(--mba-silver-mid) 25%, var(--mba-silver-dark) 65%, var(--mba-silver-edge) 100%);
     border: 1px solid var(--mba-silver-edge);
     border-top: none;
@@ -463,41 +461,76 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
 
 .keyboard-area {
     width: 88%;
-    height: 58%;
-    margin: 9px auto 0;
-    background: #0a0a0c;
-    border-radius: 5px;
-    position: relative;
+    height: 88%;
+    margin: 8px auto 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-end;
-    padding-bottom: 8px;
-    box-shadow: inset 0 2px 5px rgba(0,0,0,0.55), inset 0 0 0 1px rgba(0,0,0,0.4);
+    justify-content: space-between;
 }
 
-.keyboard-keys {
-    width: 96%;
-    height: 68%;
-    background: repeating-linear-gradient(
-        90deg,
-        #29292b,
-        #29292b 13px,
-        #101012 13px,
-        #101012 16px
-    );
-    border-radius: 3px;
-    opacity: 0.9;
+/* Recessed Black Keyboard Well */
+.keyboard-grid {
+    width: 100%;
+    height: 68%; /* Increased from 62% for taller key proportions */
+    background: #09090b;
+    border-radius: 6px;
+    padding: 5px 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 2px;
+    box-shadow: inset 0 2px 6px rgba(0,0,0,0.85), inset 0 0 0 1px rgba(0,0,0,0.6);
 }
 
+.kb-row {
+    display: flex;
+    width: 100%;
+    height: 15%;
+    gap: 2px;
+}
+
+/* Keycaps */
+.key {
+    flex: 1;
+    background: linear-gradient(180deg, #28282b 0%, #161618 100%);
+    border-radius: 2px;
+    box-shadow: inset 0 0.5px 0.5px rgba(255, 255, 255, 0.2), 0 0.5px 1px rgba(0, 0, 0, 0.7);
+    color: #98989d;
+    font-size: 5px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    letter-spacing: -0.1px;
+    text-transform: lowercase;
+}
+
+/* Key proportions */
+.key-esc { flex: 1.4; }
+.key-power { flex: 1; background: #121214; border-radius: 2px; max-width: 10px; }
+.key-delete { flex: 1.6; }
+.key-tab { flex: 1.5; }
+.key-slash { flex: 1.1; }
+.key-caps { flex: 1.8; }
+.key-return { flex: 1.8; }
+.key-shift-l { flex: 2.2; }
+.key-shift-r { flex: 2.2; }
+.key-fn { flex: 0.9; }
+.key-mod { flex: 0.9; }
+.key-cmd { flex: 1.25; }
+.key-space { flex: 5.6; background: linear-gradient(180deg, #2a2a2d 0%, #18181b 100%); }
+.key-arrows { flex: 1.2; font-size: 4px; }
+
+/* Trackpad on Silver Palm Rest */
 .trackpad {
-    width: 34%;
-    height: 26px;
-    background: linear-gradient(160deg, #2a2a2c, #0c0c0e 60%, #1a1a1c);
-    border: 1px solid #303032;
-    border-radius: 7px;
-    margin-top: 12px;
-    box-shadow: inset 0 1px 1px rgba(255,255,255,0.12), inset 0 -1px 2px rgba(0,0,0,0.4);
+    width: 32%;
+    height: 32%;
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.12), rgba(0, 0, 0, 0.05));
+    border: 1px solid rgba(150, 150, 150, 0.4);
+    border-radius: 6px;
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.3), inset 0 -1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .base-front-lip {
@@ -511,17 +544,16 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     opacity: 0.6;
 }
 
-
-/* --- Dynamic Shadow --- */
+/* --- Dynamic Ground Shadow --- */
 .laptop-shadow {
     position: absolute;
-    bottom: -10%;
-    left: 8%;
-    width: 84%;
-    height: 25%;
-    background: radial-gradient(ellipse at center, rgba(117, 124, 146, 0.3) 0%, rgba(20, 20, 26, 0.1) 50%);
-    filter: blur(16px);
-    transform: rotateX(75deg) translateZ(-30px);
+    bottom: -12%;
+    left: 5%;
+    width: 90%;
+    height: 28%;
+    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.2) 40%, transparent 70%);
+    filter: blur(20px);
+    transform: rotateX(80deg) translateZ(-20px);
     pointer-events: none;
     animation: shadowExpand 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
 }
@@ -532,18 +564,18 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
         transform: rotateX(-105deg);
     }
     100% {
-        transform: rotateX(-8deg); /* Perfect standing lid angle */
+        transform: rotateX(-22deg); /* Reclined lid angle */
     }
 }
 
 @keyframes shadowExpand {
     0% {
         opacity: 0.2;
-        transform: rotateX(75deg) scale(0.7) translateZ(-30px);
+        transform: rotateX(80deg) scale(0.7) translateZ(-20px);
     }
     100% {
-        opacity: 0.9;
-        transform: rotateX(75deg) scale(1.05) translateZ(-30px);
+        opacity: 0.95;
+        transform: rotateX(80deg) scale(1.02) translateZ(-20px);
     }
 }
 

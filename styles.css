@@ -18,7 +18,7 @@
     --mba-silver-mid: #636c92;
     --mba-silver-dark: #555a6d;
     --mba-silver-edge: #9a9ba0;
-    --mba-silver-rim: #3e6364;
+    --mba-silver-rim: #3e4964;
 
     /* iPhone 17 Pro Max Titanium Palette */
     --iphone-titanium-rim: #d2a178;
@@ -338,7 +338,7 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     transform-origin: bottom center;
     transform-style: preserve-3d;
     transform: rotateX(-105deg);
-    border-radius: 20px 20px 2px 2px;
+    border-radius: 18px 18px 2px 2px;
     background: linear-gradient(150deg, var(--mba-silver-rim) 0%, var(--mba-silver-hi) 20%, var(--mba-silver-mid) 60%, var(--mba-silver-dark) 100%);
     box-shadow: 0 0 0 1px rgba(0,0,0,0.25);
     animation: openLaptopLid 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
@@ -349,7 +349,7 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     position: absolute;
     inset: 1.5px;
     background: #060607;
-    border-radius: 18px 18px 1px 1px;
+    border-radius: 17px 17px 1px 1px;
     padding: 10px 10px 20px;
     box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
     backface-visibility: hidden;
@@ -384,13 +384,6 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     object-fit: fill;
     display: block;
     border-radius: 0;             /* Removed from image so parent controls clipping */
-}
-
-.screen-glare {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.02) 45%, transparent 60%);
-    pointer-events: none;
 }
 
 .laptop-lid-outer {
@@ -445,6 +438,31 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     box-shadow: inset 0 1.5px 0 rgba(255,255,255,0.6), inset 0 -10px 16px rgba(0,0,0,0.4);
 }
 
+/* Display Boot Screen & Turn-On Effects */
+.boot-screen {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000000;
+    z-index: 5;
+    pointer-events: none;
+    animation: fadeOutBoot 0.2s ease-out 0.5s forwards;
+}
+
+
+.screen-img {
+    width: 100%;
+    height: 96%;
+    object-fit: fill;
+    display: block;
+    border-radius: 0;
+    opacity: 0;
+    filter: brightness(0.2) contrast(1.2);
+    animation: turnOnScreen 0.5s cubic-bezier(0.16, 1, 0.3, 1) 1.2s forwards;
+}
+
 .keyboard-area {
     width: 92%;
     height: 95%;
@@ -458,7 +476,7 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
 .keyboard-grid {
     width: 100%;
     height: 68%;
-    background: #09090b;
+    background: var(--mba-silver-hi);
     border-radius: 6px;
     padding: 5px 6px;
     display: flex;
@@ -466,6 +484,7 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     justify-content: space-between;
     gap: 2px;
     box-shadow: inset 0 2px 6px rgba(0,0,0,0.85), inset 0 0 0 1px rgba(0,0,0,0.6);
+    animation: turnOnGridGlow 0.2s cubic-bezier(0.16, 1, 0.3, 1) 1.0s forwards;
 }
 
 .kb-row {
@@ -479,8 +498,7 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     flex: 1;
     background: linear-gradient(180deg, #28282b 0%, #161618 100%);
     border-radius: 2px;
-    box-shadow: inset 0 0.5px 0.5px rgba(255, 255, 255, 0.2), 0 0.5px 1px rgba(0, 0, 0, 0.7);
-    color: #98989d;
+    color: #3e3e44;
     font-size: 6px;
     font-weight: 500;
     display: flex;
@@ -489,22 +507,149 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     user-select: none;
     letter-spacing: -0.1px;
     text-transform: none;
+    box-shadow: inset 0 0.5px 0.5px rgba(255, 255, 255, 0.05), 0 0.5px 1px rgba(0, 0, 0, 0.6);
+    animation: turnOnBacklight 0.2s cubic-bezier(0.16, 1, 0.3, 1) var(--kb-delay, 1.4s) forwards;
 }
 
-.key-esc { flex: 1.4; }
-.key-power { flex: 1; background: #121214; border-radius: 2px; max-width: 10px; }
-.key-delete { flex: 1.6; }
+
+@keyframes fadeOutBoot {
+    0% { opacity: 1; }
+    100% { opacity: 0; visibility: hidden; }
+}
+
+@keyframes turnOnScreen {
+    0% {
+        opacity: 0;
+        filter: brightness(0) contrast(1.5);
+    }
+    15% {
+        opacity: 0.4;
+        filter: brightness(1.6) contrast(1.2);
+    }
+    40% {
+        opacity: 0.85;
+        filter: brightness(1.1) contrast(1.05);
+    }
+    100% {
+        opacity: 1;
+        filter: brightness(1) contrast(1);
+    }
+}
+
+@keyframes turnOnBacklight {
+    0% {
+        color: #3e3e44;
+        box-shadow: inset 0 0.5px 0.5px rgba(255, 255, 255, 0.05), 0 0.5px 1px rgba(0, 0, 0, 0.6);
+        text-shadow: none;
+    }
+    35% {
+        color: #ffffff;
+        box-shadow: inset 0 0.5px 0.5px rgba(200, 235, 255, 0.8), 0 0 5px rgba(180, 220, 255, 0.6), 0 0.5px 1px rgba(0, 0, 0, 0.8);
+        text-shadow: 0 0 3px rgba(255, 255, 255, 0.9);
+    }
+    100% {
+        color: #ffffff;
+        box-shadow: inset 0 0.5px 0.5px rgba(86, 131, 120, 0.4), 0 0.5px 1px rgba(255, 255, 255, 0.7);
+        text-shadow: 0 0 1px rgba(255, 255, 255, 0.4);
+    }
+}
+
+@keyframes turnOnGridGlow {
+    0% {
+        box-shadow: inset 0 2px 6px rgba(0,0,0,0.95), inset 0 0 0 1px rgba(0,0,0,0.8);
+    }
+    50% {
+        box-shadow: inset 0 2px 6px rgba(0,0,0,0.85), inset 0 0 0 1px rgba(0,0,0,0.6), 0 0 12px rgba(180, 220, 255, 0.15);
+    }
+    100% {
+        box-shadow: inset 0 2px 6px rgba(0,0,0,0.85), inset 0 0 0 1px rgba(0,0,0,0.6), 0 0 8px rgba(255, 255, 255, 0.08);
+    }
+}
+
+/* Key sizing & MacBook Air proportions */
+.key-esc { flex: 1.5; }
+
+/* Touch ID button with circular fingerprint sensor */
+.key-touchid {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.key-touchid-sensor {
+    width: 18px;
+    height: 15px;
+    border-radius: 50%;
+    background: #1e1e21;
+    border: 0.5px solid #2e2e34;
+    box-shadow: inset 0 0.5px 1px rgba(0,0,0,0.8);
+}
+
+.key-delete { flex: 1.5; }
 .key-tab { flex: 1.5; }
-.key-slash { flex: 1.1; }
-.key-caps { flex: 1.8; }
-.key-return { flex: 1.8; }
-.key-shift-l { flex: 2.2; }
-.key-shift-r { flex: 2.2; }
-.key-fn { flex: 0.9; }
-.key-mod { flex: 0.9; }
+.key-slash { flex: 1; }
+
+/* Caps lock key with indicator dot */
+.key-caps {
+    flex: 1.75;
+    justify-content: flex-start;
+    padding-left: 3px;
+    gap: 2px;
+}
+
+.caps-dot {
+    width: 1.5px;
+    height: 1.5px;
+    border-radius: 50%;
+    background: #5a5a60;
+    display: inline-block;
+}
+
+.key-return { flex: 1.75; }
+.key-shift-l { flex: 2.25; }
+.key-shift-r { flex: 2.25; }
+
+.key-fn { flex: 1; }
+.key-ctrl { flex: 1; }
+.key-opt { flex: 1; }
 .key-cmd { flex: 1.25; }
-.key-space { flex: 5.6; background: linear-gradient(180deg, #2a2a2d 0%, #18181b 100%); }
-.key-arrows { flex: 1.2; font-size: 4px; }
+.key-space { flex: 5.25; background: linear-gradient(180deg, #2a2a2d 0%, #18181b 100%); }
+
+/* Inverted-T Arrow Key Cluster */
+.key-arrow-group {
+    flex: 2.75;
+    display: flex;
+    gap: 2px;
+    height: 100%;
+}
+
+.key-arrow {
+    flex: 1;
+    font-size: 3.5px;
+    padding: 0;
+    line-height: 1;
+}
+
+.key-arrow-left,
+.key-arrow-right {
+    height: 50%;
+    align-self: flex-end;
+}
+
+.key-arrow-stacked {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    height: 100%;
+}
+
+.key-arrow-up,
+.key-arrow-down {
+    height: calc(50% - 0.5px);
+}
 
 .trackpad {
     width: 50%;

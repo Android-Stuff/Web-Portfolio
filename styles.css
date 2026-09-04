@@ -288,6 +288,13 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
    3D Laptop Visual & Opening Animation — Apple MacBook Air Style
    ========================================================================== */
 
+/* GPU Acceleration Hints for smoother mobile compositing */
+.laptop-body,
+.laptop-lid,
+.laptop-base {
+    will-change: transform;
+}
+
 .hero-visual {
     max-width: 900px;
     margin: 40px auto 0;
@@ -981,25 +988,36 @@ footer p {
     .gallery-cards { grid-template-columns: 1fr; }
 }
 
+/* Optimized mobile breakpoints: Full size width + smooth performance */
 @media (max-width: 768px) {
     .hero-headline { font-size: 44px; }
-    .hero-tagline { font-size: 20px; }
+    .hero-tagline { font-size: 18px; }
     .section-title { font-size: 38px; }
     .local-nav-links { display: none; }
 
-    /* Fix 3D Laptop proportional scaling on mobile screens */
     .hero-visual {
-        padding: 0 10px 20px;
-        margin-top: 20px;
+        padding: 0;
+        margin-top: 10px;
+        width: 100%;
+        overflow: visible;
     }
 
     .laptop-stage {
-        perspective: 1400px;
+        perspective: 1000px;
     }
 
     .laptop-body {
-        transform: rotateX(22deg) rotateY(0deg) scale(0.85);
+        max-width: 100%;
+        transform: rotateX(18deg) rotateY(0deg) scale(1);
         transform-origin: center top;
+    }
+
+    .laptop-base {
+        box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+    }
+
+    .laptop-shadow {
+        filter: blur(10px);
     }
 }
 
@@ -1008,8 +1026,10 @@ footer p {
 }
 
 @media (max-width: 480px) {
+    .hero-headline { font-size: 34px; }
+
     .laptop-body {
-        transform: rotateX(22deg) rotateY(0deg) scale(0.72);
+        transform: rotateX(16deg) rotateY(0deg) scale(1.08);
         transform-origin: center top;
     }
 }

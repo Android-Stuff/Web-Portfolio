@@ -130,26 +130,29 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================
-    // 4. Interactive 3D Laptop Mouse-Tilt Effect
-    // ==========================================
-    const laptop = document.getElementById('laptop3D');
-    const hero = document.querySelector('.hero');
+// 4. Interactive 3D Laptop Mouse-Tilt Effect (Desktop Only)
+// ==========================================
+const laptop = document.getElementById('laptop3D');
+const hero = document.querySelector('.hero');
 
-    if (laptop && hero && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        hero.addEventListener('mousemove', (e) => {
-            const rect = hero.getBoundingClientRect();
-            const x = (e.clientX - rect.left) / rect.width - 0.5;
-            const y = (e.clientY - rect.top) / rect.height - 0.5;
+const isDesktopPointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-            // Subtle 3D rotation based on cursor position
-            const rotateX = 16 - y * 14;
-            const rotateY = -8 + x * 18;
+if (laptop && hero && isDesktopPointer && !prefersReducedMotion) {
+    hero.addEventListener('mousemove', (e) => {
+        const rect = hero.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
 
-            laptop.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-        });
+        const rotateX = 22 - y * 8;
+        const rotateY = x * 8;
 
-        hero.addEventListener('mouseleave', () => {
-            laptop.style.transform = 'rotateX(16deg) rotateY(-8deg)';
-        });
-    }
+        laptop.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+
+    hero.addEventListener('mouseleave', () => {
+        laptop.style.transform = 'rotateX(22deg) rotateY(0deg)';
+    });
+}
 });
+

@@ -15,8 +15,8 @@
     /* MacBook Air unibody palette */
     --mba-silver-hi: #f4f5f7;
     --mba-silver-light: #e2e3e6;
-    --mba-silver-mid: #c7c8cc;
-    --mba-silver-dark: #a9aaae;
+    --mba-silver-mid: #868ca3;
+    --mba-silver-dark: #555a6d;
     --mba-silver-edge: #9a9ba0;
     --mba-silver-rim: #ffffff;
 
@@ -332,14 +332,14 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
 /* --- Laptop Lid / Screen --- */
 .laptop-lid {
     position: absolute;
-    top: 4%;
+    top: 1%;
     left: 9%;
     width: 82%;
-    height: 74%;
+    height: 83%; /* Increased from 74% to match 3:2 (2000x1334) aspect ratio */
     transform-origin: bottom center;
     transform-style: preserve-3d;
-    transform: rotateX(-105deg); /* Closed state */
-    border-radius: 22px;
+    transform: rotateX(-105deg);
+    border-radius: 22px 22px 0 0;
     background: linear-gradient(150deg, var(--mba-silver-rim) 0%, var(--mba-silver-hi) 18%, var(--mba-silver-mid) 48%, var(--mba-silver-dark) 78%, var(--mba-silver-light) 100%);
     box-shadow: 0 0 0 1px rgba(0,0,0,0.18);
     animation: openLaptopLid 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
@@ -350,7 +350,7 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     position: absolute;
     inset: 3px;
     background: #060607;
-    border-radius: 19px;
+    border-radius: 19px 19px 0 0;
     padding: 7px 7px 9px;
     box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
     backface-visibility: hidden;
@@ -361,7 +361,7 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     position: relative;
     width: 100%;
     height: 100%;
-    border-radius: 13px;
+    border-radius: 13px 13px 0 0;
     overflow: hidden;
     background: #000;
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -374,29 +374,20 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     left: 50%;
     transform: translateX(-50%);
     width: 16%;
-    height: 4.5%;
+    height: 5%;
     min-height: 7px;
     background: #000;
-    border-radius: 0 0 9px 9px;
+    border-radius: 0 0 8px 8px;
     z-index: 6;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.webcam {
-    width: 4px;
-    height: 4px;
-    background-color: #101012;
-    border: 1px solid #2c2c2e;
-    border-radius: 50%;
-    box-shadow: 0 0 2px rgba(80, 130, 255, 0.35);
-}
-
 .screen-img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: fill;
     display: block;
 }
 
@@ -442,12 +433,12 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
 
 .laptop-base {
     position: absolute;
-    top: 76.5%;
-    left: 8%;
-    width: 84%;
+    top: 83%;
+    left: 9%;
+    width: 82%;
     height: 32%;
     background: linear-gradient(165deg, var(--mba-silver-rim) 0%, var(--mba-silver-hi) 15%, var(--mba-silver-light) 40%, var(--mba-silver-mid) 70%, var(--mba-silver-hi) 100%);
-    border-radius: 4px 4px 26px 26px;
+    border-radius: 4px 4px 2px 2px;
     border: 1px solid var(--mba-silver-edge);
     border-top: 1px solid #fff;
     box-shadow: 0 25px 60px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.7);
@@ -472,7 +463,7 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     left: -1px;
     bottom: -15px;
     width: calc(100% + 2px);
-    height: 15px;
+    height: 10px;
     transform-origin: top;
     transform: rotateX(-68deg);
     background: linear-gradient(180deg, var(--mba-silver-light) 0%, var(--mba-silver-mid) 30%, var(--mba-silver-dark) 70%, var(--mba-silver-edge) 100%);
@@ -552,7 +543,7 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     left: 8%;
     width: 84%;
     height: 25%;
-    background: radial-gradient(ellipse at center, rgba(140, 155, 200, 0.3) 0%, rgba(20, 20, 26, 0.8) 50%, transparent 78%);
+    background: radial-gradient(ellipse at center, rgba(117, 124, 146, 0.3) 0%, rgba(20, 20, 26, 0.1) 50%);
     filter: blur(16px);
     transform: rotateX(75deg) translateZ(-30px);
     pointer-events: none;

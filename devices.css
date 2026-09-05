@@ -1,0 +1,441 @@
+/* ==========================================================================
+   Device Mockups & 3D Stages (Laptop & Mobile Phone)
+   ========================================================================== */
+
+:root {
+    /* MacBook Air Unibody Palette */
+    --mba-silver-hi: #272d39;
+    --mba-silver-light: #21283a;
+    --mba-silver-mid: #636c92;
+    --mba-silver-dark: #555a6d;
+    --mba-silver-edge: #9a9ba0;
+    --mba-silver-rim: #3e4964;
+}
+
+/* --- Hero Visual Container --- */
+.hero-visual {
+    max-width: 900px;
+    margin: 40px auto 0;
+    padding: 0 20px 40px;
+    animation: fadeInUp 1.2s var(--apple-ease) forwards;
+}
+
+/* ==========================================================================
+   Desktop 3D Laptop Stage
+   ========================================================================== */
+.laptop-stage {
+    position: relative;
+    perspective: 2000px;
+    perspective-origin: 50% 50%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.laptop-stage::before {
+    content: '';
+    position: absolute;
+    top: 6%;
+    left: 50%;
+    width: 85%;
+    max-width: 800px;
+    aspect-ratio: 1.6 / 1;
+    transform: translateX(-50%);
+    background: radial-gradient(ellipse at center, rgba(200, 210, 255, 0.16) 0%, rgba(120, 140, 255, 0.08) 40%, transparent 72%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.laptop-body {
+    position: relative;
+    width: 100%;
+    max-width: 700px;
+    aspect-ratio: 16 / 11;
+    transform-style: preserve-3d;
+    transform: rotateX(22deg) rotateY(0deg);
+    transition: transform 0.25s cubic-bezier(0.25, 1, 0.3, 1);
+}
+
+/* Laptop Lid */
+.laptop-lid {
+    position: absolute;
+    top: 0;
+    left: 10%;
+    width: 80%;
+    height: 82%;
+    transform-origin: bottom center;
+    transform-style: preserve-3d;
+    transform: rotateX(-105deg);
+    border-radius: 18px 18px 2px 2px;
+    background: linear-gradient(150deg, var(--mba-silver-rim) 0%, var(--mba-silver-hi) 20%, var(--mba-silver-mid) 60%, var(--mba-silver-dark) 100%);
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25);
+    z-index: 10;
+}
+
+.laptop-lid-inner {
+    position: absolute;
+    inset: 1.5px;
+    background: #060607;
+    border-radius: 17px 17px 1px 1px;
+    padding: 10px 10px 20px;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+    backface-visibility: hidden;
+    overflow: hidden;
+}
+
+.display-screen {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px 10px 0 0;
+    overflow: hidden;
+    background: #000000;
+}
+
+.notch {
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 14%;
+    height: 5%;
+    min-height: 7px;
+    background: #000000;
+    border-radius: 0 0 5px 5px;
+    z-index: 10;
+}
+
+.screen-img {
+    width: 100%;
+    height: 96%;
+    object-fit: fill;
+    display: block;
+    opacity: 0;
+    filter: brightness(0) contrast(1.5);
+}
+
+.laptop-lid-outer {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(150deg, var(--mba-silver-rim) 0%, var(--mba-silver-hi) 20%, var(--mba-silver-light) 50%, var(--mba-silver-dark) 85%, var(--mba-silver-mid) 100%);
+    border-radius: 18px;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4), inset 0 -20px 40px rgba(0, 0, 0, 0.08);
+    transform: rotateY(180deg);
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Laptop Base & Keyboard */
+.laptop-base {
+    position: absolute;
+    top: 80%;
+    left: 10%;
+    width: 80%;
+    height: 60%;
+    background: linear-gradient(165deg, var(--mba-silver-rim) 0%, var(--mba-silver-hi) 15%, var(--mba-silver-light) 40%, var(--mba-silver-mid) 70%, var(--mba-silver-hi) 100%);
+    border-radius: 0 0 2px 2px;
+    border: 1px solid var(--mba-silver-edge);
+    border-top: 1px solid #ffffff;
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.7), inset 0 1.5px 0 rgba(255, 255, 255, 0.85);
+    transform-style: preserve-3d;
+    transform-origin: top center;
+    transform: rotateX(40deg) translateZ(-8px);
+}
+
+.laptop-base-wall {
+    position: absolute;
+    left: -1px;
+    bottom: -8px;
+    width: calc(100% + 1.5px);
+    height: 8px;
+    transform-origin: top;
+    transform: rotateX(-40deg);
+    background: linear-gradient(180deg, var(--mba-silver-light) 0%, var(--mba-silver-mid) 25%, var(--mba-silver-dark) 65%, var(--mba-silver-edge) 100%);
+    border: 1px solid var(--mba-silver-edge);
+    border-top: none;
+    border-radius: 0 0 22px 22px;
+    box-shadow: inset 0 1.5px 0 rgba(255, 255, 255, 0.6), inset 0 -10px 16px rgba(0, 0, 0, 0.4);
+}
+
+.boot-screen {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000000;
+    z-index: 5;
+    pointer-events: none;
+    opacity: 1;
+    visibility: visible;
+}
+
+.keyboard-area {
+    width: 92%;
+    height: 95%;
+    margin: 8px auto 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.keyboard-grid {
+    width: 100%;
+    height: 68%;
+    background: var(--mba-silver-hi);
+    border-radius: 6px;
+    padding: 5px 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 2px;
+    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.95), inset 0 0 0 1px rgba(0, 0, 0, 0.8);
+}
+
+.kb-row {
+    display: flex;
+    width: 100%;
+    height: 15%;
+    gap: 2px;
+}
+
+.key {
+    flex: 1;
+    background: linear-gradient(180deg, #28282b 0%, #161618 100%);
+    border-radius: 2px;
+    color: #3e3e44;
+    font-size: 6px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    letter-spacing: -0.1px;
+    box-shadow: inset 0 0.5px 0.5px rgba(255, 255, 255, 0.05), 0 0.5px 1px rgba(0, 0, 0, 0.6);
+}
+
+.key-esc { flex: 1.5; }
+.key-touchid { flex: 1; position: relative; }
+.key-touchid-sensor {
+    width: 18px;
+    height: 15px;
+    border-radius: 50%;
+    background: #1e1e21;
+    border: 0.5px solid #2e2e34;
+    box-shadow: inset 0 0.5px 1px rgba(0, 0, 0, 0.8);
+}
+
+.key-delete, .key-tab { flex: 1.5; }
+.key-slash { flex: 1; }
+.key-caps { flex: 1.75; justify-content: flex-start; padding-left: 3px; gap: 2px; }
+.caps-dot {
+    width: 1.5px;
+    height: 1.5px;
+    border-radius: 50%;
+    background: #5a5a60;
+    display: inline-block;
+}
+
+.key-return { flex: 1.75; }
+.key-shift-l, .key-shift-r { flex: 2.25; }
+.key-fn, .key-ctrl, .key-opt { flex: 1; }
+.key-cmd { flex: 1.25; }
+.key-space { flex: 5.25; background: linear-gradient(180deg, #2a2a2d 0%, #18181b 100%); }
+
+.key-arrow-group { flex: 2.75; display: flex; gap: 2px; height: 100%; }
+.key-arrow { flex: 1; font-size: 3.5px; padding: 0; line-height: 1; }
+.key-arrow-left, .key-arrow-right { height: 50%; align-self: flex-end; }
+.key-arrow-stacked { flex: 1; display: flex; flex-direction: column; gap: 1px; height: 100%; }
+.key-arrow-up, .key-arrow-down { height: calc(50% - 0.5px); }
+
+.trackpad {
+    width: 50%;
+    height: 50%;
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.12), rgba(0, 0, 0, 0.05));
+    border: 1px solid rgba(150, 150, 150, 0.4);
+    border-radius: 6px;
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.3), inset 0 -1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.base-front-lip {
+    position: absolute;
+    bottom: 0;
+    left: 44%;
+    width: 12%;
+    height: 3px;
+    background: var(--mba-silver-edge);
+    border-radius: 3px 3px 0 0;
+    opacity: 0.6;
+}
+
+.laptop-shadow {
+    position: absolute;
+    bottom: -12%;
+    left: 5%;
+    width: 90%;
+    height: 28%;
+    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.2) 40%, transparent 70%);
+    filter: blur(20px);
+    transform: rotateX(80deg) scale(0.7) translateZ(-20px);
+    opacity: 0.2;
+    pointer-events: none;
+}
+
+/* Animations for Laptop Opening */
+.laptop-stage.is-open .laptop-lid {
+    animation: openLaptopLid 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+}
+
+.laptop-stage.is-open .laptop-shadow {
+    animation: shadowExpand 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+}
+
+.laptop-stage.is-open .boot-screen {
+    animation: fadeOutBoot 0.2s ease-out 0.6s forwards;
+}
+
+.laptop-stage.is-open .screen-img {
+    animation: turnOnScreen 0.5s cubic-bezier(0.16, 1, 0.3, 1) 1.2s forwards;
+}
+
+.laptop-stage.is-open .keyboard-grid {
+    animation: turnOnGridGlow 0.2s cubic-bezier(0.16, 1, 0.3, 1) 1.0s forwards;
+}
+
+.laptop-stage.is-open .key {
+    animation: turnOnBacklight 0.2s cubic-bezier(0.16, 1, 0.3, 1) 1.4s forwards;
+}
+
+@keyframes openLaptopLid {
+    0%   { transform: rotateX(-105deg); }
+    100% { transform: rotateX(-22deg); }
+}
+
+@keyframes shadowExpand {
+    0%   { opacity: 0.2; transform: rotateX(80deg) scale(0.7) translateZ(-20px); }
+    100% { opacity: 0.95; transform: rotateX(80deg) scale(1.02) translateZ(-20px); }
+}
+
+@keyframes fadeOutBoot {
+    0%   { opacity: 1; }
+    100% { opacity: 0; visibility: hidden; }
+}
+
+@keyframes turnOnScreen {
+    0%   { opacity: 0; filter: brightness(0) contrast(1.5); }
+    15%  { opacity: 0.4; filter: brightness(1.6) contrast(1.2); }
+    40%  { opacity: 0.85; filter: brightness(1.1) contrast(1.05); }
+    100% { opacity: 1; filter: brightness(1) contrast(1); }
+}
+
+@keyframes turnOnBacklight {
+    0%   { color: #3e3e44; box-shadow: inset 0 0.5px 0.5px rgba(255, 255, 255, 0.05), 0 0.5px 1px rgba(0, 0, 0, 0.6); }
+    35%  { color: #ffffff; box-shadow: inset 0 0.5px 0.5px rgba(200, 235, 255, 0.8), 0 0 5px rgba(180, 220, 255, 0.6), 0 0.5px 1px rgba(0, 0, 0, 0.8); }
+    100% { color: #ffffff; box-shadow: inset 0 0.5px 0.5px rgba(86, 131, 120, 0.4), 0 2px 1px rgba(255, 255, 255, 0.7); }
+}
+
+@keyframes turnOnGridGlow {
+    0%   { box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.95), inset 0 0 0 1px rgba(0, 0, 0, 0.8); }
+    50%  { box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.85), inset 0 0 0 1px rgba(0, 0, 0, 0.6), 0 0 12px rgba(180, 220, 255, 0.15); }
+    100% { box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.85), inset 0 0 0 1px rgba(0, 0, 0, 0.6), 0 0 8px rgba(255, 255, 255, 0.08); }
+}
+
+/* ==========================================================================
+   Mobile Phone Stage
+   ========================================================================== */
+.phone-stage {
+    display: none;
+}
+
+.phone-body {
+    position: relative;
+    width: 290px;
+    height: 580px;
+    background: #000000;
+    border-radius: 52px;
+    padding: 8px;
+    box-shadow: 0 0 0 2.5px #6e5847, 0 0 0 5px #1c1815, 0 30px 70px rgba(0, 0, 0, 0.85);
+    margin: 0 auto;
+}
+
+.phone-screen {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: #000000;
+    border-radius: 44px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.dynamic-island {
+    position: absolute;
+    top: 11px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 82px;
+    height: 22px;
+    background: #000000;
+    border-radius: 20px;
+    z-index: 10;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.phone-screen-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.phone-glare {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(125deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.02) 40%, transparent 60%);
+    pointer-events: none;
+}
+
+/* Reduced Motion Override */
+@media (prefers-reduced-motion: reduce) {
+    .laptop-lid {
+        transform: rotateX(-22deg) !important;
+    }
+}
+
+/* Mobile Breakpoint Switching */
+@media (max-width: 768px) {
+    .hero-visual {
+        padding: 0 10px;
+        margin-top: 10px;
+    }
+
+    .laptop-stage {
+        display: none !important;
+    }
+
+    .phone-stage {
+        display: block !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .phone-body {
+        width: 260px;
+        height: 520px;
+        border-radius: 46px;
+    }
+
+    .phone-screen {
+        border-radius: 38px;
+    }
+
+    .dynamic-island {
+        width: 74px;
+        height: 20px;
+        top: 10px;
+    }
+}

@@ -14,13 +14,14 @@
  
     <link rel="preload" as="image" href="Mockup Screen.png" fetchpriority="high">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="devices.css">
 </head>
 <body>
  
     <nav class="local-nav">
         <div class="local-nav-content">
             <div class="local-nav-title">
-                <img src="logo.png" alt="" class="logo-img" width="20" height="20">
+                <img src="logo.png" alt="Vincent logo" class="logo-img" width="20" height="20">
                 <span>Vincent Alexander</span>
             </div>
             <ul class="local-nav-links">
@@ -45,26 +46,23 @@
         </div>
  
         <div class="hero-visual">
-            <!-- Desktop 3D Laptop -->
+            <!-- Desktop 3D Laptop Stage -->
             <div class="laptop-stage">
                 <div class="laptop-body" id="laptop3D">
                     <!-- Screen / Lid -->
                     <div class="laptop-lid">
                         <div class="laptop-lid-inner">
                             <div class="display-screen">
-                                <!-- Apple Boot Screen -->
                                 <div class="boot-screen">
                                     <svg class="boot-logo" viewBox="0 0 170 170" aria-hidden="true">
                                         <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.33.13-9.13-1.9-14.41-6.08-3.81-3.13-7.85-7.96-12.13-14.5-8.8-13.43-15.18-28.79-19.14-46.08-3.96-17.29-4.21-33.11-.75-47.46 3.46-14.35 10.14-25.86 20.04-34.53 9.9-8.67 21.05-13.13 33.45-13.38 5.19 0 10.79 1.25 16.8 3.75 6.01 2.5 10.1 3.81 12.28 3.94 1.73-.13 5.92-1.44 12.57-3.94 6.65-2.5 12.03-3.69 16.14-3.56 12.01.63 21.93 4.88 29.77 12.75 7.84 7.87 12.87 17.5 15.09 28.89-10.76 6.5-16.03 15.52-15.8 27.06.23 10.51 4.29 19.34 12.18 26.49 4.31 3.91 9.22 6.78 14.73 8.62-2.31 6.81-5.32 13.78-9.03 20.91zM119.22 31.83c0-7.01 2.53-13.8 7.59-20.37 5.06-6.57 11.45-10.82 19.17-12.76.25 1.01.38 1.9.38 2.68 0 7.13-2.6 14.12-7.81 20.97-5.21 6.85-11.66 11.16-19.35 12.93-.13-.9-.19-1.9-.19-2.98z"/>
                                     </svg>
                                 </div>
-                                <img src="Mockup Screen.png" alt="Vincent Alexander portfolio desktop concept" class="screen-img" fetchpriority="high">
-                                <div class="screen-glare"></div>
+                                <img src="Mockup Screen.png" alt="Vincent Alexander portfolio desktop concept" class="screen-img">
                             </div>
-                            <!-- Move notch here so it isn't clipped by display-screen -->
                             <div class="notch"></div>
                         </div>
-                            <div class="laptop-lid-outer"></div>
+                        <div class="laptop-lid-outer"></div>
                     </div>
 
                     <!-- Hinge & Base Deck -->
@@ -72,7 +70,6 @@
                         <div class="laptop-base-wall"></div>
                         <div class="keyboard-area">
                             <div class="keyboard-grid">
-                                <!-- Row 1: Function Keys & Touch ID -->
                                 <div class="kb-row">
                                     <span class="key key-esc">esc</span>
                                     <span class="key">f1</span><span class="key">f2</span><span class="key">f3</span><span class="key">f4</span>
@@ -80,34 +77,29 @@
                                     <span class="key">f9</span><span class="key">f10</span><span class="key">f11</span><span class="key">f12</span>
                                     <span class="key key-touchid"><span class="key-touchid-sensor"></span></span>
                                 </div>
-                                <!-- Row 2: Number Row -->
                                 <div class="kb-row">
                                     <span class="key">`</span><span class="key">1</span><span class="key">2</span><span class="key">3</span><span class="key">4</span>
                                     <span class="key">5</span><span class="key">6</span><span class="key">7</span><span class="key">8</span><span class="key">9</span><span class="key">0</span><span class="key">-</span><span class="key">=</span>
                                     <span class="key key-delete">backspace</span>
                                 </div>
-                                <!-- Row 3: QWERTY Row -->
                                 <div class="kb-row">
                                     <span class="key key-tab">tab</span>
                                     <span class="key">Q</span><span class="key">W</span><span class="key">E</span><span class="key">R</span><span class="key">T</span>
                                     <span class="key">Y</span><span class="key">U</span><span class="key">I</span><span class="key">O</span><span class="key">P</span>
                                     <span class="key">[</span><span class="key">]</span><span class="key key-slash">\</span>
                                 </div>
-                                <!-- Row 4: Home Row -->
                                 <div class="kb-row">
                                     <span class="key key-caps"><span class="caps-dot"></span>caps lock</span>
                                     <span class="key">A</span><span class="key">S</span><span class="key">D</span><span class="key">F</span><span class="key">G</span>
                                     <span class="key">H</span><span class="key">J</span><span class="key">K</span><span class="key">L</span><span class="key">;</span><span class="key">'</span>
                                     <span class="key key-return">return</span>
                                 </div>
-                                <!-- Row 5: Bottom Alpha Row -->
                                 <div class="kb-row">
                                     <span class="key key-shift-l">shift</span>
                                     <span class="key">Z</span><span class="key">X</span><span class="key">C</span><span class="key">V</span><span class="key">B</span>
                                     <span class="key">N</span><span class="key">M</span><span class="key">,</span><span class="key">.</span><span class="key">/</span>
                                     <span class="key key-shift-r">shift</span>
                                 </div>
-                                <!-- Row 6: Modifiers & Inverted-T Arrow Cluster -->
                                 <div class="kb-row">
                                     <span class="key key-fn">fn</span>
                                     <span class="key key-ctrl">control</span>
@@ -134,12 +126,12 @@
                 </div>
             </div>
 
-            <!-- Mobile iPhone 17 Pro Max Mockup -->
+            <!-- Mobile Phone Stage -->
             <div class="phone-stage">
                 <div class="phone-body">
                     <div class="phone-screen">
                         <div class="dynamic-island"></div>
-                        <img src="Mockup Screen.png" alt="Vincent Alexander portfolio mobile concept" class="phone-screen-img" fetchpriority="high">
+                        <img src="Mockup Screen.png" alt="Vincent Alexander portfolio mobile concept" class="phone-screen-img">
                         <div class="phone-glare"></div>
                     </div>
                 </div>
@@ -178,14 +170,14 @@
                     <div class="card-tag">Web Development</div>
                     <div class="card-headline">Modern web applications with React and Node.js.</div>
                     <div class="card-desc">Building responsive, high-performance web applications using modern JavaScript frameworks and backend technologies.</div>
-                    <div style="margin-top: 14px;">
-                        <a href="https://github.com/Android-Stuff/UNEJ-MAPS" target="_blank" rel="noopener noreferrer" style="font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; gap: 4px;">
+                    <div class="card-github-link">
+                        <a href="https://github.com/Android-Stuff/UNEJ-MAPS" target="_blank" rel="noopener noreferrer">
                             View on GitHub &rarr;
                         </a>
                     </div>
                 </div>
                 <div class="card-graphic">
-                    <a href="https://github.com/Android-Stuff/UNEJ-MAPS" target="_blank" rel="noopener noreferrer" style="display: block; width: 100%; height: 100%;">
+                    <a href="https://github.com/Android-Stuff/UNEJ-MAPS" target="_blank" rel="noopener noreferrer" class="card-graphic-link">
                         <img src="unejmaps.png" alt="UNEJ MAPS Web development showcase" class="card-img" loading="lazy" decoding="async" width="480" height="220">
                     </a>
                 </div>
@@ -220,7 +212,7 @@
     <!-- Project Showcase -->
     <section class="section-viewer reveal" id="showcase">
         <h2 class="section-title">Take a closer look.</h2>
-        <p style="color: var(--text-secondary); margin-top: 8px;">Select a discipline to inspect core deliverables and technical stack.</p>
+        <p class="section-subtitle">Select a discipline to inspect core deliverables and technical stack.</p>
  
         <div class="viewer-container">
             <div class="controls" role="tablist" aria-label="Project categories">

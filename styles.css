@@ -141,7 +141,7 @@ a:hover {
 .local-nav-links li a:not(.btn-cta)::after {
     content: '';
     position: absolute;
-    bottom: -1px;
+    bottom: 0px;
     left: 0;
     width: 100%;
     height: 2px;
@@ -177,14 +177,9 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
 
 .btn-cta:hover {
     background-color: var(--accent-blue-hover);
-    transform: scale(1.04);
 }
 
-.btn-cta:active {
-    transform: scale(0.97);
-}
-
-/* Hero Section (Side-by-Side Split Layout) */
+/* Hero Section*/
 .hero {
     padding-top: 80px;
     padding-bottom: 60px;

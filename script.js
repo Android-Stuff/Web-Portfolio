@@ -1,11 +1,8 @@
-/**
- * Vincent Alexander Portfolio — Interactive Script
- */
 
 document.addEventListener('DOMContentLoaded', () => {
     'use strict';
 
-    // 1. Scroll Reveal Observer
+    //Scroll Reveal Observer
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
             if (entry.isIntersecting) {
@@ -17,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
 
-    // 2. Highlights Gallery Category Filter
+    //Highlights Gallery Category Filter
     const galleryNav = document.querySelector('.gallery-nav');
     const cards = document.querySelectorAll('.card');
 
@@ -48,31 +45,31 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 3. Project Showcase Tab Switcher
+    //Project Showcase Tab Switcher
     const projectsData = {
-        sim: {
-            title: 'AppCenter Desktop Interface — Concept UI',
-            desc: 'A clean, modern desktop ecosystem concept featuring custom app stores, utility tools like Harvey for WCAG color contrast compliance, integrated media players, and system task management.',
-            tags: ['UI/UX Design', 'Desktop Interface', 'WCAG Contrast', 'System AppCenter'],
+        design: {
+            title: 'Elementary OS Concept UI',
+            desc: 'Featuring new modern design elements and improved user interface to mimic modern desktop environments. It features cleaner user interface with new icons and more rounded corners. Based on Elementary OS 8.',
+            tags: ['Figma', 'Adobe Photoshop', 'Canva', 'Krita'],
             image: 'Mockup.png'
         },
-        mobile: {
-            title: 'Automotive UI App — Jetpack Compose',
-            desc: 'A native Android application designed with declarative Kotlin UI components, custom reactive state handling, and sleek dark mode automotive controls.',
-            tags: ['Kotlin', 'Jetpack Compose', 'Android SDK', 'Material Design 3'],
-            image: 'showcase-mobile.png'
-        },
         ctf: {
-            title: 'Cybersecurity & Sample Smuggling Analysis',
-            desc: 'Dissected obfuscated binary payloads, performed forensic hex dump inspections, and documented mitigations against XXE, Prototype Pollution, and JWT forgery.',
-            tags: ['Digital Forensics', 'Reverse Engineering', 'Web Security', 'CTF Writeups'],
+            title: 'Cybersecurity & Linux',
+            desc: 'Experience in cybersecurity and CTF. Also experienced with many Linux distros.',
+            tags: ['FFUF', 'Burp Suite', 'John the Ripper', 'FTK Imager', 'CyberChef', 'Wireshark', 'Kali Linux'],
             image: 'showcase-ctf.png'
         },
         cpp: {
-            title: 'System Architecture & Theory of Automata',
-            desc: 'Built custom library management systems in C++, implemented Chomsky hierarchy grammar tools, and optimized Deterministic Finite Automata (DFA) minimization algorithms.',
-            tags: ['C++', 'Automata Theory', 'DFA Minimization', 'Oracle SQL Developer'],
+            title: 'Software Development in C++/C# & Python',
+            desc: 'Developed software applications using C++ and C#, and created scripts in Python.',
+            tags: ['Visual Studio Code', 'Visual Studio', 'PyCharm'],
             image: 'showcase-cpp.png'
+        },
+        mobile: {
+            title: 'Car Android App Prototype',
+            desc: 'A native Android application designed with declarative Kotlin UI components, custom reactive state handling, and sleek dark mode automotive controls.',
+            tags: ['Android Studio', 'Jetpack Compose', 'Android SDK', 'Material Design 3'],
+            image: 'showcase-mobile.png'
         }
     };
 
@@ -85,7 +82,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let isSwitching = false;
 
+    function renderProjectData(data) {
+        if (titleEl) titleEl.textContent = data.title;
+        if (descEl) descEl.textContent = data.desc;
+        if (tagsEl) {
+            tagsEl.replaceChildren(...data.tags.map(tag => {
+                const span = document.createElement('span');
+                span.className = 'tech-tag';
+                span.textContent = tag;
+                return span;
+            }));
+        }
+        if (imgElement) {
+            imgElement.src = data.image;
+            imgElement.alt = `${data.title} preview`;
+        }
+    }
+
     if (controls && displayBox) {
+        const activeTab = controls.querySelector('.tab-btn.active');
+        const initialProjectKey = activeTab ? activeTab.dataset.project : 'sim';
+        if (projectsData[initialProjectKey]) {
+            renderProjectData(projectsData[initialProjectKey]);
+        }
+
         controls.addEventListener('click', (e) => {
             const btn = e.target.closest('.tab-btn');
             if (!btn || isSwitching) return;
@@ -104,25 +124,14 @@ document.addEventListener('DOMContentLoaded', () => {
             displayBox.classList.add('tab-transitioning');
 
             window.setTimeout(() => {
-                if (titleEl) titleEl.textContent = data.title;
-                if (descEl) descEl.textContent = data.desc;
-                if (tagsEl) {
-                    tagsEl.replaceChildren(...data.tags.map(tag => {
-                        const span = document.createElement('span');
-                        span.className = 'tech-tag';
-                        span.textContent = tag;
-                        return span;
-                    }));
-                }
-                if (imgElement) imgElement.src = data.image;
-
+                renderProjectData(data);
                 displayBox.classList.remove('tab-transitioning');
                 isSwitching = false;
             }, 250);
         });
     }
 
-    // 4. Interactive 3D Laptop Mouse-Tilt Effect (Desktop Only)
+    // 3D Laptop Desktop Only
     const laptop = document.getElementById('laptop3D');
     const hero = document.querySelector('.hero');
 
@@ -143,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 5. Scroll-Triggered Laptop Opening
+    //Scroll-Triggered Laptop Opening
     const laptopStage = document.querySelector('.laptop-stage');
 
     if (laptopStage) {

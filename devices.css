@@ -14,9 +14,9 @@
 
 /* --- Hero Visual Container --- */
 .hero-visual {
-    max-width: 900px;
-    margin: 40px auto 0;
-    padding: 0 20px 40px;
+    width: 100%;
+    max-width: 620px;
+    margin: 0 auto;
     animation: fadeInUp 1.2s var(--apple-ease) forwards;
 }
 
@@ -50,7 +50,7 @@
 .laptop-body {
     position: relative;
     width: 100%;
-    max-width: 700px;
+    max-width: 580px;
     aspect-ratio: 16 / 11;
     transform-style: preserve-3d;
     transform: rotateX(22deg) rotateY(0deg);

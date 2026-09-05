@@ -1,8 +1,7 @@
-
 document.addEventListener('DOMContentLoaded', () => {
     'use strict';
 
-    //Scroll Reveal Observer
+    // 1. Scroll Reveal Observer
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
             if (entry.isIntersecting) {
@@ -14,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
 
-    //Highlights Gallery Category Filter
+    // 2. Highlights Gallery Category Filter
     const galleryNav = document.querySelector('.gallery-nav');
     const cards = document.querySelectorAll('.card');
 
@@ -45,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    //Project Showcase Tab Switcher
+    // 3. Project Showcase Tab Switcher
     const projectsData = {
         design: {
             title: 'Elementary OS Concept UI',
@@ -131,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 3D Laptop Desktop Only
+    // 4. 3D Laptop Desktop Only
     const laptop = document.getElementById('laptop3D');
     const hero = document.querySelector('.hero');
 
@@ -152,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    //Scroll-Triggered Laptop Opening
+    // 5. Scroll-Triggered Laptop Opening
     const laptopStage = document.querySelector('.laptop-stage');
 
     if (laptopStage) {
@@ -168,38 +167,174 @@ document.addEventListener('DOMContentLoaded', () => {
         laptopObserver.observe(laptopStage);
     }
 
-    // 6. Liquid Glass Magnifier (Hold & Drag)
-    const magnifier = document.getElementById('liquidMagnifier');
-    let isHolding = false;
+    // 6. Liquid Glass 2D Physics Vector Field Generator
+    //
+    // Reference: https://kube.io/blog/liquid-glass-css-svg/
+    // A convex glass profile must only ever push the sampled background
+    // INWARD (toward the lens interior) -- that's what "keeps rays inside"
+    // the shape and is what a real convex bezel does. The previous version
+    // pushed the rim OUTWARD (an "outward Snell's law shift") while the
+    // center pulled INWARD for the zoom. Where those two opposing vectors
+    // met, the resulting displacement field wasn't monotonic anymore -- it
+    // folded back on itself, so two different patches of background ended
+    // up mapped to the same on-screen spot. That's the doubled/garbled
+    // text visible in the lens. The fix keeps every vector pointing inward
+    // and eases both direction and magnitude smoothly (via a squircle
+    // curve, the same profile Apple uses) from 0 at the outer edge to the
+    // full magnifier pull at the flat interior, so nothing ever crosses.
+    function generateLiquidGlassMap() {
+        const width = 300;
+        const height = 200;
+        const cornerRadius = 60;
+        const bezelWidth = 36;   // Refractive rim thickness
+        const maxScale = 40;     // Displacement scale factor (px)
+        const zoomStrength = 0.22; // How strongly the flat interior magnifies
 
-    function updateMagnifierPosition(e) {
-        if (!magnifier) return;
-        const x = e.clientX;
-        const y = e.clientY;
-        magnifier.style.left = `${x}px`;
-        magnifier.style.top = `${y}px`;
+        // Convex squircle easing (see article's "Convex Squircle" surface
+        // function): a soft flat -> curve transition with no harsh edges,
+        // even when the shape is stretched into a capsule. t: 0 at the
+        // outer edge of the bezel, 1 at the start of the flat interior.
+        const squircleEase = (t) => Math.pow(1 - Math.pow(1 - t, 4), 0.25);
+
+        const canvas = document.createElement('canvas');
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext('2d');
+        const imgData = ctx.createImageData(width, height);
+        const data = imgData.data;
+
+        for (let y = 0; y < height; y++) {
+            for (let x = 0; x < width; x++) {
+                // Distance to the rounded-rect boundary (capsule SDF)
+                const cx = Math.max(cornerRadius, Math.min(width - cornerRadius, x));
+                const cy = Math.max(cornerRadius, Math.min(height - cornerRadius, y));
+
+                const px = x - cx; // Local vector from rounded corner center
+                const py = y - cy;
+                const dist = Math.sqrt(px * px + py * py);
+
+                const idx = (y * width + x) * 4;
+
+                // Outside the capsule silhouette -> neutral (0 displacement)
+                if (dist > cornerRadius) {
+                    data[idx]     = 128;
+                    data[idx + 1] = 128;
+                    data[idx + 2] = 128;
+                    data[idx + 3] = 255;
+                    continue;
+                }
+
+                // Unit normal pointing INWARD, from the boundary toward
+                // the lens interior (never outward).
+                const nx = dist > 0.001 ? -px / dist : 0;
+                const ny = dist > 0.001 ? -py / dist : 0;
+
+                // Center-zoom pull (the "magnifier" component)
+                const gx = x - width / 2;
+                const gy = y - height / 2;
+                const dxZoom = -gx * zoomStrength;
+                const dyZoom = -gy * zoomStrength;
+                const zoomMag = Math.sqrt(dxZoom * dxZoom + dyZoom * dyZoom);
+                const zoomDirX = zoomMag > 0.001 ? dxZoom / zoomMag : 0;
+                const zoomDirY = zoomMag > 0.001 ? dyZoom / zoomMag : ny;
+
+                const edgeDist = cornerRadius - dist; // 0 at boundary, grows inward
+                let dx = dxZoom;
+                let dy = dyZoom;
+
+                if (edgeDist < bezelWidth) {
+                    const t = edgeDist / bezelWidth; // 0 at border, 1 at inner bezel
+                    const ease = squircleEase(t);
+
+                    // Blend direction from the inward edge-normal toward the
+                    // zoom direction, and ramp magnitude from 0 up to the
+                    // interior's zoom magnitude -- both reach 0 together at
+                    // the border and match the zoom exactly at the inner
+                    // bezel edge, so there's no seam and no reversal.
+                    let dirX = nx * (1 - ease) + zoomDirX * ease;
+                    let dirY = ny * (1 - ease) + zoomDirY * ease;
+                    const dirLen = Math.sqrt(dirX * dirX + dirY * dirY) || 1;
+                    dirX /= dirLen;
+                    dirY /= dirLen;
+
+                    const magnitude = ease * zoomMag;
+                    dx = dirX * magnitude;
+                    dy = dirY * magnitude;
+                }
+
+                // Map displacements to RGBA channels (128 = exact 0px neutral shift)
+                data[idx]     = Math.min(255, Math.max(0, Math.round(128 + (dx / maxScale) * 127)));
+                data[idx + 1] = Math.min(255, Math.max(0, Math.round(128 + (dy / maxScale) * 127)));
+                data[idx + 2] = 128; // Neutral Blue
+                data[idx + 3] = 255; // Opaque Alpha
+            }
+        }
+
+        ctx.putImageData(imgData, 0, 0);
+        return {
+            dataUrl: canvas.toDataURL('image/png'),
+            scale: maxScale
+        };
     }
 
-    window.addEventListener('pointerdown', (e) => {
-        // Prevent activation on buttons/links so clicks remain uninterrupted
-        if (e.target.closest('a, button, input, textarea')) return;
+    // Initialize SVG Displacement Filter Image dynamically
+    const soapMapImage = document.getElementById('soapMapImage');
+    const soapDisplacement = document.getElementById('soapDisplacement');
 
-        isHolding = true;
-        updateMagnifierPosition(e);
-        if (magnifier) magnifier.classList.add('is-active');
-    });
+    if (soapMapImage && soapDisplacement) {
+        const mapData = generateLiquidGlassMap();
+        soapMapImage.setAttribute('href', mapData.dataUrl);
+        soapMapImage.setAttribute('x', '0');
+        soapMapImage.setAttribute('y', '0');
+        soapMapImage.setAttribute('width', '100%');
+        soapMapImage.setAttribute('height', '100%');
+        soapMapImage.setAttribute('preserveAspectRatio', 'none');
+        soapDisplacement.setAttribute('scale', mapData.scale);
+    }
 
-    window.addEventListener('pointermove', (e) => {
-        if (isHolding) {
-            updateMagnifierPosition(e);
-        }
-    });
+    // 7. Draggable Liquid Glass Magnifier Lens
+    const magnifier = document.getElementById('liquidMagnifier');
 
-    const stopMagnifying = () => {
-        isHolding = false;
-        if (magnifier) magnifier.classList.remove('is-active');
-    };
+    if (magnifier) {
+        let isDragging = false;
+        let startX = 0;
+        let startY = 0;
+        let initialLeft = 0;
+        let initialTop = 0;
 
-    window.addEventListener('pointerup', stopMagnifying);
-    window.addEventListener('pointercancel', stopMagnifying);
+        magnifier.addEventListener('pointerdown', (e) => {
+            isDragging = true;
+            magnifier.setPointerCapture(e.pointerId);
+            magnifier.classList.add('is-dragging');
+
+            const rect = magnifier.getBoundingClientRect();
+            startX = e.clientX;
+            startY = e.clientY;
+            initialLeft = rect.left;
+            initialTop = rect.top;
+        });
+
+        magnifier.addEventListener('pointermove', (e) => {
+            if (!isDragging) return;
+            const deltaX = e.clientX - startX;
+            const deltaY = e.clientY - startY;
+
+            magnifier.style.left = `${initialLeft + deltaX}px`;
+            magnifier.style.top = `${initialTop + deltaY}px`;
+        });
+
+        const stopDragging = (e) => {
+            if (!isDragging) return;
+            isDragging = false;
+            try {
+                magnifier.releasePointerCapture(e.pointerId);
+            } catch (err) {
+                // Ignore if capture was already released
+            }
+            magnifier.classList.remove('is-dragging');
+        };
+
+        magnifier.addEventListener('pointerup', stopDragging);
+        magnifier.addEventListener('pointercancel', stopDragging);
+    }
 });

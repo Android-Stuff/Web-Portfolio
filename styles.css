@@ -707,43 +707,70 @@ footer p {
 }
 
 /* ==========================================================================
-   Liquid Glass Magnifier Lens
+   Draggable Liquid Glass Capsule
    ========================================================================== */
-.liquid-magnifier {
+.liquid-magnifier-capsule {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 140px;
-    height: 140px;
-    border-radius: 50%;
-    pointer-events: none;
+    top: 200px;
+    left: calc(50% - 150px);
+    width: 300px;
+    height: 200px;
+    border-radius: 60px;
     z-index: 9999;
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.6);
-    transition: opacity 0.25s var(--apple-ease), transform 0.25s var(--apple-ease);
-    will-change: transform, opacity;
+    cursor: grab;
+    user-select: none;
+    touch-action: none;
+    transition: transform 0.2s var(--apple-ease), box-shadow 0.2s var(--apple-ease);
 }
 
-.liquid-magnifier.is-active {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
+.liquid-magnifier-capsule:active,
+.liquid-magnifier-capsule.is-dragging {
+    cursor: grabbing;
+    transform: scale(1.02);
 }
 
-.magnifier-glass {
+/* ==========================================================================
+   Soap-Bar Glass Lens Surface
+   ========================================================================== */
+.glass-surface {
     width: 100%;
     height: 100%;
-    border-radius: 50%;
+    border-radius: 60px;
     
-    /* Optics & Magnification Effect */
-    backdrop-filter: url(#liquidGlassFilter) brightness(1.12) contrast(1.08) blur(0.2px);
-    -webkit-backdrop-filter: url(#liquidGlassFilter) brightness(1.12) contrast(1.08);
+    /* Connect to SVG Liquid Glass Displacement Filter */
+    backdrop-filter: url(#liquidGlassFilter) brightness(1.12) contrast(1.05);
+    -webkit-backdrop-filter: url(#liquidGlassFilter) brightness(1.12) contrast(1.05);
     
-    /* Glass Rim Highlights and Specular Reflections */
-    background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.05) 40%, rgba(0, 0, 0, 0.15) 100%);
-    border: 1px solid rgba(255, 255, 255, 0.4);
+    /* Soap-Bar Bevel Highlight & Glossy Specular Reflection */
+    background: radial-gradient(
+        ellipse at 50% 15%, 
+        rgba(255, 255, 255, 0.35) 0%, 
+        rgba(255, 255, 255, 0.03) 60%, 
+        rgba(0, 0, 0, 0.25) 100%
+    );
+    border: 1.5px solid rgba(255, 255, 255, 0.45);
     box-shadow: 
-        0 20px 40px rgba(0, 0, 0, 0.5),
-        inset 0 0 15px rgba(255, 255, 255, 0.3),
-        inset 0 -8px 12px rgba(0, 0, 0, 0.3),
-        0 0 0 1px rgba(255, 255, 255, 0.15);
+        0 22px 50px rgba(0, 0, 0, 0.6),
+        inset 0 1.5px 2px rgba(255, 255, 255, 0.7),
+        inset 0 -10px 16px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(255, 255, 255, 0.18);
+}
+
+.drag-hint {
+    position: absolute;
+    bottom: -22px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.45);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    pointer-events: none;
+    white-space: nowrap;
+    transition: opacity 0.3s var(--apple-ease);
+}
+
+.liquid-magnifier-capsule.is-dragging .drag-hint {
+    opacity: 0;
 }

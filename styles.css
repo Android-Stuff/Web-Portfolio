@@ -756,6 +756,25 @@ footer p {
         0 0 0 1px rgba(255, 255, 255, 0.18);
 }
 
+/* Only Chromium browsers currently apply SVG filters through
+   backdrop-filter (see https://kube.io/blog/liquid-glass-css-svg/).
+   Everywhere else, `url(#liquidGlassFilter)` is an unsupported value and
+   the WHOLE backdrop-filter declaration above is dropped -- not just the
+   url() part -- leaving nothing but this element's own translucent
+   background showing through: a flat, undistorted window with a hard
+   seam wherever the background changes underneath it. This fallback
+   detects that case and swaps in a plain blur so the lens still reads as
+   deliberate frosted glass instead of a bug. */
+@supports not (
+    (backdrop-filter: url(#liquidGlassFilter)) or
+    (-webkit-backdrop-filter: url(#liquidGlassFilter))
+) {
+    .glass-surface {
+        backdrop-filter: blur(16px) saturate(1.3) brightness(1.08);
+        -webkit-backdrop-filter: blur(16px) saturate(1.3) brightness(1.08);
+    }
+}
+
 .drag-hint {
     position: absolute;
     bottom: -22px;

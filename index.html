@@ -148,12 +148,12 @@
 
 
         <!-- Liquid Glass SVG Filter (Stretched 1:1 to Glass Capsule Bounds) -->
-        <svg style="display: none;" aria-hidden="true">
+        <svg style="display: none;" aria-hidden="true" xmlns:xlink="http://www.w3.org/1999/xlink">
             <defs>
                 <filter id="liquidGlassFilter" color-interpolation-filters="sRGB" x="0%" y="0%" width="100%" height="100%">
-                    <feImage id="soapMapImage" result="soapMap" x="0" y="0" width="100%" height="100%" preserveAspectRatio="none" href="" />
-                    <feGaussianBlur in="SourceGraphic" stdDeviation="0.5" result="softSource" />
-                    <feDisplacementMap id="soapDisplacement" in="softSource" in2="soapMap" scale="40" xChannelSelector="R" yChannelSelector="G" result="displaced" />
+                    <feImage id="soapMapImage" result="soapMap" x="0" y="0" width="100%" height="100%" preserveAspectRatio="none" href="" xlink:href="" />
+                    <feDisplacementMap id="soapDisplacement" in="SourceGraphic" in2="soapMap" scale="48" xChannelSelector="R" yChannelSelector="G" result="displaced" />
+                    <feGaussianBlur in="displaced" stdDeviation="0.35" />
                 </filter>
             </defs>
         </svg>

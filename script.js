@@ -186,9 +186,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const width = 300;
         const height = 200;
         const cornerRadius = 60;
-        const bezelWidth = 36;   // Refractive rim thickness
-        const maxScale = 40;     // Displacement scale factor (px)
-        const zoomStrength = 0.22; // How strongly the flat interior magnifies
+        const bezelWidth = 38;    // Refractive rim thickness
+        const maxScale = 48;      // Displacement scale factor (px) -- must stay
+                                   // >= the field's real peak magnitude (verified
+                                   // ~44.3px for these settings) or values clip.
+        const zoomStrength = 0.32; // How strongly the flat interior magnifies
 
         // Convex squircle easing (see article's "Convex Squircle" surface
         // function): a soft flat -> curve transition with no harsh edges,
@@ -277,19 +279,30 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 
-    // Initialize SVG Displacement Filter Image dynamically
+    // Initialize SVG Displacement Filter Image dynamically.
+    // If this throws or the elements are missing, the lens silently falls
+    // back to a flat, undistorted backdrop (matching whatever the CSS
+    // `@supports` fallback below renders) -- so any failure is logged
+    // rather than left as a mysterious "the lens does nothing" bug.
     const soapMapImage = document.getElementById('soapMapImage');
     const soapDisplacement = document.getElementById('soapDisplacement');
 
     if (soapMapImage && soapDisplacement) {
-        const mapData = generateLiquidGlassMap();
-        soapMapImage.setAttribute('href', mapData.dataUrl);
-        soapMapImage.setAttribute('x', '0');
-        soapMapImage.setAttribute('y', '0');
-        soapMapImage.setAttribute('width', '100%');
-        soapMapImage.setAttribute('height', '100%');
-        soapMapImage.setAttribute('preserveAspectRatio', 'none');
-        soapDisplacement.setAttribute('scale', mapData.scale);
+        try {
+            const mapData = generateLiquidGlassMap();
+            soapMapImage.setAttribute('href', mapData.dataUrl);
+            soapMapImage.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', mapData.dataUrl);
+            soapMapImage.setAttribute('x', '0');
+            soapMapImage.setAttribute('y', '0');
+            soapMapImage.setAttribute('width', '100%');
+            soapMapImage.setAttribute('height', '100%');
+            soapMapImage.setAttribute('preserveAspectRatio', 'none');
+            soapDisplacement.setAttribute('scale', mapData.scale);
+        } catch (err) {
+            console.error('Liquid glass displacement map failed to build:', err);
+        }
+    } else {
+        console.warn('Liquid glass lens: #soapMapImage or #soapDisplacement not found in the DOM.');
     }
 
     // 7. Draggable Liquid Glass Magnifier Lens

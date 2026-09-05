@@ -4,12 +4,12 @@
 
 :root {
     /* MacBook Air Unibody Palette */
-    --mba-silver-hi: #272d39;
-    --mba-silver-light: #21283a;
-    --mba-silver-mid: #636c92;
-    --mba-silver-dark: #555a6d;
-    --mba-silver-edge: #9a9ba0;
-    --mba-silver-rim: #3e4964;
+    --mba-silver-hi: #a5cad7;
+    --mba-silver-light: #9dbcd1;
+    --mba-silver-mid: #7a97be;
+    --mba-silver-dark: #555f6d;
+    --mba-silver-edge: #96acbc;
+    --mba-silver-rim: #c2c7d4;
 }
 
 /* --- Hero Visual Container --- */
@@ -25,7 +25,7 @@
    ========================================================================== */
 .laptop-stage {
     position: relative;
-    perspective: 2000px;
+    perspective: 1500px;
     perspective-origin: 50% 50%;
     width: 100%;
     display: flex;
@@ -60,14 +60,14 @@
 /* Laptop Lid */
 .laptop-lid {
     position: absolute;
-    top: 0;
+    top: 0px;
     left: 10%;
     width: 80%;
     height: 82%;
     transform-origin: bottom center;
     transform-style: preserve-3d;
-    transform: rotateX(-105deg);
-    border-radius: 18px 18px 2px 2px;
+    transform: rotateX(-105deg) translateY(10px);
+    border-radius: 15px;
     background: linear-gradient(150deg, var(--mba-silver-rim) 0%, var(--mba-silver-hi) 20%, var(--mba-silver-mid) 60%, var(--mba-silver-dark) 100%);
     box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25);
     z-index: 10;
@@ -75,10 +75,10 @@
 
 .laptop-lid-inner {
     position: absolute;
-    inset: 1.5px;
+    inset: 1px;
     background: #060607;
-    border-radius: 17px 17px 1px 1px;
-    padding: 10px 10px 20px;
+    border-radius: 15px;
+    padding: 8px 8px 15px;
     box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
     backface-visibility: hidden;
     overflow: hidden;
@@ -88,7 +88,7 @@
     position: relative;
     width: 100%;
     height: 100%;
-    border-radius: 10px 10px 0 0;
+    border-radius: 8px 8px 0 0;
     overflow: hidden;
     background: #000000;
 }
@@ -98,11 +98,11 @@
     top: 5px;
     left: 50%;
     transform: translateX(-50%);
-    width: 14%;
-    height: 5%;
+    width: 11%;
+    height: 4.5%;
     min-height: 7px;
     background: #000000;
-    border-radius: 0 0 5px 5px;
+    border-radius: 0 0 4px 4px;
     z-index: 10;
 }
 
@@ -128,35 +128,48 @@
     justify-content: center;
 }
 
+/* Hinge Barrel */
+.laptop-hinge {
+    position: absolute;
+    top: -4px;
+    left: 50%;
+    transform: translateX(-50%) translateZ(1px);
+    width: 74%;
+    height: 9px;
+    background: linear-gradient(180deg, #18181a 0%, #0a0a0c 50%, #121214 100%);
+    border-radius: 4px 4px 2px 2px;
+    z-index: 12;
+}
+
 /* Laptop Base & Keyboard */
 .laptop-base {
     position: absolute;
     top: 80%;
     left: 10%;
     width: 80%;
-    height: 60%;
+    height: 65%;
     background: linear-gradient(165deg, var(--mba-silver-rim) 0%, var(--mba-silver-hi) 15%, var(--mba-silver-light) 40%, var(--mba-silver-mid) 70%, var(--mba-silver-hi) 100%);
-    border-radius: 0 0 2px 2px;
+    border-radius: 15px;
     border: 1px solid var(--mba-silver-edge);
     border-top: 1px solid #ffffff;
     box-shadow: 0 30px 70px rgba(0, 0, 0, 0.7), inset 0 1.5px 0 rgba(255, 255, 255, 0.85);
     transform-style: preserve-3d;
     transform-origin: top center;
-    transform: rotateX(40deg) translateZ(-8px);
+    transform: rotateX(40deg) translateZ(2px);
 }
 
 .laptop-base-wall {
     position: absolute;
-    left: -1px;
-    bottom: -8px;
-    width: calc(100% + 1.5px);
-    height: 8px;
+    left: 0px;
+    bottom: 0px;
+    width: 100%;
+    height: 15px;
     transform-origin: top;
     transform: rotateX(-40deg);
     background: linear-gradient(180deg, var(--mba-silver-light) 0%, var(--mba-silver-mid) 25%, var(--mba-silver-dark) 65%, var(--mba-silver-edge) 100%);
     border: 1px solid var(--mba-silver-edge);
     border-top: none;
-    border-radius: 0 0 22px 22px;
+    border-radius: 0 0 15px 15px;
     box-shadow: inset 0 1.5px 0 rgba(255, 255, 255, 0.6), inset 0 -10px 16px rgba(0, 0, 0, 0.4);
 }
 
@@ -174,9 +187,9 @@
 }
 
 .keyboard-area {
-    width: 92%;
-    height: 95%;
-    margin: 8px auto 0;
+    width: 90%;
+    height: 90%;
+    margin: 22px auto 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -185,15 +198,24 @@
 
 .keyboard-grid {
     width: 100%;
-    height: 68%;
-    background: var(--mba-silver-hi);
+    height: 52%;
+    background: #455d74;
     border-radius: 6px;
     padding: 5px 6px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     gap: 2px;
-    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.95), inset 0 0 0 1px rgba(0, 0, 0, 0.8);
+}
+
+.trackpad {
+    width: 48%;
+    height: 40%;
+    margin-bottom: 4px;
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.15), rgba(0, 0, 0, 0.05));
+    border: 1px solid rgba(140, 140, 140, 0.4);
+    border-radius: 6px;
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.3), inset 0 -1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .kb-row {
@@ -207,7 +229,7 @@
     flex: 1;
     background: linear-gradient(180deg, #28282b 0%, #161618 100%);
     border-radius: 2px;
-    color: #3e3e44;
+    color: #8e8ea1;
     font-size: 6px;
     font-weight: 500;
     display: flex;
@@ -263,13 +285,12 @@
 
 .base-front-lip {
     position: absolute;
-    bottom: 0;
-    left: 44%;
-    width: 12%;
-    height: 3px;
+    bottom: -3px;
+    left: 43%;
+    width: 15%;
+    height: 4px;
     background: var(--mba-silver-edge);
-    border-radius: 3px 3px 0 0;
-    opacity: 0.6;
+    border-radius: 3px;
 }
 
 .laptop-shadow {
@@ -339,9 +360,9 @@
 }
 
 @keyframes turnOnGridGlow {
-    0%   { box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.95), inset 0 0 0 1px rgba(0, 0, 0, 0.8); }
-    50%  { box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.85), inset 0 0 0 1px rgba(0, 0, 0, 0.6), 0 0 12px rgba(180, 220, 255, 0.15); }
-    100% { box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.85), inset 0 0 0 1px rgba(0, 0, 0, 0.6), 0 0 8px rgba(255, 255, 255, 0.08); }
+    0%   { box-shadow: none; }
+    50%  { box-shadow: 0 0 12px rgba(255, 255, 255, 0.12); }
+    100% { box-shadow: 0 0 8px rgba(255, 255, 255, 0.06); }
 }
 
 /* ==========================================================================
@@ -399,7 +420,6 @@
     pointer-events: none;
 }
 
-/* Reduced Motion Override */
 @media (prefers-reduced-motion: reduce) {
     .laptop-lid {
         transform: rotateX(-22deg) !important;

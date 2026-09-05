@@ -148,7 +148,7 @@
     left: 10%;
     width: 80%;
     height: 65%;
-    background: linear-gradient(165deg, var(--mba-silver-rim) 0%, var(--mba-silver-hi) 15%, var(--mba-silver-light) 40%, var(--mba-silver-mid) 70%, var(--mba-silver-hi) 100%);
+    background: linear-gradient(165deg, var(--mba-silver-rim) 0%, var(--mba-silver-hi) 15%, var(--mba-silver-light) 40%, var(--mba-silver-mid) 100%);
     border-radius: 15px;
     border: 1px solid var(--mba-silver-edge);
     border-top: 1px solid #ffffff;
@@ -199,7 +199,7 @@
 .keyboard-grid {
     width: 100%;
     height: 52%;
-    background: #455d74;
+    background: #638bb1;
     border-radius: 6px;
     padding: 5px 6px;
     display: flex;
@@ -227,9 +227,10 @@
 
 .key {
     flex: 1;
-    background: linear-gradient(180deg, #28282b 0%, #161618 100%);
+    /* Soft radial gradient simulates the flat surface with a subtle concave dish dip */
+    background: radial-gradient(circle at 50% 45%, #242427 0%, #161618 75%, #111113 100%);
     border-radius: 2px;
-    color: #8e8ea1;
+    color: #9797aa;
     font-size: 6px;
     font-weight: 500;
     display: flex;
@@ -237,14 +238,28 @@
     justify-content: center;
     user-select: none;
     letter-spacing: -0.1px;
-    box-shadow: inset 0 0.5px 0.5px rgba(255, 255, 255, 0.05), 0 0.5px 1px rgba(0, 0, 0, 0.6);
+    
+    /* 
+       1. Inset shadow for concave dishing
+       2. Hairline top rim highlight
+       3. Tight gap shadow in the chassis cutout
+    */
+    box-shadow: 
+        inset 0 1px 1.5px rgba(0, 0, 0, 0.65),
+        inset 0 0.5px 0 rgba(255, 255, 255, 0.08),
+        0 0.5px 1px rgba(0, 0, 0, 0.85);
+}
+
+.key-space { 
+    flex: 5.25; 
+    background: radial-gradient(circle at 50% 45%, #262629 0%, #171719 75%, #121214 100%); 
 }
 
 .key-esc { flex: 1.5; }
 .key-touchid { flex: 1; position: relative; }
 .key-touchid-sensor {
-    width: 18px;
-    height: 15px;
+    width: 15px;
+    height: 10px;
     border-radius: 50%;
     background: #1e1e21;
     border: 0.5px solid #2e2e34;
@@ -266,7 +281,6 @@
 .key-shift-l, .key-shift-r { flex: 2.25; }
 .key-fn, .key-ctrl, .key-opt { flex: 1; }
 .key-cmd { flex: 1.25; }
-.key-space { flex: 5.25; background: linear-gradient(180deg, #2a2a2d 0%, #18181b 100%); }
 
 .key-arrow-group { flex: 2.75; display: flex; gap: 2px; height: 100%; }
 .key-arrow { flex: 1; font-size: 3.5px; padding: 0; line-height: 1; }
@@ -354,9 +368,30 @@
 }
 
 @keyframes turnOnBacklight {
-    0%   { color: #3e3e44; box-shadow: inset 0 0.5px 0.5px rgba(255, 255, 255, 0.05), 0 0.5px 1px rgba(0, 0, 0, 0.6); }
-    35%  { color: #ffffff; box-shadow: inset 0 0.5px 0.5px rgba(200, 235, 255, 0.8), 0 0 5px rgba(180, 220, 255, 0.6), 0 0.5px 1px rgba(0, 0, 0, 0.8); }
-    100% { color: #ffffff; box-shadow: inset 0 0.5px 0.5px rgba(86, 131, 120, 0.4), 0 2px 1px rgba(255, 255, 255, 0.7); }
+    0% { 
+        color: #484850; 
+        box-shadow: 
+            inset 0 1px 1.5px rgba(0, 0, 0, 0.65),
+            inset 0 0.5px 0 rgba(255, 255, 255, 0.05),
+            0 0.5px 1px rgba(0, 0, 0, 0.85);
+    }
+    35% { 
+        color: #ffffff; 
+        box-shadow: 
+            inset 0 1px 1.5px rgba(0, 0, 0, 0.45),
+            inset 0 0.5px 0 rgba(255, 255, 255, 0.25),
+            0 0 4px rgba(180, 220, 255, 0.65), /* Realistic key perimeter glow bleed */
+            0 0.5px 1px rgba(0, 0, 0, 0.9);
+    }
+    100% { 
+        color: #ffffff; 
+        text-shadow: 0 0 2px rgba(255, 255, 255, 0.6);
+        box-shadow: 
+            inset 0 1px 1.5px rgba(0, 0, 0, 0.5),
+            inset 0 0.5px 0 rgba(255, 255, 255, 0.18),
+            0 0 2.5px rgba(255, 255, 255, 0.35), /* Subtle key well light bleed */
+            0 0.5px 1px rgba(0, 0, 0, 0.9);
+    }
 }
 
 @keyframes turnOnGridGlow {

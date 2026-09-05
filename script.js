@@ -167,4 +167,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
         laptopObserver.observe(laptopStage);
     }
+
+    // 6. Liquid Glass Magnifier (Hold & Drag)
+    const magnifier = document.getElementById('liquidMagnifier');
+    let isHolding = false;
+
+    function updateMagnifierPosition(e) {
+        if (!magnifier) return;
+        const x = e.clientX;
+        const y = e.clientY;
+        magnifier.style.left = `${x}px`;
+        magnifier.style.top = `${y}px`;
+    }
+
+    window.addEventListener('pointerdown', (e) => {
+        // Prevent activation on buttons/links so clicks remain uninterrupted
+        if (e.target.closest('a, button, input, textarea')) return;
+
+        isHolding = true;
+        updateMagnifierPosition(e);
+        if (magnifier) magnifier.classList.add('is-active');
+    });
+
+    window.addEventListener('pointermove', (e) => {
+        if (isHolding) {
+            updateMagnifierPosition(e);
+        }
+    });
+
+    const stopMagnifying = () => {
+        isHolding = false;
+        if (magnifier) magnifier.classList.remove('is-active');
+    };
+
+    window.addEventListener('pointerup', stopMagnifying);
+    window.addEventListener('pointercancel', stopMagnifying);
 });

@@ -705,3 +705,45 @@ footer p {
 @media (max-width: 480px) {
     .hero-headline { font-size: 34px; }
 }
+
+/* ==========================================================================
+   Liquid Glass Magnifier Lens
+   ========================================================================== */
+.liquid-magnifier {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.6);
+    transition: opacity 0.25s var(--apple-ease), transform 0.25s var(--apple-ease);
+    will-change: transform, opacity;
+}
+
+.liquid-magnifier.is-active {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.magnifier-glass {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    
+    /* Optics & Magnification Effect */
+    backdrop-filter: url(#liquidGlassFilter) brightness(1.12) contrast(1.08) blur(0.2px);
+    -webkit-backdrop-filter: url(#liquidGlassFilter) brightness(1.12) contrast(1.08);
+    
+    /* Glass Rim Highlights and Specular Reflections */
+    background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.05) 40%, rgba(0, 0, 0, 0.15) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.5),
+        inset 0 0 15px rgba(255, 255, 255, 0.3),
+        inset 0 -8px 12px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(255, 255, 255, 0.15);
+}

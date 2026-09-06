@@ -187,7 +187,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let dragOffsetX = 0;
         let dragOffsetY = 0;
         let zoomContainer = null;
-        const ZOOM_SCALE = 1.5;
+        const ZOOM_SCALE = 2;
 
         // Ensure lens starts disabled/hidden
         lens.style.display = 'none';
@@ -245,7 +245,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const lensHeight = rect.height;
 
             const centerX = rect.left + lensWidth / 2;
-            const centerY = rect.top + lensHeight / 2;
+            const centerY = rect.top + lensHeight / 3;
 
             const docX = centerX + window.scrollX;
             const docY = centerY + window.scrollY;

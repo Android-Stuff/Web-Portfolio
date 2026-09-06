@@ -166,4 +166,79 @@ document.addEventListener('DOMContentLoaded', () => {
 
         laptopObserver.observe(laptopStage);
     }
+
+    // Initialize LiquidGL Glass Magnifier Lens
+// LiquidGL Glass Magnifier Lens
+function initGlassMagnifier() {
+    const frame = document.getElementById('mockupFrame');
+    const lens = document.getElementById('glassMagnifier');
+    const projectImg = document.getElementById('projectImage');
+
+    if (!frame || !lens || !projectImg) return;
+    if (typeof window.LiquidGL === 'undefined') {
+        console.warn('LiquidGL library not yet available.');
+        return;
+    }
+
+    // Ensure the image texture is fully loaded before WebGL binding
+    function setupLiquidEffect() {
+        try {
+            const glassEffect = new window.LiquidGL({
+                element: lens,
+                source: projectImg,
+                magnify: 1.5,
+                refraction: 0.15,
+                aberration: 0.03,
+                bevelDepth: 0.05,
+                bevelWidth: 0.2,
+                frost: 0,
+                shadow: true,
+                specular: true,
+                tilt: true,
+                tiltFactor: 4,
+                tiltEase: 300
+            });
+
+            // Track cursor position inside the frame
+            let targetX = frame.clientWidth / 2;
+            let targetY = frame.clientHeight / 2;
+            let currentX = targetX;
+            let currentY = targetY;
+
+            frame.addEventListener('mousemove', (e) => {
+                const rect = frame.getBoundingClientRect();
+                targetX = e.clientX - rect.left;
+                targetY = e.clientY - rect.top;
+            });
+
+            function render() {
+                currentX += (targetX - currentX) * 0.15;
+                currentY += (targetY - currentY) * 0.15;
+
+                lens.style.left = `${currentX}px`;
+                lens.style.top = `${currentY}px`;
+
+                requestAnimationFrame(render);
+            }
+            requestAnimationFrame(render);
+
+        } catch (err) {
+            console.error('LiquidGL initialization error:', err);
+        }
+    }
+
+    if (projectImg.complete) {
+        setupLiquidEffect();
+    } else {
+        projectImg.addEventListener('load', setupLiquidEffect, { once: true });
+    }
+}
+
+// Initialize when both DOM and LiquidGL module are ready
+window.addEventListener('liquidgl-ready', initGlassMagnifier);
+if (document.readyState === 'complete') {
+    initGlassMagnifier();
+} else {
+    window.addEventListener('load', initGlassMagnifier);
+}
 });

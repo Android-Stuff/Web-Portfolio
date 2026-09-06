@@ -24,6 +24,8 @@
 </script>
 <script src="script.js" defer></script>
 
+<div id="pageMagnifier" class="page-magnifier-lens"></div>
+
 <body>
  
     <nav class="local-nav">
@@ -53,6 +55,7 @@
  
                 <div class="hero-ctas">
                     <a href="#showcase" class="btn-primary">Explore Work</a>
+                    <button type="button" id="toggleMagnifierBtn" class="btn-magnifier-toggle">Glass Magnifier</button>
                     <a href="#highlights" class="btn-secondary-link">View Highlights &gt;</a>
                 </div>
             </div>
@@ -235,8 +238,6 @@
             <div class="viewer-display">
                 <div class="screen-content" id="projectDisplay">
                     <div class="mockup-frame" id="mockupFrame">
-                        <!-- Liquid Glass Magnifier Overlay -->
-                        <div id="glassMagnifier" class="glass-magnifier-lens"></div>
                         <img src="Mockup.png" alt="Project mockup preview" class="mockup-img" id="projectImage" loading="lazy" decoding="async">
                     </div>
                     <div class="project-details">

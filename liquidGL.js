@@ -122,11 +122,12 @@ const liquidGL = (() => {
     }
 
     function isTransparent(color) {
-      if (!color || color === "transparent" || color === "none") return true;
-      const alpha = color.match(
+    if (!color || color === "transparent" || color === "none") return true;
+    if (typeof color !== "string") return false; // Guard against CanvasGradient / non-string values
+    const alpha = color.match(
         /^(?:rgba|hsla|hwb|lab|lch|oklab|oklch|color)\([^)]*[,/]\s*([0-9.]+)%?\s*\)$/,
-      );
-      return alpha ? parseFloat(alpha[1]) === 0 : false;
+    );
+    return alpha ? parseFloat(alpha[1]) === 0 : false;
     }
 
     function splitTopLevel(value) {
@@ -1069,11 +1070,16 @@ const liquidGL = (() => {
     };
 
     Painter.prototype.background = function (node) {
-      const style = node.style;
-      const ctx = this.ctx;
-      const images = style.backgroundImage;
-      const hasImages = images && images !== "none";
-      if (isTransparent(style.backgroundColor) && !hasImages) return;
+        const style = node.style;
+        const ctx = this.ctx;
+        const images = style.backgroundImage;
+        const hasImages = images && images !== "none";
+
+        // Skip filling background box if text clipping is used
+        const bgClip = style.backgroundClip || style.webkitBackgroundClip || "border-box";
+        if (bgClip.indexOf("text") !== -1) return;
+
+        if (isTransparent(style.backgroundColor) && !hasImages) return;
 
       const clipList = splitTopLevel(style.backgroundClip || "border-box");
       const clipBox = boxFor(clipList[clipList.length - 1], node, style);
@@ -1329,29 +1335,51 @@ const liquidGL = (() => {
     };
 
     Painter.prototype.text = function (node) {
-      const style = node.style;
-      const ctx = this.ctx;
-      const strokeWidth = parseFloat(style.webkitTextStrokeWidth) || 0;
-      if (isTransparent(style.color) && strokeWidth <= 0) return;
+    const style = node.style;
+    const ctx = this.ctx;
+    const strokeWidth = parseFloat(style.webkitTextStrokeWidth) || 0;
 
-      this.setClips(node.clips);
-      this.space(node.m);
+    const bgClip = style.backgroundClip || style.webkitBackgroundClip || "";
+    const isTextClip = bgClip.indexOf("text") !== -1;
 
-      const fontSize = parseFloat(style.fontSize) || 16;
-      ctx.font = `${style.fontStyle} ${style.fontWeight} ${fontSize}px ${style.fontFamily}`;
-      if ("letterSpacing" in ctx) {
+    let fillStyle = style.color;
+    if (style.webkitTextFillColor && !isTransparent(style.webkitTextFillColor)) {
+        fillStyle = style.webkitTextFillColor;
+    }
+
+    // If text uses background-clip: text, create gradient fill for text rendering
+    if (isTextClip && style.backgroundImage && style.backgroundImage !== "none") {
+        const layers = splitTopLevel(style.backgroundImage);
+        if (layers.length > 0) {
+        const made = makeGradient(ctx, layers[0], node.x, node.y, node.w, node.h);
+        if (made && made.gradient) {
+            fillStyle = made.gradient;
+        } else {
+            fillStyle = "#ffffff";
+        }
+        }
+    }
+
+    if (isTransparent(fillStyle) && strokeWidth <= 0 && !isTextClip) return;
+
+    this.setClips(node.clips);
+    this.space(node.m);
+
+    const fontSize = parseFloat(style.fontSize) || 16;
+    ctx.font = `${style.fontStyle} ${style.fontWeight} ${fontSize}px ${style.fontFamily}`;
+    if ("letterSpacing" in ctx) {
         ctx.letterSpacing =
-          style.letterSpacing === "normal" ? "0px" : style.letterSpacing;
-      }
-      if ("wordSpacing" in ctx) {
+        style.letterSpacing === "normal" ? "0px" : style.letterSpacing;
+    }
+    if ("wordSpacing" in ctx) {
         ctx.wordSpacing =
-          style.wordSpacing === "normal" ? "0px" : style.wordSpacing;
-      }
-      const rtl = style.direction === "rtl";
-      ctx.direction = rtl ? "rtl" : "ltr";
-      ctx.textAlign = rtl ? "right" : "left";
-      ctx.textBaseline = "alphabetic";
-      ctx.fillStyle = style.color;
+        style.wordSpacing === "normal" ? "0px" : style.wordSpacing;
+    }
+    const rtl = style.direction === "rtl";
+    ctx.direction = rtl ? "rtl" : "ltr";
+    ctx.textAlign = rtl ? "right" : "left";
+    ctx.textBaseline = "alphabetic";
+    ctx.fillStyle = fillStyle;
 
       const strokeColor = style.webkitTextStrokeColor;
       const strokeFirst = (style.paintOrder || "").indexOf("stroke") === 0;

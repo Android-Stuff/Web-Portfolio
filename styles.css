@@ -706,37 +706,87 @@ footer p {
     .hero-headline { font-size: 34px; }
 }
 
-/* Liquid Glass Magnifier Lens */
-.mockup-frame {
-    position: relative;
-    overflow: hidden;
-    cursor: none; /* Hide default cursor when inside the magnifier lens frame */
-}
-
-.glass-magnifier-lens {
-    position: absolute;
-    width: 220px;
-    height: 220px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-    z-index: 20;
-    opacity: 0;
-    transition: opacity 0.3s var(--apple-ease);
-    border-radius: 36px;
-    box-shadow: 
-        0 20px 40px rgba(0, 0, 0, 0.4),
-        0 0 0 1px rgba(255, 255, 255, 0.15) inset;
-}
-
-.mockup-frame:hover .glass-magnifier-lens {
-    opacity: 1;
-}
-
-.glass-magnifier-lens canvas {
-    width: 100%;
-    height: 100%;
-    border-radius: 36px;
+/* Page Glass Magnifier Lens */
+.page-magnifier-lens {
+    position: fixed;
+    top: 220px;
+    left: calc(50% + 60px);
+    width: 480px;
+    height: 280px;
+    pointer-events: auto !important; /* Overrides LiquidGL's inline pointer-events: none */
+    cursor: grab;
+    z-index: 9999;
     display: block;
+    visibility: visible;
+    opacity: 1;
+    border-radius: 40%;
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.5),
+        0 0 0 1.5px rgba(255, 255, 255, 0.25) inset;
+    transition: opacity 0.3s var(--apple-ease);
+    will-change: transform, left, top;
+}
+
+/* Water Droplet Bulge Animations */
+@keyframes dropletPickup {
+    0% { transform: scale(1); }
+    30% { transform: scale(1.14, 0.86); }
+    65% { transform: scale(0.94, 1.08); }
+    100% { transform: scale(1.05); }
+}
+
+@keyframes dropletDrop {
+    0% { transform: scale(1.05); }
+    30% { transform: scale(0.88, 1.12); }
+    65% { transform: scale(1.04, 0.96); }
+    100% { transform: scale(1); }
+}
+
+.page-magnifier-lens.is-picked-up {
+    animation: dropletPickup 0.42s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    cursor: grabbing !important;
+    box-shadow: 
+        0 35px 70px rgba(0, 0, 0, 0.75),
+        0 0 0 2px rgba(255, 255, 255, 0.4) inset;
+}
+
+.page-magnifier-lens.is-dropped {
+    animation: dropletDrop 0.42s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    cursor: grab;
+}
+
+/* Disable underlying hover and click interactions while holding magnifier */
+body.magnifier-active-drag,
+body.magnifier-active-drag * {
+    user-select: none !important;
+    -webkit-user-select: none !important;
+}
+
+body.magnifier-active-drag *:not(#pageMagnifier) {
+    pointer-events: none !important;
+}
+
+/* Magnifier Toggle Button */
+.btn-magnifier-toggle {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--text-primary);
+    padding: 10px 20px;
+    border-radius: 980px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background-color 0.3s var(--apple-ease), border-color 0.3s var(--apple-ease);
+}
+
+.btn-magnifier-toggle:hover {
+    background: rgba(255, 255, 255, 0.16);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.btn-magnifier-toggle.active {
+    background: var(--accent-blue);
+    border-color: var(--accent-blue);
+    color: #ffffff;
 }

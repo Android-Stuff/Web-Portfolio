@@ -41,6 +41,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     card.classList.add('is-hidden');
                 }
             });
+
+            if (window.__liquidGLRenderer__) {
+                setTimeout(() => window.__liquidGLRenderer__.captureSnapshot(), 50);
+            }
         });
     }
 
@@ -100,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (controls && displayBox) {
         const activeTab = controls.querySelector('.tab-btn.active');
-        const initialProjectKey = activeTab ? activeTab.dataset.project : 'sim';
+        const initialProjectKey = activeTab ? activeTab.dataset.project : 'design';
         if (projectsData[initialProjectKey]) {
             renderProjectData(projectsData[initialProjectKey]);
         }
@@ -126,6 +130,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 renderProjectData(data);
                 displayBox.classList.remove('tab-transitioning');
                 isSwitching = false;
+
+                if (window.__liquidGLRenderer__) {
+                    window.__liquidGLRenderer__.captureSnapshot();
+                }
             }, 250);
         });
     }
@@ -167,77 +175,153 @@ document.addEventListener('DOMContentLoaded', () => {
         laptopObserver.observe(laptopStage);
     }
 
-// LiquidGL Glass Magnifier Lens
-function initGlassMagnifier() {
-    const frame = document.getElementById('mockupFrame');
-    const lens = document.getElementById('glassMagnifier');
-    const projectImg = document.getElementById('projectImage');
+    // 6. LiquidGL Interactive Pick-up Glass Magnifier
+    function initPageMagnifier() {
+        const lens = document.getElementById('pageMagnifier');
+        const toggleBtn = document.getElementById('toggleMagnifierBtn');
 
-    if (!frame || !lens || !projectImg) return;
-    if (typeof window.LiquidGL === 'undefined') {
-        console.warn('LiquidGL library not yet available.');
-        return;
-    }
+        if (!lens) return;
 
-    function setupLiquidEffect() {
-        try {
-            // Initialize liquidGL using the 'target' CSS selector
-            const glassEffect = window.LiquidGL({
-                target: '#glassMagnifier',
-                snapshot: '#mockupFrame',
+        let liquidInstance = null;
+        let isPickedUp = false;
+        let isVisible = false; // Disabled by default
+        let dragOffsetX = 0;
+        let dragOffsetY = 0;
+
+        // Ensure lens starts hidden
+        lens.style.display = 'none';
+        lens.style.visibility = 'hidden';
+        lens.style.opacity = '0';
+        lens.style.pointerEvents = 'none';
+
+        if (toggleBtn) {
+            toggleBtn.classList.remove('active');
+            toggleBtn.textContent = 'Glass Magnifier';
+        }
+
+        // Initialize WebGL LiquidGL Lens
+        function initLiquid() {
+            if (liquidInstance) return;
+            liquidInstance = window.LiquidGL({
+                target: '#pageMagnifier',
+                snapshot: 'body',
+                resolution: 1.5,
                 magnify: 1.5,
-                refraction: 0.15,
-                aberration: 0.03,
+                refraction: 0.05,
+                aberration: 0.02,
                 bevelDepth: 0.05,
-                bevelWidth: 0.2,
+                bevelWidth: 0.10,
                 frost: 0,
                 shadow: true,
                 specular: true,
-                tilt: true,
-                tiltFactor: 4,
-                tiltEase: 300
+                tilt: false
             });
 
-            // Track cursor position inside the frame
-            let targetX = frame.clientWidth / 2;
-            let targetY = frame.clientHeight / 2;
-            let currentX = targetX;
-            let currentY = targetY;
-
-            frame.addEventListener('mousemove', (e) => {
-                const rect = frame.getBoundingClientRect();
-                targetX = e.clientX - rect.left;
-                targetY = e.clientY - rect.top;
-            });
-
-            function render() {
-                currentX += (targetX - currentX) * 0.15;
-                currentY += (targetY - currentY) * 0.15;
-
-                lens.style.left = `${currentX}px`;
-                lens.style.top = `${currentY}px`;
-
-                requestAnimationFrame(render);
+            // Register dynamic DOM elements for streaming
+            if (window.liquidGL && window.liquidGL.registerDynamic) {
+                window.liquidGL.registerDynamic('.card');
+                window.liquidGL.registerDynamic('.btn-primary');
+                window.liquidGL.registerDynamic('.gallery-pill');
+                window.liquidGL.registerDynamic('.tab-btn');
+                window.liquidGL.registerDynamic('#projectDisplay');
             }
-            requestAnimationFrame(render);
+        }
 
-        } catch (err) {
-            console.error('LiquidGL initialization error:', err);
+        // Pickup Event Handler
+        function onPickUp(e) {
+            if (!isVisible) return;
+
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+            const rect = lens.getBoundingClientRect();
+            dragOffsetX = clientX - rect.left;
+            dragOffsetY = clientY - rect.top;
+
+            isPickedUp = true;
+            lens.classList.remove('is-dropped');
+            lens.classList.add('is-picked-up');
+            document.body.classList.add('magnifier-active-drag');
+
+            // Capture fresh snapshot on pick up
+            if (window.__liquidGLRenderer__) {
+                window.__liquidGLRenderer__.captureSnapshot();
+            }
+
+            e.preventDefault();
+        }
+
+        // Drag Move Handler
+        function onMove(e) {
+            if (!isPickedUp) return;
+
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+            lens.style.left = `${clientX - dragOffsetX}px`;
+            lens.style.top = `${clientY - dragOffsetY}px`;
+
+            if (window.__liquidGLRenderer__) {
+                window.__liquidGLRenderer__.render();
+            }
+        }
+
+        // Drop Event Handler
+        function onDrop() {
+            if (!isPickedUp) return;
+
+            isPickedUp = false;
+            lens.classList.remove('is-picked-up');
+            lens.classList.add('is-dropped');
+            document.body.classList.remove('magnifier-active-drag');
+
+            if (window.__liquidGLRenderer__) {
+                window.__liquidGLRenderer__.render();
+            }
+        }
+
+        // Event Listeners for Mouse and Touch
+        lens.addEventListener('mousedown', onPickUp);
+        lens.addEventListener('touchstart', onPickUp, { passive: false });
+
+        window.addEventListener('mousemove', onMove, { passive: true });
+        window.addEventListener('touchmove', onMove, { passive: true });
+
+        window.addEventListener('mouseup', onDrop);
+        window.addEventListener('touchend', onDrop);
+
+        // Toggle Button
+        if (toggleBtn) {
+            toggleBtn.addEventListener('click', () => {
+                isVisible = !isVisible;
+                if (isVisible) {
+                    initLiquid(); // Lazy initialize LiquidGL on first enable
+                    lens.style.display = 'block';
+                    lens.style.visibility = 'visible';
+                    lens.style.opacity = '1';
+                    lens.style.pointerEvents = 'auto';
+                    toggleBtn.classList.add('active');
+                    toggleBtn.textContent = 'Disable Magnifier';
+                    if (window.__liquidGLRenderer__) {
+                        window.__liquidGLRenderer__.captureSnapshot();
+                    }
+                } else {
+                    lens.style.opacity = '0';
+                    lens.style.visibility = 'hidden';
+                    lens.style.display = 'none';
+                    lens.style.pointerEvents = 'none';
+                    toggleBtn.classList.remove('active');
+                    toggleBtn.textContent = 'Glass Magnifier';
+                }
+            });
         }
     }
 
-    if (projectImg.complete) {
-        setupLiquidEffect();
+    // Initialize when DOM and LiquidGL module are ready
+    window.addEventListener('liquidgl-ready', initPageMagnifier);
+    if (document.readyState === 'complete') {
+        initPageMagnifier();
     } else {
-        projectImg.addEventListener('load', setupLiquidEffect, { once: true });
+        window.addEventListener('load', initPageMagnifier);
     }
-}
-
-// Initialize when both DOM and LiquidGL module are ready
-window.addEventListener('liquidgl-ready', initGlassMagnifier);
-if (document.readyState === 'complete') {
-    initGlassMagnifier();
-} else {
-    window.addEventListener('load', initGlassMagnifier);
-}
 });

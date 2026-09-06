@@ -15,14 +15,8 @@
     <link rel="preload" as="image" href="Mockup Screen.png" fetchpriority="high">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="devices.css">
+    <script src="script.js" defer></script>
 </head>
-
-<script type="module">
-    import LiquidGL from './liquidGL.js';
-    window.LiquidGL = LiquidGL;
-    window.dispatchEvent(new Event('liquidgl-ready'));
-</script>
-<script src="script.js" defer></script>
 
 <div id="pageMagnifier" class="page-magnifier-lens"></div>
 
@@ -55,7 +49,7 @@
  
                 <div class="hero-ctas">
                     <a href="#showcase" class="btn-primary">Explore Work</a>
-                    <button type="button" id="toggleMagnifierBtn" class="btn-magnifier-toggle">Glass Magnifier</button>
+                    <button type="button" id="toggleMagnifierBtn" class="btn-magnifier-toggle">Magnifier</button>
                     <a href="#highlights" class="btn-secondary-link">View Highlights &gt;</a>
                 </div>
             </div>

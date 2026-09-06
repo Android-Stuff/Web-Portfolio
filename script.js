@@ -42,8 +42,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
 
-            if (window.__liquidGLRenderer__) {
-                setTimeout(() => window.__liquidGLRenderer__.captureSnapshot(), 50);
+            if (window.refreshMagnifierZoom) {
+                setTimeout(window.refreshMagnifierZoom, 50);
             }
         });
     }
@@ -131,8 +131,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 displayBox.classList.remove('tab-transitioning');
                 isSwitching = false;
 
-                if (window.__liquidGLRenderer__) {
-                    window.__liquidGLRenderer__.captureSnapshot();
+                if (window.refreshMagnifierZoom) {
+                    window.refreshMagnifierZoom();
                 }
             }, 250);
         });
@@ -175,20 +175,21 @@ document.addEventListener('DOMContentLoaded', () => {
         laptopObserver.observe(laptopStage);
     }
 
-    // 6. LiquidGL Interactive Pick-up Glass Magnifier
+    // 6. Traditional Non-Distorted Magnifier Zoom Lens
     function initPageMagnifier() {
         const lens = document.getElementById('pageMagnifier');
         const toggleBtn = document.getElementById('toggleMagnifierBtn');
 
         if (!lens) return;
 
-        let liquidInstance = null;
         let isPickedUp = false;
-        let isVisible = false; // Disabled by default
+        let isVisible = false; // Defaulted to disabled
         let dragOffsetX = 0;
         let dragOffsetY = 0;
+        let zoomContainer = null;
+        const ZOOM_SCALE = 1.5;
 
-        // Ensure lens starts hidden
+        // Ensure lens starts disabled/hidden
         lens.style.display = 'none';
         lens.style.visibility = 'hidden';
         lens.style.opacity = '0';
@@ -196,35 +197,63 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (toggleBtn) {
             toggleBtn.classList.remove('active');
-            toggleBtn.textContent = 'Glass Magnifier';
+            toggleBtn.textContent = 'Magnifier';
         }
 
-        // Initialize WebGL LiquidGL Lens
-        function initLiquid() {
-            if (liquidInstance) return;
-            liquidInstance = window.LiquidGL({
-                target: '#pageMagnifier',
-                snapshot: 'body',
-                resolution: 1.5,
-                magnify: 1.5,
-                refraction: 0.05,
-                aberration: 0.02,
-                bevelDepth: 0.05,
-                bevelWidth: 0.10,
-                frost: 0,
-                shadow: true,
-                specular: true,
-                tilt: false
+        // Build crisp scaled snapshot inside lens
+        function createZoomContent() {
+            if (zoomContainer) {
+                zoomContainer.remove();
+            }
+            zoomContainer = document.createElement('div');
+            zoomContainer.className = 'magnifier-zoom-container';
+
+            const pageContent = document.createElement('div');
+            pageContent.className = 'magnifier-page-content';
+
+            // Clone all children of body except script tags and the magnifier lens itself
+            Array.from(document.body.children).forEach(child => {
+                if (child.id !== 'pageMagnifier' && child.tagName !== 'SCRIPT') {
+                    pageContent.appendChild(child.cloneNode(true));
+                }
             });
 
-            // Register dynamic DOM elements for streaming
-            if (window.liquidGL && window.liquidGL.registerDynamic) {
-                window.liquidGL.registerDynamic('.card');
-                window.liquidGL.registerDynamic('.btn-primary');
-                window.liquidGL.registerDynamic('.gallery-pill');
-                window.liquidGL.registerDynamic('.tab-btn');
-                window.liquidGL.registerDynamic('#projectDisplay');
-            }
+            // Make sure all reveal sections and laptop animations are visible in the clone
+            pageContent.querySelectorAll('.reveal').forEach(el => el.classList.add('active'));
+            pageContent.querySelectorAll('.laptop-stage').forEach(el => el.classList.add('is-open'));
+
+            // Remove duplicate IDs
+            pageContent.querySelectorAll('[id]').forEach(el => el.removeAttribute('id'));
+
+            const docWidth = Math.max(document.documentElement.scrollWidth, document.body.scrollWidth);
+            const docHeight = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
+            pageContent.style.width = `${docWidth}px`;
+            pageContent.style.height = `${docHeight}px`;
+
+            zoomContainer.appendChild(pageContent);
+            lens.appendChild(zoomContainer);
+
+            updateZoomPosition();
+        }
+
+        // Accurately align 1.5x zoom under lens center
+        function updateZoomPosition() {
+            if (!isVisible || !zoomContainer) return;
+
+            const rect = lens.getBoundingClientRect();
+            const lensWidth = rect.width;
+            const lensHeight = rect.height;
+
+            const centerX = rect.left + lensWidth / 2;
+            const centerY = rect.top + lensHeight / 2;
+
+            const docX = centerX + window.scrollX;
+            const docY = centerY + window.scrollY;
+
+            const offsetX = (lensWidth / 2) - (docX * ZOOM_SCALE);
+            const offsetY = (lensHeight / 2) - (docY * ZOOM_SCALE);
+
+            zoomContainer.style.transform = `translate(${offsetX}px, ${offsetY}px) scale(${ZOOM_SCALE})`;
         }
 
         // Pickup Event Handler
@@ -239,14 +268,8 @@ document.addEventListener('DOMContentLoaded', () => {
             dragOffsetY = clientY - rect.top;
 
             isPickedUp = true;
-            lens.classList.remove('is-dropped');
-            lens.classList.add('is-picked-up');
+            lens.classList.add('is-dragging');
             document.body.classList.add('magnifier-active-drag');
-
-            // Capture fresh snapshot on pick up
-            if (window.__liquidGLRenderer__) {
-                window.__liquidGLRenderer__.captureSnapshot();
-            }
 
             e.preventDefault();
         }
@@ -261,9 +284,7 @@ document.addEventListener('DOMContentLoaded', () => {
             lens.style.left = `${clientX - dragOffsetX}px`;
             lens.style.top = `${clientY - dragOffsetY}px`;
 
-            if (window.__liquidGLRenderer__) {
-                window.__liquidGLRenderer__.render();
-            }
+            updateZoomPosition();
         }
 
         // Drop Event Handler
@@ -271,16 +292,11 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!isPickedUp) return;
 
             isPickedUp = false;
-            lens.classList.remove('is-picked-up');
-            lens.classList.add('is-dropped');
+            lens.classList.remove('is-dragging');
             document.body.classList.remove('magnifier-active-drag');
-
-            if (window.__liquidGLRenderer__) {
-                window.__liquidGLRenderer__.render();
-            }
         }
 
-        // Event Listeners for Mouse and Touch
+        // Event Listeners for Dragging
         lens.addEventListener('mousedown', onPickUp);
         lens.addEventListener('touchstart', onPickUp, { passive: false });
 
@@ -290,38 +306,43 @@ document.addEventListener('DOMContentLoaded', () => {
         window.addEventListener('mouseup', onDrop);
         window.addEventListener('touchend', onDrop);
 
+        // Sync zoom on scroll & resize
+        window.addEventListener('scroll', updateZoomPosition, { passive: true });
+        window.addEventListener('resize', () => {
+            if (isVisible) createZoomContent();
+        }, { passive: true });
+
         // Toggle Button
         if (toggleBtn) {
             toggleBtn.addEventListener('click', () => {
                 isVisible = !isVisible;
                 if (isVisible) {
-                    initLiquid(); // Lazy initialize LiquidGL on first enable
+                    createZoomContent();
                     lens.style.display = 'block';
                     lens.style.visibility = 'visible';
                     lens.style.opacity = '1';
                     lens.style.pointerEvents = 'auto';
                     toggleBtn.classList.add('active');
                     toggleBtn.textContent = 'Disable Magnifier';
-                    if (window.__liquidGLRenderer__) {
-                        window.__liquidGLRenderer__.captureSnapshot();
-                    }
                 } else {
                     lens.style.opacity = '0';
                     lens.style.visibility = 'hidden';
                     lens.style.display = 'none';
                     lens.style.pointerEvents = 'none';
                     toggleBtn.classList.remove('active');
-                    toggleBtn.textContent = 'Glass Magnifier';
+                    toggleBtn.textContent = 'Magnifier';
+                    if (zoomContainer) {
+                        zoomContainer.remove();
+                        zoomContainer = null;
+                    }
                 }
             });
         }
+
+        window.refreshMagnifierZoom = () => {
+            if (isVisible) createZoomContent();
+        };
     }
 
-    // Initialize when DOM and LiquidGL module are ready
-    window.addEventListener('liquidgl-ready', initPageMagnifier);
-    if (document.readyState === 'complete') {
-        initPageMagnifier();
-    } else {
-        window.addEventListener('load', initPageMagnifier);
-    }
+    initPageMagnifier();
 });

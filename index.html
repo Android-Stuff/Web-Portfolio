@@ -17,6 +17,13 @@
     <link rel="stylesheet" href="devices.css">
 </head>
 
+<script type="module">
+    import LiquidGL from './liquidGL.js';
+    window.LiquidGL = LiquidGL;
+    window.dispatchEvent(new Event('liquidgl-ready'));
+</script>
+<script src="script.js" defer></script>
+
 <body>
  
     <nav class="local-nav">
@@ -133,7 +140,7 @@
                     <div class="phone-body">
                         <div class="phone-screen">
                             <div class="dynamic-island"></div>
-                            <img src="Mockup mobile.png" alt="mobile concept" class="phone-screen-img">
+                                <img src="Mobile mockup.png" alt="mobile concept" class="phone-screen-img">
                             <div class="phone-glare"></div>
                         </div>
                     </div>
@@ -270,13 +277,5 @@
         <p>Copyright &copy; 2026 Vincent Alexander. Apple-inspired Design.</p>
         <p>Universitas Jember — Faculty of Computer Science (Informatics)</p>
     </footer>
-
-    <!-- LiquidGL Module Import (Default Import) -->
-    <script type="module">
-        import LiquidGL from 'https://cdn.jsdelivr.net/gh/naughtyduk/liquidGL@main/src/index.js';
-        window.LiquidGL = LiquidGL;
-        window.dispatchEvent(new Event('liquidgl-ready'));
-    </script>
-    <script src="script.js" defer></script>
 </body>
 </html>

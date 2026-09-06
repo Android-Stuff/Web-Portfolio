@@ -167,7 +167,6 @@ document.addEventListener('DOMContentLoaded', () => {
         laptopObserver.observe(laptopStage);
     }
 
-    // Initialize LiquidGL Glass Magnifier Lens
 // LiquidGL Glass Magnifier Lens
 function initGlassMagnifier() {
     const frame = document.getElementById('mockupFrame');
@@ -180,12 +179,12 @@ function initGlassMagnifier() {
         return;
     }
 
-    // Ensure the image texture is fully loaded before WebGL binding
     function setupLiquidEffect() {
         try {
-            const glassEffect = new window.LiquidGL({
-                element: lens,
-                source: projectImg,
+            // Initialize liquidGL using the 'target' CSS selector
+            const glassEffect = window.LiquidGL({
+                target: '#glassMagnifier',
+                snapshot: '#mockupFrame',
                 magnify: 1.5,
                 refraction: 0.15,
                 aberration: 0.03,

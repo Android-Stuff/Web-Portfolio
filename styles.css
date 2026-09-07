@@ -4,8 +4,8 @@
     --card-hover: #1c1c1e;
     --text-primary: #f5f5f7;
     --text-secondary: #86868b;
-    --accent-blue: #4d62ff;
-    --accent-blue-hover: #4f75ff;
+    --accent-blue: #eb3c29;
+    --accent-blue-hover: #ff904f;
     --nav-bg: rgba(22, 22, 23, 0.8);
     --font-stack: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
     --apple-ease: cubic-bezier(0.16, 1, 0.3, 1);
@@ -97,7 +97,7 @@ a:hover {
     align-items: center;
     gap: 12px;
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: -0.011em;
     color: var(--text-primary);
 }
@@ -114,6 +114,7 @@ a:hover {
     align-items: center;
     list-style: none;
     font-size: 12px;
+    font-weight: 700;
     height: 100%;
 }
 
@@ -171,7 +172,7 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     padding: 6px 16px;
     border-radius: 980px;
     font-size: 12px;
-    font-weight: 400;
+    font-weight: 700;
     transition: background-color 0.3s var(--apple-ease), transform 0.3s var(--apple-ease);
 }
 
@@ -213,7 +214,7 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     line-height: 1.08;
     font-weight: 700;
     letter-spacing: -0.015em;
-    background: linear-gradient(180deg, #c3f6ff 0%, #fffa69 100%);
+    background: linear-gradient(180deg, #ffbf3f 0%, #f25213 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -243,7 +244,7 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     padding: 12px 26px;
     border-radius: 980px;
     font-size: 16px;
-    font-weight: 500;
+    font-weight: 700;
     transition: background-color 0.3s var(--apple-ease), transform 0.3s var(--apple-ease);
 }
 
@@ -259,7 +260,7 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
 
 .btn-secondary-link {
     font-size: 16px;
-    font-weight: 500;
+    font-weight: 700;
     display: inline-flex;
     align-items: center;
     transition: transform 0.3s var(--apple-ease);
@@ -315,6 +316,7 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     padding: 8px 18px;
     border-radius: 980px;
     font-size: 14px;
+    font-weight: 700;
     cursor: pointer;
     font-family: inherit;
     transition: background-color 0.3s var(--apple-ease), color 0.3s var(--apple-ease), border-color 0.3s var(--apple-ease), transform 0.2s var(--apple-ease);
@@ -329,7 +331,7 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     background: var(--text-primary);
     color: #000000;
     border-color: var(--text-primary);
-    font-weight: 500;
+    font-weight: 700;
 }
 
 .gallery-pill:active {
@@ -394,7 +396,7 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
 
 .card-tag {
     font-size: 13px;
-    font-weight: 600;
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     color: var(--accent-blue);
@@ -403,7 +405,7 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
 
 .card-headline {
     font-size: 28px;
-    font-weight: 600;
+    font-weight: 700;
     line-height: 1.25;
 }
 
@@ -543,6 +545,7 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     padding: 10px 22px;
     border-radius: 980px;
     font-size: 14px;
+    font-weight: 700;
     cursor: pointer;
     font-family: inherit;
     transition: background-color 0.3s var(--apple-ease), color 0.3s var(--apple-ease), border-color 0.3s var(--apple-ease), transform 0.2s var(--apple-ease);
@@ -556,7 +559,7 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
 .tab-btn.active {
     color: #ffffff;
     border-color: var(--accent-blue);
-    background: rgba(0, 8, 227, 0.2);
+    background: rgba(227, 0, 0, 0.2);
 }
 
 .tab-btn:active {

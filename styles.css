@@ -4,9 +4,9 @@
     --card-hover: #1c1c1e;
     --text-primary: #f5f5f7;
     --text-secondary: #86868b;
-    --accent-blue: #eb3c29;
-    --accent-blue-hover: #ff904f;
-    --nav-bg: rgba(22, 22, 23, 0.8);
+    --accent-blue: #4775ff;
+    --accent-blue-hover: #4fb3ff;
+    --nav-bg: rgba(22, 22, 23, 0.5);
     --font-stack: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
     --apple-ease: cubic-bezier(0.16, 1, 0.3, 1);
 
@@ -42,7 +42,7 @@ section[id] {
 
 body {
     background-color: var(--bg-color);
-    background-image: linear-gradient(to bottom, #000000 0%, #000000 60px, #1d1d1f 350px, #161617 100%);
+    background-image: linear-gradient(to bottom, #363647 0%, #32343b 60px, #1d1d1f 350px, #161617 100%);
     color: var(--text-primary);
     font-family: var(--font-stack);
     -webkit-font-smoothing: antialiased;
@@ -71,14 +71,69 @@ a:hover {
     transform: translateY(0);
 }
 
-/* Navigation */
+/* ==========================================================
+   BUTTON STYLE WITH INNER SHADOW GLOW
+   ========================================================== */
+.btn-cta,
+.btn-primary,
+.btn-magnifier-toggle,
+.gallery-pill,
+.tab-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 24px;
+    border-radius: 980px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    color: #ffffff !important;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background-color: #000000;
+    box-shadow: 
+        inset 0 0 16px 2px rgba(64, 134, 255, 0.8),
+        inset 0 -12px 22px rgba(173, 109, 246, 0.5);
+    transition: box-shadow 0.25s var(--apple-ease), transform 0.25s var(--apple-ease), filter 0.25s var(--apple-ease);
+}
+
+.btn-cta:hover,
+.btn-primary:hover,
+.btn-magnifier-toggle:hover,
+.gallery-pill:hover,
+.tab-btn:hover {
+    filter: brightness(1.15);
+    transform: translateY(-1px);
+    text-decoration: none;
+}
+
+.btn-cta:active,
+.btn-primary:active,
+.btn-magnifier-toggle:active,
+.gallery-pill:active,
+.tab-btn:active {
+    transform: scale(0.97);
+    filter: brightness(0.95);
+}
+
+.gallery-pill.active,
+.tab-btn.active,
+.btn-magnifier-toggle.active {
+    box-shadow: 
+        inset 0 0 20px 3px rgba(235, 70, 35, 0.95),
+        inset 0 -14px 26px rgb(176, 115, 94);
+}
+
 .local-nav {
     position: sticky;
     top: 0;
     z-index: 1000;
     background-color: var(--nav-bg);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -167,20 +222,11 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
 }
 
 .btn-cta {
-    background-color: var(--accent-blue);
-    color: #ffffff !important;
-    padding: 6px 16px;
-    border-radius: 980px;
+    padding: 6px 18px;
     font-size: 12px;
-    font-weight: 700;
-    transition: background-color 0.3s var(--apple-ease), transform 0.3s var(--apple-ease);
 }
 
-.btn-cta:hover {
-    background-color: var(--accent-blue-hover);
-}
 
-/* Hero Section */
 .hero {
     padding-top: 80px;
     padding-bottom: 60px;
@@ -214,7 +260,7 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     line-height: 1.08;
     font-weight: 700;
     letter-spacing: -0.015em;
-    background: linear-gradient(180deg, #ffbf3f 0%, #f25213 100%);
+    background: linear-gradient(180deg, #4e8cff 0%, #fb7046 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -239,23 +285,8 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
 }
 
 .btn-primary {
-    background-color: var(--accent-blue);
-    color: #ffffff;
-    padding: 12px 26px;
-    border-radius: 980px;
+    padding: 12px 28px;
     font-size: 16px;
-    font-weight: 700;
-    transition: background-color 0.3s var(--apple-ease), transform 0.3s var(--apple-ease);
-}
-
-.btn-primary:hover {
-    background-color: var(--accent-blue-hover);
-    transform: scale(1.03);
-    text-decoration: none;
-}
-
-.btn-primary:active {
-    transform: scale(0.97);
 }
 
 .btn-secondary-link {
@@ -292,7 +323,7 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     font-size: 56px;
     font-weight: 700;
     letter-spacing: -0.005em;
-    background: linear-gradient(90deg, #c3f6ff 0%, #fffa69 100%);
+    background: linear-gradient(90deg, #c3e2ff 0%, #ffffff 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -307,35 +338,6 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
-}
-
-.gallery-pill {
-    background: var(--card-bg);
-    border: 1px solid #333333;
-    color: var(--text-secondary);
-    padding: 8px 18px;
-    border-radius: 980px;
-    font-size: 14px;
-    font-weight: 700;
-    cursor: pointer;
-    font-family: inherit;
-    transition: background-color 0.3s var(--apple-ease), color 0.3s var(--apple-ease), border-color 0.3s var(--apple-ease), transform 0.2s var(--apple-ease);
-}
-
-.gallery-pill:hover {
-    color: #ffffff;
-    border-color: #666666;
-}
-
-.gallery-pill.active {
-    background: var(--text-primary);
-    color: #000000;
-    border-color: var(--text-primary);
-    font-weight: 700;
-}
-
-.gallery-pill:active {
-    transform: scale(0.96);
 }
 
 .gallery-cards {
@@ -538,34 +540,6 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     flex-wrap: wrap;
 }
 
-.tab-btn {
-    background: #000000;
-    border: 1px solid #333333;
-    color: var(--text-secondary);
-    padding: 10px 22px;
-    border-radius: 980px;
-    font-size: 14px;
-    font-weight: 700;
-    cursor: pointer;
-    font-family: inherit;
-    transition: background-color 0.3s var(--apple-ease), color 0.3s var(--apple-ease), border-color 0.3s var(--apple-ease), transform 0.2s var(--apple-ease);
-}
-
-.tab-btn:hover {
-    color: #ffffff;
-    border-color: #666666;
-}
-
-.tab-btn.active {
-    color: #ffffff;
-    border-color: var(--accent-blue);
-    background: rgba(227, 0, 0, 0.2);
-}
-
-.tab-btn:active {
-    transform: scale(0.95);
-}
-
 /* Capabilities Section */
 .section-specs {
     max-width: 1200px;
@@ -720,7 +694,7 @@ footer p {
     pointer-events: auto !important;
     cursor: grab;
     z-index: 9999;
-    display: none; /* Disabled by default */
+    display: none;
     visibility: hidden;
     opacity: 0;
     overflow: hidden;
@@ -742,7 +716,6 @@ footer p {
         0 0 0 1px rgba(255, 255, 255, 0.3);
 }
 
-/* Glass Surface Reflection Overlay */
 .page-magnifier-lens::after {
     content: '';
     position: absolute;
@@ -760,7 +733,6 @@ footer p {
     box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.4);
 }
 
-/* Scaled Viewport Container */
 .magnifier-zoom-container {
     position: absolute;
     top: 0;
@@ -772,9 +744,8 @@ footer p {
     will-change: transform;
 }
 
-/* Fix for Cloned Magnifier Content Rendering */
 .magnifier-zoom-container * {
-    content-visibility: visible !important; /* Forces offscreen sections to render inside lens */
+    content-visibility: visible !important;
 }
 
 .magnifier-zoom-container .reveal {
@@ -795,7 +766,6 @@ footer p {
     display: none !important;
 }
 
-/* Disable drag selection while holding lens */
 body.magnifier-active-drag,
 body.magnifier-active-drag * {
     user-select: none !important;
@@ -804,29 +774,4 @@ body.magnifier-active-drag * {
 
 body.magnifier-active-drag *:not(#pageMagnifier) {
     pointer-events: none !important;
-}
-
-/* Magnifier Toggle Button */
-.btn-magnifier-toggle {
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: var(--text-primary);
-    padding: 10px 20px;
-    border-radius: 980px;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    font-family: inherit;
-    transition: background-color 0.3s var(--apple-ease), border-color 0.3s var(--apple-ease);
-}
-
-.btn-magnifier-toggle:hover {
-    background: rgba(255, 255, 255, 0.16);
-    border-color: rgba(255, 255, 255, 0.4);
-}
-
-.btn-magnifier-toggle.active {
-    background: var(--accent-blue);
-    border-color: var(--accent-blue);
-    color: #ffffff;
 }

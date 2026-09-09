@@ -4,12 +4,12 @@
 
 :root {
     /* MacBook Air Unibody Palette */
-    --mba-silver-hi: #a5cad7;
-    --mba-silver-light: #9dbcd1;
-    --mba-silver-mid: #7a97be;
-    --mba-silver-dark: #555f6d;
-    --mba-silver-edge: #96acbc;
-    --mba-silver-rim: #c2c7d4;
+    --mba-silver-hi: #d8d8d8;
+    --mba-silver-light: #b9b9b9;
+    --mba-silver-mid: #676977;
+    --mba-silver-dark: #a59187;
+    --mba-silver-edge: #bfbfbf;
+    --mba-silver-rim: #ffffff;
 }
 
 /* --- Hero Visual Container --- */
@@ -199,7 +199,7 @@
 .keyboard-grid {
     width: 100%;
     height: 52%;
-    background: #638bb1;
+    background: #747474;
     border-radius: 6px;
     padding: 5px 6px;
     display: flex;

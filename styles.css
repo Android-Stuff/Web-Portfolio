@@ -6,7 +6,7 @@
     --text-secondary: #86868b;
     --accent-blue: #4775ff;
     --accent-blue-hover: #4fb3ff;
-    --nav-bg: rgba(22, 22, 23, 0.5);
+    --nav-bg: rgba(0, 0, 0, 0.5);
     --font-stack: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
     --apple-ease: cubic-bezier(0.16, 1, 0.3, 1);
 
@@ -260,7 +260,7 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     line-height: 1.08;
     font-weight: 700;
     letter-spacing: -0.015em;
-    background: linear-gradient(180deg, #4e8cff 0%, #fb7046 100%);
+    background: linear-gradient(180deg, #ffffff 0%, #ffffff 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;

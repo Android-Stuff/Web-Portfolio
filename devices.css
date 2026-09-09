@@ -4,12 +4,12 @@
 
 :root {
     /* MacBook Air Unibody Palette */
-    --mba-silver-hi: #d8d8d8;
-    --mba-silver-light: #b9b9b9;
-    --mba-silver-mid: #676977;
-    --mba-silver-dark: #a59187;
-    --mba-silver-edge: #bfbfbf;
-    --mba-silver-rim: #ffffff;
+    --mba-silver-hi: #647c9c;
+    --mba-silver-light: #3c5180;
+    --mba-silver-mid: #252a32;
+    --mba-silver-dark: #0e2f4e;
+    --mba-silver-edge: #506784;
+    --mba-silver-rim: #6268a3;
 }
 
 /* --- Hero Visual Container --- */
@@ -57,7 +57,7 @@
     transition: transform 0.25s cubic-bezier(0.25, 1, 0.3, 1);
 }
 
-/* Laptop Lid */
+
 .laptop-lid {
     position: absolute;
     top: 0px;
@@ -128,7 +128,7 @@
     justify-content: center;
 }
 
-/* Hinge Barrel */
+
 .laptop-hinge {
     position: absolute;
     top: -4px;
@@ -141,7 +141,7 @@
     z-index: 12;
 }
 
-/* Laptop Base & Keyboard */
+
 .laptop-base {
     position: absolute;
     top: 80%;
@@ -151,8 +151,8 @@
     background: linear-gradient(165deg, var(--mba-silver-rim) 0%, var(--mba-silver-hi) 15%, var(--mba-silver-light) 40%, var(--mba-silver-mid) 100%);
     border-radius: 15px;
     border: 1px solid var(--mba-silver-edge);
-    border-top: 1px solid #ffffff;
-    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.7), inset 0 1.5px 0 rgba(255, 255, 255, 0.85);
+    border-top: 1px solid #000f31;
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.7), inset 0 1.5px 0 rgba(32, 44, 105, 0.85);
     transform-style: preserve-3d;
     transform-origin: top center;
     transform: rotateX(40deg) translateZ(2px);
@@ -199,7 +199,7 @@
 .keyboard-grid {
     width: 100%;
     height: 52%;
-    background: #747474;
+    background: #2c384e;
     border-radius: 6px;
     padding: 5px 6px;
     display: flex;
@@ -238,16 +238,6 @@
     justify-content: center;
     user-select: none;
     letter-spacing: -0.1px;
-    
-    /* 
-       1. Inset shadow for concave dishing
-       2. Hairline top rim highlight
-       3. Tight gap shadow in the chassis cutout
-    */
-    box-shadow: 
-        inset 0 1px 1.5px rgba(0, 0, 0, 0.65),
-        inset 0 0.5px 0 rgba(255, 255, 255, 0.08),
-        0 0.5px 1px rgba(0, 0, 0, 0.85);
 }
 
 .key-space { 
@@ -292,7 +282,7 @@
     width: 50%;
     height: 50%;
     background: linear-gradient(160deg, rgba(255, 255, 255, 0.12), rgba(0, 0, 0, 0.05));
-    border: 1px solid rgba(150, 150, 150, 0.4);
+    border: 1px solid rgba(85, 94, 109, 0.4);
     border-radius: 6px;
     box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.3), inset 0 -1px 2px rgba(0, 0, 0, 0.2);
 }

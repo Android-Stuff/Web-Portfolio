@@ -42,7 +42,7 @@ section[id] {
 
 body {
     background-color: var(--bg-color);
-    background-image: linear-gradient(to bottom, #363647 0%, #32343b 60px, #1d1d1f 350px, #161617 100%);
+    background-image: linear-gradient(to bottom, #40404a 0%, #32343b 60px, #1d1d1f 350px, #161617 100%);
     color: var(--text-primary);
     font-family: var(--font-stack);
     -webkit-font-smoothing: antialiased;
@@ -71,12 +71,7 @@ a:hover {
     transform: translateY(0);
 }
 
-/* ==========================================================
-   BUTTON STYLE WITH INNER SHADOW GLOW
-   ========================================================== */
-.btn-cta,
 .btn-primary,
-.btn-magnifier-toggle,
 .gallery-pill,
 .tab-btn {
     position: relative;
@@ -87,7 +82,7 @@ a:hover {
     border-radius: 980px;
     font-family: inherit;
     font-size: 14px;
-    font-weight: 700;
+    font-weight: 300;
     color: #ffffff !important;
     text-decoration: none;
     cursor: pointer;
@@ -102,7 +97,6 @@ a:hover {
 
 .btn-cta:hover,
 .btn-primary:hover,
-.btn-magnifier-toggle:hover,
 .gallery-pill:hover,
 .tab-btn:hover {
     filter: brightness(1.15);
@@ -112,7 +106,6 @@ a:hover {
 
 .btn-cta:active,
 .btn-primary:active,
-.btn-magnifier-toggle:active,
 .gallery-pill:active,
 .tab-btn:active {
     transform: scale(0.97);
@@ -120,8 +113,7 @@ a:hover {
 }
 
 .gallery-pill.active,
-.tab-btn.active,
-.btn-magnifier-toggle.active {
+.tab-btn.active {
     box-shadow: 
         inset 0 0 20px 3px rgba(235, 70, 35, 0.95),
         inset 0 -14px 26px rgb(176, 115, 94);
@@ -131,10 +123,8 @@ a:hover {
     position: sticky;
     top: 0;
     z-index: 1000;
-    background-color: var(--nav-bg);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: transparent;
+    border-bottom: none;
 }
 
 .local-nav-content {
@@ -152,7 +142,7 @@ a:hover {
     align-items: center;
     gap: 12px;
     font-size: 16px;
-    font-weight: 700;
+    font-weight: 300;
     letter-spacing: -0.011em;
     color: var(--text-primary);
 }
@@ -169,7 +159,7 @@ a:hover {
     align-items: center;
     list-style: none;
     font-size: 12px;
-    font-weight: 700;
+    font-weight: 300;
     height: 100%;
 }
 
@@ -224,8 +214,24 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
 .btn-cta {
     padding: 6px 18px;
     font-size: 12px;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 980px;
+    font-family: inherit;
+    font-weight: 400;
+    color: #000000 !important;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background-color: #ffffff;
+    box-shadow: 
+        inset 0 0 16px 2px #ffffff,
+        inset 0 -12px 22px rgba(255, 255, 255, 0.5);
+    transition: box-shadow 0.25s var(--apple-ease), transform 0.25s var(--apple-ease), filter 0.25s var(--apple-ease);
 }
-
 
 .hero {
     padding-top: 80px;
@@ -248,7 +254,7 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
 
 .hero-eyebrow {
     font-size: 20px;
-    font-weight: 700;
+    font-weight: 200;
     color: #ffffff;
     margin-bottom: 12px;
     letter-spacing: 0.02em;
@@ -258,7 +264,7 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
 .hero-headline {
     font-size: 58px;
     line-height: 1.08;
-    font-weight: 700;
+    font-weight: 300;
     letter-spacing: -0.015em;
     background: linear-gradient(180deg, #ffffff 0%, #ffffff 100%);
     -webkit-background-clip: text;
@@ -270,7 +276,7 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
 
 .hero-tagline {
     font-size: 20px;
-    font-weight: 600;
+    font-weight: 200;
     color: var(--text-secondary);
     margin-bottom: 28px;
     animation: fadeInUp 1s var(--apple-ease) forwards;
@@ -291,7 +297,7 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
 
 .btn-secondary-link {
     font-size: 16px;
-    font-weight: 700;
+    font-weight: 300;
     display: inline-flex;
     align-items: center;
     transition: transform 0.3s var(--apple-ease);
@@ -321,9 +327,9 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
 
 .section-title {
     font-size: 56px;
-    font-weight: 700;
+    font-weight: 300;
     letter-spacing: -0.005em;
-    background: linear-gradient(90deg, #c3e2ff 0%, #ffffff 100%);
+    background: linear-gradient(90deg, #94cbff 0%, #ffb14c 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -683,95 +689,74 @@ footer p {
     .hero-headline { font-size: 34px; }
 }
 
-/* Page Traditional Magnifier Lens */
-.page-magnifier-lens {
-    position: fixed;
-    top: 220px;
-    left: calc(50% + 60px);
-    width: 380px;
-    height: 240px;
-    border-radius: 28px;
-    pointer-events: auto !important;
-    cursor: grab;
-    z-index: 9999;
-    display: none;
-    visibility: hidden;
-    opacity: 0;
-    overflow: hidden;
-    background: #000000;
-    box-shadow: 
-        0 20px 45px rgba(0, 0, 0, 0.65),
-        0 0 0 2px rgba(255, 255, 255, 0.35) inset,
-        0 0 0 1px rgba(255, 255, 255, 0.2);
-    transition: opacity 0.3s var(--apple-ease), transform 0.15s ease-out;
-    will-change: transform, left, top;
-}
-
-.page-magnifier-lens.is-dragging {
-    cursor: grabbing !important;
-    transform: scale(1.02);
-    box-shadow: 
-        0 30px 65px rgba(0, 0, 0, 0.8),
-        0 0 0 2.5px rgba(255, 255, 255, 0.5) inset,
-        0 0 0 1px rgba(255, 255, 255, 0.3);
-}
-
-.page-magnifier-lens::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    background: linear-gradient(
-        135deg, 
-        rgba(255, 255, 255, 0.16) 0%, 
-        rgba(255, 255, 255, 0.03) 40%, 
-        transparent 60%, 
-        rgba(255, 255, 255, 0.06) 100%
-    );
-    pointer-events: none;
-    z-index: 10;
-    box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.4);
-}
-
-.magnifier-zoom-container {
+.progressive-blur {
     position: absolute;
     top: 0;
     left: 0;
+    right: 0;
+    height: 140px;
     pointer-events: none;
-    user-select: none;
-    -webkit-user-select: none;
-    transform-origin: 0 0;
-    will-change: transform;
+    z-index: -1;
 }
 
-.magnifier-zoom-container * {
-    content-visibility: visible !important;
+.progressive-blur > div {
+    position: absolute;
+    inset: 0;
 }
 
-.magnifier-zoom-container .reveal {
-    opacity: 1 !important;
-    transform: none !important;
+/* 8-stage exponentially stepped blur stack */
+.progressive-blur > div:nth-child(1) {
+    backdrop-filter: blur(0.5px);
+    -webkit-backdrop-filter: blur(0.5px);
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 87.5%, rgba(0, 0, 0, 0) 100%);
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 87.5%, rgba(0, 0, 0, 0) 100%);
 }
 
-.magnifier-zoom-container .local-nav {
-    position: absolute !important;
+.progressive-blur > div:nth-child(2) {
+    backdrop-filter: blur(1px);
+    -webkit-backdrop-filter: blur(1px);
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 75%, rgba(0, 0, 0, 0) 87.5%);
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 75%, rgba(0, 0, 0, 0) 87.5%);
 }
 
-.magnifier-zoom-container .screen-img {
-    opacity: 1 !important;
-    filter: none !important;
+.progressive-blur > div:nth-child(3) {
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 62.5%, rgba(0, 0, 0, 0) 75%);
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 62.5%, rgba(0, 0, 0, 0) 75%);
 }
 
-.magnifier-zoom-container .boot-screen {
-    display: none !important;
+.progressive-blur > div:nth-child(4) {
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 62.5%);
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 62.5%);
 }
 
-body.magnifier-active-drag,
-body.magnifier-active-drag * {
-    user-select: none !important;
-    -webkit-user-select: none !important;
+.progressive-blur > div:nth-child(5) {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 37.5%, rgba(0, 0, 0, 0) 50%);
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 37.5%, rgba(0, 0, 0, 0) 50%);
 }
 
-body.magnifier-active-drag *:not(#pageMagnifier) {
-    pointer-events: none !important;
+.progressive-blur > div:nth-child(6) {
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 25%, rgba(0, 0, 0, 0) 37.5%);
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 25%, rgba(0, 0, 0, 0) 37.5%);
+}
+
+.progressive-blur > div:nth-child(7) {
+    backdrop-filter: blur(32px);
+    -webkit-backdrop-filter: blur(32px);
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 12.5%, rgba(0, 0, 0, 0) 25%);
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 12.5%, rgba(0, 0, 0, 0) 25%);
+}
+
+.progressive-blur > div:nth-child(8) {
+    backdrop-filter: blur(64px);
+    -webkit-backdrop-filter: blur(64px);
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 12.5%);
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 12.5%);
 }

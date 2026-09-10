@@ -6,26 +6,34 @@
     <title>Portfolio - Vincent</title>
     <meta name="description" content="Portfolio of Vincent Alexander: web development, digital forensics, Android applications, and UI design.">
  
-    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
  
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap">
  
-    <link rel="preload" as="image" href="Mockup Screen.png" fetchpriority="high">
+    <link rel="preload" as="image" href="assets/Mockup Screen.png" fetchpriority="high">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="devices.css">
     <script src="script.js" defer></script>
 </head>
 
-<div id="pageMagnifier" class="page-magnifier-lens"></div>
-
 <body>
  
     <nav class="local-nav">
+        <div class="progressive-blur" aria-hidden="true">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
         <div class="local-nav-content">
             <div class="local-nav-title">
-                <img src="logo.png" alt="Vincent logo" class="logo-img" width="20" height="20">
+                <img src="assets/logo.png" alt="Vincent logo" class="logo-img" width="20" height="20">
                 <span>Vincent Alexander</span>
             </div>
             <ul class="local-nav-links">
@@ -33,7 +41,7 @@
                 <li><a href="#highlights">Highlights</a></li>
                 <li><a href="#showcase">Projects</a></li>
                 <li><a href="#specs">Capabilities</a></li>
-                <li><a href="https://wa.me/6289668265104?text=Hello%20Vincent%2C%20I%20checked%20out%20your%20work%20on%20your%20site%20and%20would%20like%20to%20connect." class="btn-cta">Get in Touch</a></li>
+                <li><a href="https://wa.me/6289668265104" class="btn-cta">Get in Touch</a></li>
             </ul>
         </div>
     </nav>
@@ -49,7 +57,6 @@
  
                 <div class="hero-ctas">
                     <a href="#showcase" class="btn-primary">Explore Work</a>
-                    <button type="button" id="toggleMagnifierBtn" class="btn-magnifier-toggle">Magnifier</button>
                     <a href="#highlights" class="btn-secondary-link">View Highlights &gt;</a>
                 </div>
             </div>
@@ -64,7 +71,7 @@
                             <div class="laptop-lid-inner">
                                 <div class="display-screen">
                                     <div class="boot-screen"></div>
-                                    <img src="Mockup Screen.png" alt="Vincent Alexander portfolio desktop concept" class="screen-img">
+                                    <img src="assets/Mockup Screen.png" alt="Vincent Alexander portfolio desktop concept" class="screen-img">
                                 </div>
                                 <div class="notch"></div>
                             </div>
@@ -131,13 +138,15 @@
                             </div>
                             <div class="base-front-lip"></div>
                         </div>
+                    </div>
+                </div>
 
                 <!-- Mobile Phone Stage -->
                 <div class="phone-stage">
                     <div class="phone-body">
                         <div class="phone-screen">
                             <div class="dynamic-island"></div>
-                                <img src="Mobile mockup.png" alt="mobile concept" class="phone-screen-img">
+                            <img src="assets/Mobile mockup.png" alt="mobile concept" class="phone-screen-img">
                             <div class="phone-glare"></div>
                         </div>
                     </div>
@@ -167,7 +176,7 @@
                     <div class="card-desc">Experience in digital forensics and competitive capture-the-flag (CTF) competitions.</div>
                 </div>
                 <div class="card-graphic">
-                    <img src="highlight-ctf.png" alt="CTF showcase" class="card-img" loading="lazy" decoding="async" width="480" height="220">
+                    <img src="assets/highlight-ctf.png" alt="CTF showcase" class="card-img" loading="lazy" decoding="async" width="480" height="220">
                 </div>
             </div>
  
@@ -185,7 +194,7 @@
                 </div>
                 <div class="card-graphic">
                     <a href="https://github.com/Android-Stuff/UNEJ-MAPS" target="_blank" rel="noopener noreferrer" class="card-graphic-link">
-                        <img src="unejmaps.png" alt="UNEJ MAPS" class="card-img" loading="lazy" decoding="async" width="480" height="220">
+                        <img src="assets/unejmaps.png" alt="UNEJ MAPS" class="card-img" loading="lazy" decoding="async" width="480" height="220">
                     </a>
                 </div>
             </div>
@@ -198,7 +207,7 @@
                     <div class="card-desc">Creating clean desktop environments, Fresh New Designs. Using Figma for prototyping.</div>
                 </div>
                 <div class="card-graphic">
-                    <img src="Mockup.png" alt="Elementary OS mockup" class="card-img" loading="lazy" decoding="async" width="480" height="220">
+                    <img src="assets/Mockup.png" alt="Elementary OS mockup" class="card-img" loading="lazy" decoding="async" width="480" height="220">
                 </div>
             </div>
  
@@ -210,7 +219,7 @@
                     <div class="card-desc">Building software using C#, C++, and Python.</div>
                 </div>
                 <div class="card-graphic">
-                    <img src="showcase-cpp.png" alt="C++ development" class="card-img" loading="lazy" decoding="async" width="480" height="220">
+                    <img src="assets/showcase-cpp.png" alt="C++ development" class="card-img" loading="lazy" decoding="async" width="480" height="220">
                 </div>
             </div>
         </div>
@@ -232,7 +241,7 @@
             <div class="viewer-display">
                 <div class="screen-content" id="projectDisplay">
                     <div class="mockup-frame" id="mockupFrame">
-                        <img src="Mockup.png" alt="Project mockup preview" class="mockup-img" id="projectImage" loading="lazy" decoding="async">
+                        <img src="assets/Mockup.png" alt="Project mockup preview" class="mockup-img" id="projectImage" loading="lazy" decoding="async">
                     </div>
                     <div class="project-details">
                         <h3 id="projectTitle"></h3>

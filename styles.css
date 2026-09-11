@@ -127,7 +127,24 @@ a:hover {
     border-bottom: none;
 }
 
+.local-nav::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    background: linear-gradient(
+        180deg,
+        #161617b2 0%,
+        #1616171c 70%,
+        #00000000 100%
+    );
+    pointer-events: none;
+    z-index: 2;
+}
+
 .local-nav-content {
+    position: relative;
+    z-index: 3;
     max-width: 1200px;
     margin: 0 auto;
     display: flex;

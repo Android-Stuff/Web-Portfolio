@@ -244,9 +244,6 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     border: none;
     outline: none;
     background-color: #ffffff;
-    box-shadow: 
-        inset 0 0 16px 2px #ffffff,
-        inset 0 -12px 22px rgba(255, 255, 255, 0.5);
     transition: box-shadow 0.25s var(--apple-ease), transform 0.25s var(--apple-ease), filter 0.25s var(--apple-ease);
 }
 
@@ -696,6 +693,25 @@ footer p {
     .hero-tagline { font-size: 18px; }
     .section-title { font-size: 38px; }
     .local-nav-links { display: none; }
+
+    /* Fewer blur layers on mobile: cheaper to composite */
+    .progressive-blur > div:nth-child(n+3) {
+        display: none;
+    }
+
+    .progressive-blur > div:nth-child(1) {
+        backdrop-filter: blur(2px);
+        -webkit-backdrop-filter: blur(2px);
+        mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+        -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+    }
+
+    .progressive-blur > div:nth-child(2) {
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 70%);
+        -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 70%);
+    }
 }
 
 @media (max-width: 550px) {
@@ -776,25 +792,4 @@ footer p {
     -webkit-backdrop-filter: blur(64px);
     mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 12.5%);
     -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 12.5%);
-}
-
-/* Mobile performance optimization for progressive blur */
-@media (max-width: 768px) {
-    .progressive-blur > div:nth-child(n+3) {
-        display: none;
-    }
-
-    .progressive-blur > div:nth-child(1) {
-        backdrop-filter: blur(2px);
-        -webkit-backdrop-filter: blur(2px);
-        mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
-        -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
-    }
-
-    .progressive-blur > div:nth-child(2) {
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 70%);
-        -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 70%);
-    }
 }

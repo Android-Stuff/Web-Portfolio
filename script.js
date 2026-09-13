@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     'use strict';
 
-    // 1. Scroll Reveal Observer
+    /* ---------- Scroll-reveal ---------- */
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
             if (entry.isIntersecting) {
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
 
-    // 2. Highlights Gallery Category Filter
+    /* ---------- Highlights filter ---------- */
     const galleryNav = document.querySelector('.gallery-nav');
     const cards = document.querySelectorAll('.card');
 
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 3. Project Showcase Tab Switcher
+    /* ---------- Project showcase tabs ---------- */
     const projectsData = {
         design: {
             title: 'Elementary OS Concept UI',
@@ -72,6 +72,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    // Keep in sync with the .screen-content transition duration in styles.css
+    const TAB_TRANSITION_MS = 300;
+
     const controls = document.querySelector('.controls');
     const displayBox = document.getElementById('projectDisplay');
     const imgElement = document.getElementById('projectImage');
@@ -85,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (titleEl) titleEl.textContent = data.title;
         if (descEl) descEl.textContent = data.desc;
         if (tagsEl) {
-            tagsEl.replaceChildren(...data.tags.map(tag => {
+            tagsEl.replaceChildren(...data.tags.map((tag) => {
                 const span = document.createElement('span');
                 span.className = 'tech-tag';
                 span.textContent = tag;
@@ -126,11 +129,86 @@ document.addEventListener('DOMContentLoaded', () => {
                 renderProjectData(data);
                 displayBox.classList.remove('tab-transitioning');
                 isSwitching = false;
-            }, 250);
+            }, TAB_TRANSITION_MS);
         });
     }
 
-    // 4. 3D Laptop Desktop Only
+    /* ---------- Laptop mockup: keyboard generation ---------- */
+    const KEYBOARD_ROWS = [
+        [
+            { label: 'esc', cls: 'key-esc' },
+            ...['f1', 'f2', 'f3', 'f4', 'f5', 'f6', 'f7', 'f8', 'f9', 'f10', 'f11', 'f12'].map((label) => ({ label })),
+            { cls: 'key-touchid', html: '<span class="key-touchid-sensor"></span>' }
+        ],
+        [
+            ...['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '='].map((label) => ({ label })),
+            { label: 'backspace', cls: 'key-delete' }
+        ],
+        [
+            { label: 'tab', cls: 'key-tab' },
+            ...['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', '[', ']'].map((label) => ({ label })),
+            { label: '\\', cls: 'key-slash' }
+        ],
+        [
+            { cls: 'key-caps', html: '<span class="caps-dot"></span>caps lock' },
+            ...['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', ';', "'"].map((label) => ({ label })),
+            { label: 'return', cls: 'key-return' }
+        ],
+        [
+            { label: 'shift', cls: 'key-shift-l' },
+            ...['Z', 'X', 'C', 'V', 'B', 'N', 'M', ',', '.', '/'].map((label) => ({ label })),
+            { label: 'shift', cls: 'key-shift-r' }
+        ]
+    ];
+
+    // Bottom row has a unique layout (space bar + arrow cluster), so it's kept as one template
+    const BOTTOM_ROW_HTML = `
+        <span class="key key-fn">fn</span>
+        <span class="key key-ctrl">control</span>
+        <span class="key key-opt">option</span>
+        <span class="key key-cmd">command</span>
+        <span class="key key-space"></span>
+        <span class="key key-cmd">command</span>
+        <span class="key key-opt">option</span>
+        <div class="key-arrow-group">
+            <span class="key key-arrow key-arrow-left">◀</span>
+            <div class="key-arrow-stacked">
+                <span class="key key-arrow key-arrow-up">▲</span>
+                <span class="key key-arrow key-arrow-down">▼</span>
+            </div>
+            <span class="key key-arrow key-arrow-right">▶</span>
+        </div>`;
+
+    function buildKey({ label = '', cls = '', html }) {
+        const span = document.createElement('span');
+        span.className = cls ? `key ${cls}` : 'key';
+        if (html) span.innerHTML = html;
+        else span.textContent = label;
+        return span;
+    }
+
+    function buildKeyboard(grid) {
+        if (!grid) return;
+        const frag = document.createDocumentFragment();
+
+        KEYBOARD_ROWS.forEach((rowKeys) => {
+            const row = document.createElement('div');
+            row.className = 'kb-row';
+            rowKeys.forEach((key) => row.appendChild(buildKey(key)));
+            frag.appendChild(row);
+        });
+
+        const bottomRow = document.createElement('div');
+        bottomRow.className = 'kb-row';
+        bottomRow.innerHTML = BOTTOM_ROW_HTML;
+        frag.appendChild(bottomRow);
+
+        grid.appendChild(frag);
+    }
+
+    buildKeyboard(document.getElementById('keyboardGrid'));
+
+    /* ---------- Laptop mockup: pointer parallax (rAF-throttled) ---------- */
     const laptop = document.getElementById('laptop3D');
     const hero = document.querySelector('.hero');
 
@@ -138,20 +216,33 @@ document.addEventListener('DOMContentLoaded', () => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     if (laptop && hero && isDesktopPointer && !prefersReducedMotion) {
+        let pendingTransform = null;
+        let rafId = null;
+
+        const applyTransform = () => {
+            laptop.style.transform = pendingTransform;
+            rafId = null;
+        };
+
         hero.addEventListener('mousemove', (e) => {
             const rect = hero.getBoundingClientRect();
             const x = (e.clientX - rect.left) / rect.width - 0.5;
             const y = (e.clientY - rect.top) / rect.height - 0.5;
 
-            laptop.style.transform = `rotateX(${22 - y * 8}deg) rotateY(${x * 8}deg)`;
+            pendingTransform = `rotateX(${22 - y * 8}deg) rotateY(${x * 8}deg)`;
+            if (rafId === null) rafId = requestAnimationFrame(applyTransform);
         });
 
         hero.addEventListener('mouseleave', () => {
+            if (rafId !== null) {
+                cancelAnimationFrame(rafId);
+                rafId = null;
+            }
             laptop.style.transform = 'rotateX(22deg) rotateY(0deg)';
         });
     }
 
-    // 5. Scroll-Triggered Laptop Opening
+    /* ---------- Laptop mockup: open on scroll into view ---------- */
     const laptopStage = document.querySelector('.laptop-stage');
 
     if (laptopStage) {

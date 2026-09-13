@@ -72,7 +72,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Keep in sync with the .screen-content transition duration in styles.css
     const TAB_TRANSITION_MS = 300;
 
     const controls = document.querySelector('.controls');
@@ -133,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    /* ---------- Laptop mockup: keyboard generation ---------- */
+    /*Laptop mockup keyboard generation*/
     const KEYBOARD_ROWS = [
         [
             { label: 'esc', cls: 'key-esc' },
@@ -161,7 +160,6 @@ document.addEventListener('DOMContentLoaded', () => {
         ]
     ];
 
-    // Bottom row has a unique layout (space bar + arrow cluster), so it's kept as one template
     const BOTTOM_ROW_HTML = `
         <span class="key key-fn">fn</span>
         <span class="key key-ctrl">control</span>
@@ -208,7 +206,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     buildKeyboard(document.getElementById('keyboardGrid'));
 
-    /* ---------- Laptop mockup: pointer parallax (rAF-throttled) ---------- */
     const laptop = document.getElementById('laptop3D');
     const hero = document.querySelector('.hero');
 
@@ -242,7 +239,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    /* ---------- Laptop mockup: open on scroll into view ---------- */
     const laptopStage = document.querySelector('.laptop-stage');
 
     if (laptopStage) {

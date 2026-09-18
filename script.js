@@ -132,7 +132,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    /*Laptop mockup keyboard generation*/
     const KEYBOARD_ROWS = [
         [
             { label: 'esc', cls: 'key-esc' },

@@ -321,7 +321,6 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     transform: translateX(4px);
 }
 
-/* Highlights Section */
 .section-highlights {
     max-width: 1200px;
     margin: 120px auto;
@@ -460,7 +459,6 @@ body:has(#specs:target) .local-nav-links a[href="#specs"]::after {
     transform: scale(1.04);
 }
 
-/* Project Showcase Section */
 .section-viewer {
     max-width: 1200px;
     margin: 120px auto;
@@ -619,7 +617,6 @@ footer p {
     margin-bottom: 8px;
 }
 
-/* Animations */
 @keyframes scrollIndicatorTransition {
     0%          { opacity: 0; transform: scaleX(0); }
     20%, 80%    { opacity: 1; transform: scaleX(1); }
@@ -660,7 +657,6 @@ footer p {
     }
 }
 
-/* Responsive Media Queries */
 @media (max-width: 992px) {
     .hero-container {
         grid-template-columns: 1fr;
@@ -694,7 +690,6 @@ footer p {
     .section-title { font-size: 38px; }
     .local-nav-links { display: none; }
 
-    /* Fewer blur layers on mobile: cheaper to composite */
     .progressive-blur > div:nth-child(n+3) {
         display: none;
     }
@@ -737,7 +732,6 @@ footer p {
     inset: 0;
 }
 
-/* 8-stage exponentially stepped blur stack */
 .progressive-blur > div:nth-child(1) {
     backdrop-filter: blur(0.5px);
     -webkit-backdrop-filter: blur(0.5px);

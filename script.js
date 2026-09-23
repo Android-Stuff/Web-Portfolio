@@ -60,9 +60,9 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         cpp: {
             title: 'Software Development in C++/C# & Python',
-            desc: 'Developed software applications using C++ and C#, and created scripts in Python.',
+            desc: 'Developed software applications using C++ and C#, and created scripts in Python. My latest project is a Windows desktop cleaner application built with WinUI3.',
             tags: ['Visual Studio Code', 'Visual Studio', 'PyCharm'],
-            image: 'assets/showcase-cpp.png'
+            image: 'assets/Showcase-WinUI3.png'
         },
         mobile: {
             title: 'Car Android App Prototype',

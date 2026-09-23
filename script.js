@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     'use strict';
 
-    /* ---------- Scroll-reveal ---------- */
+    /* ---------- Scroll reveal ---------- */
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
             if (entry.isIntersecting) {
@@ -131,6 +131,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }, TAB_TRANSITION_MS);
         });
     }
+
+    /* ---------- Laptop Keyboard ---------- */
 
     const KEYBOARD_ROWS = [
         [
